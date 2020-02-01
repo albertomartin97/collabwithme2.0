@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">CollabWithMe2.0</string>
+<string name="app_textView">Collab
+    With
+    Me</string>
+<string name="login_button">Log in</string>
+<string name="slogan_textView">Share ideas and collaborate with each other</string>
+<string name="registration_link_textView">Don\'t have an account? Sign up here</string>
 </resources>
