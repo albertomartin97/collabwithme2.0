@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        registrationLinkTextView.setOnClickListener {
+        loginTextView.setOnClickListener {
             val intentGoToRegistrationActivity = Intent(this, RegistrationActivity::class.java)
             startActivity(intentGoToRegistrationActivity)
 

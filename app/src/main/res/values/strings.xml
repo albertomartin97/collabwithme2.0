@@ -12,5 +12,6 @@
     <string name="password_input_hint">Password</string>
     <string name="registration_button">Register</string>
     <string name="todo">TODO</string>
+    <string name="welcome_textView">Welcome back</string>
 
 </resources>
