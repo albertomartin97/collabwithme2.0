@@ -7,7 +7,15 @@ import android.os.Bundle
 import android.widget.VideoView
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+
 class MainActivity : AppCompatActivity() {
+
+
+    public override fun onResume() {
+        super.onResume()
+        videoView.start()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,4 +41,7 @@ class MainActivity : AppCompatActivity() {
         videoView.start()
 
     }
+
+
+
 }
