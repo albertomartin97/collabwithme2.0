@@ -20,6 +20,12 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        loginBtn.setOnClickListener {
+            val intentGoToLoginActivity = Intent(this, LoginActivity::class.java)
+            startActivity(intentGoToLoginActivity)
+
+        }
+
 
         val videoView = findViewById<VideoView>(R.id.videoView)
         val path = "android.resource://" + packageName + "/" + R.raw.djstudio_vertical_zoom
