@@ -3,6 +3,8 @@
         With
         Me
     </string>
+    <string name="app_textView2">CollabWithMe
+    </string>
     <string name="login_button">Log in</string>
     <string name="slogan_textView">Share ideas and collaborate with each other</string>
     <string name="registration_link_textView">Don\'t have an account? Sign up here</string>
@@ -13,5 +15,9 @@
     <string name="registration_button">Register</string>
     <string name="todo">TODO</string>
     <string name="welcome_textView">Welcome back</string>
+    <string name="profile_button">Profile</string>
+    <string name="friends_button">Friends</string>
+    <string name="find_people_button">Find New People</string>
+    <string name="messages_button">Messages</string>
 
 </resources>
