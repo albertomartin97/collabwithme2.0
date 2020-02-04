@@ -3,9 +3,15 @@ package com.example.collabwithme20
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_home_screen.*
 
 class HomeScreenActivity : AppCompatActivity() {
+    companion object {
+        private val TAG = "HomeScreenActivity"
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +36,22 @@ class HomeScreenActivity : AppCompatActivity() {
             val intentGoToMessagesActivity = Intent(this, MessagesActivity::class.java)
             startActivity(intentGoToMessagesActivity)
         }
+/*
+        val db = FirebaseFirestore.getInstance()
 
+        val docRef = db.collection("users").document("Bob")
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception)
+            }
 
-
+*/
     }
 }

@@ -27,7 +27,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp" app:srcCompat="@drawable/left_arrow"
             android:id="@+id/backBtn" android:layout_marginTop="14dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="10dp"
             app:layout_constraintEnd_toEndOf="@+id/appTextView" android:layout_marginEnd="16dp"
             app:layout_constraintHorizontal_bias="0.0" android:contentDescription="@string/todo"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

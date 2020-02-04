@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_registration.*
 
 class RegistrationActivity : AppCompatActivity() {
+    companion object {
+        private val TAG = "RegistrationActivity"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +20,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         registrationBtn.setOnClickListener {
             performRegistration()
+            saveNewProfile()
         }
 
     }
@@ -34,7 +37,7 @@ class RegistrationActivity : AppCompatActivity() {
             return
         }
 
-        if(password.length < 7){
+        if(password.length < 6){
             Toast.makeText(this, "Passwords must have at least 7 characters", Toast.LENGTH_SHORT).show()
             return
         }
@@ -62,24 +65,23 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun saveNewProfile() {
 
-        lateinit var currentUserDb: DatabaseReference
 
         val name = nameInput.text.toString()
-        //val surname = surname_registration_input.text.toString()
 
+        val db = FirebaseFirestore.getInstance()
 
+        val user = hashMapOf(
+            "name" to name
+        )
 
-        val userId  = FirebaseAuth.getInstance().currentUser?.uid
-
-        currentUserDb = FirebaseDatabase.getInstance().reference.child("users").child(userId.toString())
-
-        val newUser:HashMap<String,String> = HashMap()
-        newUser.put("name",name)
-        //newUser.put("surname",surname)
-
-        currentUserDb.push().updateChildren(newUser as Map<String, Any>)
-
-
+        db.collection("users")
+            .add(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
 
 
 
