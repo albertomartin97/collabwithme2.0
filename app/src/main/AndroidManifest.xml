@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.collabwithme20">
+            package="com.example.collabwithme20"
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:ignore="GoogleAppIndexingWarning">
 
     <application
             android:allowBackup="true"
@@ -9,13 +11,17 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".HomeScreenActivity">
+        <activity android:name=".HomeScreenActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".RegistrationActivity">
+        <activity android:name=".RegistrationActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
