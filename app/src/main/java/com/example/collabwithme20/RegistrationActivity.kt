@@ -35,7 +35,7 @@ class RegistrationActivity : AppCompatActivity() {
         }
 
         if(password.length < 7){
-            Toast.makeText(this, "Passwords must have at least 6 characters", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Passwords must have at least 7 characters", Toast.LENGTH_SHORT).show()
             return
         }
 
