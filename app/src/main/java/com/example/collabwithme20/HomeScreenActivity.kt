@@ -36,6 +36,8 @@ class HomeScreenActivity : AppCompatActivity() {
             val intentGoToMessagesActivity = Intent(this, MessagesActivity::class.java)
             startActivity(intentGoToMessagesActivity)
         }
+
+
 /*
         val db = FirebaseFirestore.getInstance()
 
