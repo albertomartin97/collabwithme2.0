@@ -37,6 +37,11 @@ class HomeScreenActivity : AppCompatActivity() {
             startActivity(intentGoToMessagesActivity)
         }
 
+        settingsBtn.setOnClickListener{
+            val intentGoToSettingsActivity = Intent(this, SettingsActivity::class.java)
+            startActivity(intentGoToSettingsActivity)
+        }
+
 
 /*
         val db = FirebaseFirestore.getInstance()

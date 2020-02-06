@@ -17,6 +17,11 @@ class LoginActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
             performLogin()
         }
+
+        privateAccessButton.setOnClickListener {
+            val intentGoToHomeScreenActivity = Intent(this, HomeScreenActivity::class.java)
+            startActivity(intentGoToHomeScreenActivity)
+        }
     }
 
     private fun performLogin(){
@@ -37,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 return@addOnCompleteListener}
             else  {
                 val intentGoToHomeScreenActivity = Intent(this, HomeScreenActivity::class.java)
-                Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Logged in successfully", Toast.LENGTH_SHORT).show()
                 startActivity(intentGoToHomeScreenActivity)
             }
 
