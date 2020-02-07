@@ -19,6 +19,7 @@
                     android:id="@+id/profileBtn"
                     style="@android:style/Widget.Button" android:textSize="24sp" android:background="@drawable/style2"
                     android:fontFamily="@font/alfa_slab_one"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_marginTop="32dp"
                     app:layout_constraintTop_toBottomOf="@+id/appTextView" app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.516"/>
@@ -29,6 +30,7 @@
                     android:id="@+id/friendsBtn"
                     style="@android:style/Widget.Button" android:textSize="24sp" android:background="@drawable/style3"
                     android:fontFamily="@font/alfa_slab_one"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="24dp"
                     app:layout_constraintTop_toBottomOf="@+id/profileBtn" app:layout_constraintHorizontal_bias="0.483"/>
@@ -41,6 +43,7 @@
                     android:layout_marginStart="45dp"
                     style="@android:style/Widget.Button" android:textSize="24sp" android:background="@drawable/style4"
                     android:fontFamily="@font/alfa_slab_one"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="45dp"
                     app:layout_constraintHorizontal_bias="0.491" android:layout_marginTop="24dp"
                     app:layout_constraintTop_toBottomOf="@+id/friendsBtn"/>
@@ -52,6 +55,7 @@
                     android:id="@+id/messagesBtn"
                     style="@android:style/Widget.Button" android:textSize="24sp" android:background="@drawable/style5"
                     android:fontFamily="@font/alfa_slab_one"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="24dp"
                     app:layout_constraintTop_toBottomOf="@+id/findPeopleBtn"
@@ -65,6 +69,7 @@
                     android:id="@+id/settingsBtn"
                     style="@android:style/Widget.Button" android:textSize="24sp" android:background="@drawable/style6"
                     android:fontFamily="@font/alfa_slab_one"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintHorizontal_bias="0.483" android:layout_marginTop="24dp"
                     app:layout_constraintTop_toBottomOf="@+id/messagesBtn" android:layout_marginBottom="24dp"
