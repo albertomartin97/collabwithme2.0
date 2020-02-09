@@ -1,16 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/color2</item>
+        <item name="android:autofilledHighlight">@android:color/transparent</item>
     </style>
 
     <style name="MyButton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/color5</item>
         <item name="colorButtonNormal">@color/color2</item>
+    </style>
+
+    <style name="TextView" parent="Theme.AppCompat.Light">
+        <item name="android:autofilledHighlight">@android:color/transparent</item>
     </style>
 
 </resources>

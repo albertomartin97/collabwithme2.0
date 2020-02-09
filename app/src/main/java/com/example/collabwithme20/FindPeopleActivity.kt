@@ -3,8 +3,7 @@ package com.example.collabwithme20
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_find_people.*
-import kotlinx.android.synthetic.main.activity_profile.*
+
 import kotlinx.android.synthetic.main.activity_profile.backBtn
 
 class FindPeopleActivity : AppCompatActivity() {
@@ -17,5 +16,7 @@ class FindPeopleActivity : AppCompatActivity() {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
             startActivity(intentGoToPreviousActivity)
         }
+
+
     }
 }

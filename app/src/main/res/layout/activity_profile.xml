@@ -12,7 +12,7 @@
             android:layout_width="417dp"
             android:layout_height="47dp"
             android:id="@+id/activityTextView" android:textColor="@color/color6"
-            android:background="@color/color2"
+            android:background="@color/color1"
             android:paddingStart="55dp"
             android:paddingEnd="20dp"
             android:paddingVertical="3dp"
@@ -25,6 +25,7 @@
     <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp" app:srcCompat="@drawable/left_arrow"
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/backBtn" android:layout_marginTop="14dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="10dp"
             app:layout_constraintEnd_toEndOf="@+id/activityTextView" android:layout_marginEnd="16dp"
