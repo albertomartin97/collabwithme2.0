@@ -18,4 +18,7 @@
         <item name="android:autofilledHighlight">@android:color/transparent</item>
     </style>
 
+    <style name="styleSkillsTextView" parent="Theme.AppCompat.Light">
+        <item name="color">@color/color8</item>
+    </style>
 </resources>

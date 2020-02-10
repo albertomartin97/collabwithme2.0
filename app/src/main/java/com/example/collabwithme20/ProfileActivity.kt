@@ -20,6 +20,9 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         val userName = usernameTextView
+        val firstName = firstNameTextView
+        val lastName = lastNameTextView
+        val email = emailTextView
 
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
@@ -27,7 +30,10 @@ class ProfileActivity : AppCompatActivity() {
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
-                userName.text = document.getString("name")
+                userName.text = document.getString("first_name")
+                firstName.text = document.getString("first_name")
+                lastName.text = document.getString("last_name")
+                email.text = document.getString("email")
             } else {
                 Log.d("doesn't exist", "No such document")
             }

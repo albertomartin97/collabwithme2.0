@@ -9,9 +9,10 @@
     <string name="slogan_textView">Share ideas and collaborate with each other</string>
     <string name="registration_link_textView">Don\'t have an account? Sign up here</string>
     <string name="registration_textView">New Account</string>
-    <string name="name_input_hint">Name</string>
+    <string name="name_input_hint">First Name</string>
     <string name="email_input_hint">Email</string>
     <string name="password_input_hint">Password</string>
+    <string name="lastname_input_hint">Last name</string>
     <string name="registration_button">Register</string>
     <string name="todo">TODO</string>
     <string name="welcome_textView">Welcome back</string>
@@ -23,5 +24,16 @@
     <string name="logout_textView">Log out</string>
     <string name="private_access_button">PRIVATE ACCESS</string>
     <string name="user_name">Username</string>
+    <string name="music_production_btn">Music Producer</string>
+    <string name="singer_btn">Singer</string>
+    <string name="rapper_btn">Rapper</string>
+    <string name="video_production_btn">Video Production</string>
+    <string name="graphic_designer_btn">Graphic Designer</string>
+    <string name="clothing_design_btn">Clothing Design</string>
+    <string name="others_btn">Others</string>
+    <string name="skills">Select one or more of your skills </string>
+
+
+
 
 </resources>
