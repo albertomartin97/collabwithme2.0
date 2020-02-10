@@ -95,8 +95,6 @@
                     android:layout_height="46dp"
                     android:id="@+id/appTextView" android:textColor="@color/color6"
                     android:background="@color/color2"
-                    android:drawableStart="@drawable/headphones"
-                    android:drawablePadding="5dp"
                     android:paddingStart="15dp"
                     android:paddingEnd="50dp"
                     android:paddingTop="2dp"

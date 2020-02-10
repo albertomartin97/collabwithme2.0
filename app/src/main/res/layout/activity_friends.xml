@@ -9,8 +9,8 @@
 
     <TextView
             android:text="@string/friends_button"
-            android:layout_width="417dp"
-            android:layout_height="47dp"
+            android:layout_width="410dp"
+            android:layout_height="46dp"
             android:id="@+id/activityTextView" android:textColor="@color/color6"
             android:background="@color/color4"
             android:paddingStart="55dp"

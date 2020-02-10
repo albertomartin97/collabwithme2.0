@@ -22,5 +22,6 @@
     <string name="settings_textView">Settings</string>
     <string name="logout_textView">Log out</string>
     <string name="private_access_button">PRIVATE ACCESS</string>
+    <string name="user_name">Username</string>
 
 </resources>

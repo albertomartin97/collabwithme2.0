@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_registration.*
+import java.util.*
 
 class RegistrationActivity : AppCompatActivity() {
     companion object {
@@ -20,24 +22,30 @@ class RegistrationActivity : AppCompatActivity() {
 
         registrationBtn.setOnClickListener {
             performRegistration()
-            saveNewProfile()
         }
 
     }
 
-    private fun performRegistration(){
+    private fun performRegistration() {
 
         val email = emailInput.text.toString()
         val password = passwordInput.text.toString()
-        //val name = name_registration_input.text.toString()
+        val name = nameInput.text.toString()
         //val surname = surname_registration_input.text.toString()
+        var userID : String
+        val user = hashMapOf(
+            "name" to name
+        )
 
-        if(email.isEmpty() || password.isEmpty()){
+        val db = FirebaseFirestore.getInstance()
+
+
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show()
             return
         }
 
-        if(password.length < 6){
+        if (password.length < 6) {
             Toast.makeText(this, "Passwords must have at least 7 characters", Toast.LENGTH_SHORT).show()
             return
         }
@@ -45,14 +53,25 @@ class RegistrationActivity : AppCompatActivity() {
         Log.d("MainActivity", "Email is: " + email)
         Log.d("MainActivity", "Paswword: $password")
 
-
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener{
-            if(!it.isSuccessful) {
+        //Auth registration
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener {
+            if (!it.isSuccessful) {
                 Toast.makeText(this, "Failed to create user", Toast.LENGTH_SHORT).show()
                 return@addOnCompleteListener
-            }
-            else {
+            } else {
                 Log.d("Main", "Successfully created user with uid: ${it.result?.user?.uid} ")
+
+                //Saving profile into Database
+                userID = FirebaseAuth.getInstance().currentUser?.uid ?: String()
+
+                val docRef =  db . collection ("users").document(userID)
+                docRef.set(user).addOnSuccessListener {
+                    Log.d(TAG, "User profile created for $userID")
+                }
+                    .addOnFailureListener { e ->
+                        Log.w(TAG, "Error adding document", e)
+                    }
+
                 Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
             }
         }
@@ -63,27 +82,4 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
-    private fun saveNewProfile() {
-
-
-        val name = nameInput.text.toString()
-
-        val db = FirebaseFirestore.getInstance()
-
-        val user = hashMapOf(
-            "name" to name
-        )
-
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-
-
-
-    }
 }

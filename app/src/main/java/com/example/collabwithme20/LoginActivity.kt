@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,12 +30,13 @@ class LoginActivity : AppCompatActivity() {
         val email = emailInput.text.toString()
         val password = passwordInput.text.toString()
 
+
         if(email.isEmpty() && password.isEmpty()){
             Toast.makeText(this, "Please enter your email and password", Toast.LENGTH_SHORT).show()
             return
         }
 
-        Log.d("MainActivity", "Email is: " + email)
+        Log.d("MainActivity", "Email is: $email")
         Log.d("MainActivity", "Paswword: $password")
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
