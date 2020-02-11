@@ -43,22 +43,5 @@ class HomeScreenActivity : AppCompatActivity() {
         }
 
 
-/*
-        val db = FirebaseFirestore.getInstance()
-
-        val docRef = db.collection("users").document("Bob")
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                } else {
-                    Log.d(TAG, "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
-
-*/
     }
 }

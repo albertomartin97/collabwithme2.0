@@ -1,6 +1,7 @@
 package com.example.collabwithme20
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
     companion object {
-        private val TAG = "ProfileActivity"
+        private const val TAG = "ProfileActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,9 +67,12 @@ class ProfileActivity : AppCompatActivity() {
             updateSkills("others")
 
         }
+
+
     }
 
     private fun getUserData(){
+
         val userName = usernameTextView
         val firstName = firstNameTextView
         val lastName = lastNameTextView
@@ -96,27 +100,65 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun updateSkills(skill : String){
 
-            val db = FirebaseFirestore.getInstance()
-            val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
+        val db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
+        val documentRef = db.collection("users").document(uid).
+            collection("skills").document(skill)
 
-            val documentRef = db.collection("users").document(uid).
-                collection("skills").document(skill)
+        documentRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+                if (document.getString("skill") == "true"){
 
-            val skillBool = "true"
-            val user = hashMapOf(
-                "skill" to skillBool
-            )
+                    val skillTrue = "false"
+                    val user = hashMapOf(
+                        "skill" to skillTrue
+                    )
 
-            documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
-                Log.d(TAG, "User profile created for $uid")
-            }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error adding document", e)
+                    documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                        Log.d(TAG, "User profile created for $uid")
+                    }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+
+                } else if(document.getString("skill") == "false"){
+
+                    val skillTrue = "true"
+                    val user = hashMapOf(
+                        "skill" to skillTrue
+                    )
+
+                    documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                        Log.d(TAG, "User profile created for $uid")
+                    }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+
+                } else if(document.get(skill) == null){
+
+                    val skillTrue = "true"
+                    val user = hashMapOf(
+                        "skill" to skillTrue
+                    )
+
+                    documentRef.set(user).addOnSuccessListener {
+                        Log.d(TAG, "User profile created for $uid")
+                    }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
                 }
 
+            } else {
+                Log.d("doesn't exist", "No such document")
 
-
+            }
+        }
 
     }
+
+
 }
