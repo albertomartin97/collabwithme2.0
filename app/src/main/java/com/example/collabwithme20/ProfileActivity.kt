@@ -1,5 +1,6 @@
 package com.example.collabwithme20
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -37,7 +38,11 @@ class ProfileActivity : AppCompatActivity() {
 
         getUserData() //Get user data from DB
 
-        saveCitySelection() //Save selected city
+
+        selectCityBtn.setOnClickListener {
+            val intent = Intent(this, ChooseCityActivity::class.java)
+            startActivity(intent)
+        }
 
         musicProductionBtn.setOnClickListener {
 
@@ -168,35 +173,4 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-    private fun saveCitySelection() {
-
-
-        val city = findViewById<Spinner>(R.id.citiesSpinner)
-        val cities = arrayOf("London", "Birmingham", "Bristol", "Cardiff", "Swansea")
-
-        city.adapter = ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, cities)
-
-        city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val docRef = db.collection("users").document(uid)
-                val result = cities.get(index = p2)
-                val user = hashMapOf(
-                    "city" to result
-                )
-
-
-                docRef.set(user, SetOptions.merge()).addOnSuccessListener {
-                    Log.d(TAG, "User profile created for $uid")
-                }
-                    .addOnFailureListener { e ->
-                        Log.w(TAG, "Error adding document", e)
-                    }
-            }
-        }
-
-    }
 }

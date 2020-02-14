@@ -20,10 +20,7 @@ class LoginActivity : AppCompatActivity() {
             performLogin()
         }
 
-        privateAccessButton.setOnClickListener {
-            val intentGoToHomeScreenActivity = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intentGoToHomeScreenActivity)
-        }
+
     }
 
     private fun performLogin(){

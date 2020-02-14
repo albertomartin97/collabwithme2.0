@@ -53,7 +53,7 @@ class RegistrationActivity : AppCompatActivity() {
             return
         }
 
-        Log.d("MainActivity", "Email is: " + email)
+        Log.d("MainActivity", "Email is: $email")
         Log.d("MainActivity", "Paswword: $password")
 
         //Auth registration
@@ -79,9 +79,11 @@ class RegistrationActivity : AppCompatActivity() {
             }
         }
 
-
-        val intent = Intent(this, HomeScreenActivity::class.java)
+        val intent = Intent(this, ChooseCityActivity::class.java)
         startActivity(intent)
+
+        //val intent = Intent(this, HomeScreenActivity::class.java)
+        //startActivity(intent)
 
     }
 

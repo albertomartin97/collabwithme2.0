@@ -22,7 +22,6 @@
     <string name="messages_button">Messages</string>
     <string name="settings_textView">Settings</string>
     <string name="logout_textView">Log out</string>
-    <string name="private_access_button">PRIVATE ACCESS</string>
     <string name="user_name">Username</string>
     <string name="music_production_btn">Music Producer</string>
     <string name="singer_btn">Singer</string>
@@ -31,7 +30,7 @@
     <string name="graphic_designer_btn">Graphic Designer</string>
     <string name="clothing_design_btn">Clothing Design</string>
     <string name="others_btn">Others</string>
-    <string name="skills">Select one or more of your skills </string>
+    <string name="skills">Select one or more of your skills</string>
     <string name="cities_prompt">Choose a city</string>
     <string-array name="cities_array">
         <item>London</item>
@@ -41,7 +40,16 @@
         <item>Swansea</item>
         <item>Cardiff</item>
     </string-array>
-
+    <string name="london">London</string>
+    <string name="bristol">Bristol</string>
+    <string name="birmingham">Birmingham</string>
+    <string name="manchester">Manchester</string>
+    <string name="cardiff">Cardiff</string>
+    <string name="swansea">Swansea</string>
+    <string name="edinburgh">Edinburgh</string>
+    <string name="dublin">Dublin</string>
+    <string name="select_city">Where do you live?</string>
+    <string name="change_city_btn">Change city</string>
 
 
 
