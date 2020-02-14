@@ -32,6 +32,15 @@
     <string name="clothing_design_btn">Clothing Design</string>
     <string name="others_btn">Others</string>
     <string name="skills">Select one or more of your skills </string>
+    <string name="cities_prompt">Choose a city</string>
+    <string-array name="cities_array">
+        <item>London</item>
+        <item>Birmingham</item>
+        <item>Manchester</item>
+        <item>Bristol</item>
+        <item>Swansea</item>
+        <item>Cardiff</item>
+    </string-array>
 
 
 

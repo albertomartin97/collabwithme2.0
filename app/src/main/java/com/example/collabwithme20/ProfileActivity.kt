@@ -1,19 +1,30 @@
 package com.example.collabwithme20
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_profile.*
+import androidx.core.view.get
+
 
 class ProfileActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "ProfileActivity"
+
     }
+
+
+    private val db = FirebaseFirestore.getInstance()
+    private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +37,7 @@ class ProfileActivity : AppCompatActivity() {
 
         getUserData() //Get user data from DB
 
+        saveCitySelection() //Save selected city
 
         musicProductionBtn.setOnClickListener {
 
@@ -69,6 +81,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
+
     }
 
     private fun getUserData(){
@@ -78,8 +91,6 @@ class ProfileActivity : AppCompatActivity() {
         val lastName = lastNameTextView
         val email = emailTextView
 
-        val db = FirebaseFirestore.getInstance()
-        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
         val docRef = db.collection("users").document(uid)
 
         docRef.get().addOnSuccessListener { document ->
@@ -99,9 +110,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun updateSkills(skill : String){
-
-        val db = FirebaseFirestore.getInstance()
-        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
         val documentRef = db.collection("users").document(uid).
             collection("skills").document(skill)
@@ -160,5 +168,35 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    private fun saveCitySelection() {
 
+
+        val city = findViewById<Spinner>(R.id.citiesSpinner)
+        val cities = arrayOf("London", "Birmingham", "Bristol", "Cardiff", "Swansea")
+
+        city.adapter = ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, cities)
+
+        city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                val docRef = db.collection("users").document(uid)
+                val result = cities.get(index = p2)
+                val user = hashMapOf(
+                    "city" to result
+                )
+
+
+                docRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                    Log.d(TAG, "User profile created for $uid")
+                }
+                    .addOnFailureListener { e ->
+                        Log.w(TAG, "Error adding document", e)
+                    }
+            }
+        }
+
+    }
 }

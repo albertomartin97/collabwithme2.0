@@ -32,7 +32,7 @@ class RegistrationActivity : AppCompatActivity() {
         val password = passwordInput.text.toString()
         val firstName = nameInput.text.toString()
         val lastName = lastNameInput.text.toString()
-        //val surname = surname_registration_input.text.toString()
+
         var userID : String
         val user = hashMapOf(
             "first_name" to firstName,
