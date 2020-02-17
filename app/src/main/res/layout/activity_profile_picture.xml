@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ProfilePictureActivity">
+
+    <TextView
+            android:id="@+id/profilePictureTextView"
+            android:layout_width="368dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="123dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="@string/add_photo_textView"
+            android:textSize="30sp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+            android:id="@+id/selectPhotoBtn"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="62dp"
+            android:background="@drawable/rounded_select_photo"
+            android:text="@string/add_photo_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profilePictureTextView" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/selectPhotoImageView"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/selectPhotoBtn"
+            app:layout_constraintEnd_toEndOf="@+id/selectPhotoBtn"
+            app:layout_constraintStart_toStartOf="@+id/selectPhotoBtn"
+            app:layout_constraintTop_toTopOf="@+id/selectPhotoBtn" />
+
+    <Button
+            android:id="@+id/savePhotoBtn"
+            style="@android:style/Widget.Button"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="122dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="101dp"
+            android:background="@drawable/style1"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="@string/add_photo_next_btn"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectPhotoBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

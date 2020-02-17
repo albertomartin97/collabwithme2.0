@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.collabwithme20"
-          tools:ignore="GoogleAppIndexingWarning">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.example.collabwithme20"
+        tools:ignore="GoogleAppIndexingWarning">
 
     <application
             android:allowBackup="true"
@@ -11,53 +11,45 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ChooseCityActivity">
-        </activity>
+        <activity android:name=".ProfilePictureActivity"></activity>
+        <activity android:name=".ChooseCityActivity"></activity>
         <activity
                 android:name=".SettingsActivity"
-                android:screenOrientation="portrait">
-        </activity>
+                android:screenOrientation="portrait"></activity>
         <activity
                 android:name=".MessagesActivity"
-                android:screenOrientation="portrait">
-        </activity>
+                android:screenOrientation="portrait"></activity>
         <activity
                 android:name=".FriendsActivity"
-                android:screenOrientation="portrait">
-        </activity>
+                android:screenOrientation="portrait"></activity>
         <activity
                 android:name=".FindPeopleActivity"
-                android:screenOrientation="portrait">
-        </activity>
+                android:screenOrientation="portrait"></activity>
         <activity
                 android:name=".ProfileActivity"
-                android:screenOrientation="portrait">
-        </activity>
+                android:screenOrientation="portrait"></activity>
         <activity
                 android:name=".HomeScreenActivity"
-                android:screenOrientation="portrait">
-        </activity>
+                android:screenOrientation="portrait"></activity>
         <activity
                 android:name=".LoginActivity"
-                android:screenOrientation="portrait">
-        </activity>
+                android:screenOrientation="portrait"></activity>
         <activity
                 android:name=".RegistrationActivity"
-                android:screenOrientation="portrait">
-        </activity>
+                android:screenOrientation="portrait"></activity>
         <activity
                 android:name=".MainActivity"
                 android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <meta-data
                 android:name="preloaded_fonts"
-                android:resource="@array/preloaded_fonts"/>
+                android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

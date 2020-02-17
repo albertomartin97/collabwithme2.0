@@ -21,42 +21,42 @@ class ChooseCityActivity : AppCompatActivity() {
         setContentView(R.layout.activity_choose_city)
 
         londonBtn.setOnClickListener {
-            changeCity("london")
+            changeCity("London")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         bristolbtn.setOnClickListener {
-            changeCity("bristol")
+            changeCity("Bristol")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         manchesterBtn.setOnClickListener {
-            changeCity("manchester")
+            changeCity("Manchester")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         birminghamBtn.setOnClickListener {
-            changeCity("birmingham")
+            changeCity("Birmingham")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         swanseaBtn.setOnClickListener {
-            changeCity("swansea")
+            changeCity("Swansea")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         cardiffBtn.setOnClickListener {
-            changeCity("cardiff")
+            changeCity("Cardiff")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         edinburghBtn.setOnClickListener {
-            changeCity("edinburgh")
+            changeCity("Edinburgh")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         dublinBtn.setOnClickListener {
-            changeCity("dublin")
+            changeCity("Dublin")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }

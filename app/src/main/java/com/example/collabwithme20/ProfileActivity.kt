@@ -1,19 +1,17 @@
 package com.example.collabwithme20
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_profile.*
-import androidx.core.view.get
 
 
 class ProfileActivity : AppCompatActivity() {
@@ -26,7 +24,6 @@ class ProfileActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -36,7 +33,22 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intentGoToPreviousActivity)
         }
 
-        getUserData() //Get user data from DB
+        getUserData()   //Get user data from DB
+        setProfilePicture()  //Ge profile image name
+
+        //Update colours when activity is launched
+        changeSkillsColour("music_production")
+        changeSkillsColour("singing")
+        changeSkillsColour("rapping")
+        changeSkillsColour("video_production")
+        changeSkillsColour("graphic_design")
+        changeSkillsColour("clothing_design")
+
+        savePhotoBtn.setOnClickListener {
+            val intent = Intent(this, ProfilePictureActivity::class.java)
+            intent.putExtra("caller", "ProfileActivity")
+            startActivity(intent)
+        }
 
 
         selectCityBtn.setOnClickListener {
@@ -79,13 +91,6 @@ class ProfileActivity : AppCompatActivity() {
 
         }
 
-        othersBtn.setOnClickListener {
-
-            updateSkills("others")
-
-        }
-
-
 
     }
 
@@ -95,6 +100,7 @@ class ProfileActivity : AppCompatActivity() {
         val firstName = firstNameTextView
         val lastName = lastNameTextView
         val email = emailTextView
+        val city = cityTextView
 
         val docRef = db.collection("users").document(uid)
 
@@ -105,6 +111,7 @@ class ProfileActivity : AppCompatActivity() {
                 firstName.text = document.getString("first_name")
                 lastName.text = document.getString("last_name")
                 email.text = document.getString("email")
+                city.text = document.getString("city")
             } else {
                 Log.d("doesn't exist", "No such document")
             }
@@ -115,6 +122,30 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun updateSkills(skill : String){
+        lateinit var button: Button
+
+        //Assign button being clicked
+        when (skill) {
+            "music_production" -> {
+                button = musicProductionBtn
+            }
+            "singing" -> {
+                button = singerBtn
+            }
+            "rapping" -> {
+                button = rapperBtn
+            }
+            "video_production" -> {
+                button = videoProductionBtn
+            }
+            "graphic_design" -> {
+                button = graphicDesignerBtn
+            }
+            "clothing_design" -> {
+                button = clothingDesignBtn
+            }
+        }
+
 
         val documentRef = db.collection("users").document(uid).
             collection("skills").document(skill)
@@ -122,55 +153,169 @@ class ProfileActivity : AppCompatActivity() {
         documentRef.get().addOnSuccessListener { document ->
             if (document != null) {
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
-                if (document.getString("skill") == "true"){
+                when {
+                    document.getString("skill") == "true" -> {
 
-                    val skillTrue = "false"
-                    val user = hashMapOf(
-                        "skill" to skillTrue
-                    )
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style4)
 
-                    documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
-                        Log.d(TAG, "User profile created for $uid")
-                    }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Error adding document", e)
+                        //Change skill to false
+                        val skillTrue = "false"
+                        val user = hashMapOf(
+                            "skill" to skillTrue
+                        )
+
+
+                        //Merge user document with the skill update
+                        documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                            Log.d(TAG, "User profile created for $uid")
                         }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
 
-                } else if(document.getString("skill") == "false"){
-
-                    val skillTrue = "true"
-                    val user = hashMapOf(
-                        "skill" to skillTrue
-                    )
-
-                    documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
-                        Log.d(TAG, "User profile created for $uid")
                     }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Error adding document", e)
+                    document.getString("skill") == "false" -> {
+
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style10)
+
+                        //Change skill to true
+                        val skillTrue = "true"
+                        val user = hashMapOf(
+                            "skill" to skillTrue
+                        )
+
+                        //Merge user document with the skill update
+                        documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                            Log.d(TAG, "User profile created for $uid")
                         }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
 
-                } else if(document.get(skill) == null){
-
-                    val skillTrue = "true"
-                    val user = hashMapOf(
-                        "skill" to skillTrue
-                    )
-
-                    documentRef.set(user).addOnSuccessListener {
-                        Log.d(TAG, "User profile created for $uid")
                     }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Error adding document", e)
+                    document.get(skill) == null -> {
+
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style10)
+
+                        //Change skill to true
+                        val skillTrue = "true"
+                        val user = hashMapOf(
+                            "skill" to skillTrue
+                        )
+
+                        //Merge user document with the skill update
+                        documentRef.set(user).addOnSuccessListener {
+                            Log.d(TAG, "User profile created for $uid")
                         }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
+                    }
                 }
 
             } else {
                 Log.d("doesn't exist", "No such document")
+
 
             }
         }
 
     }
 
+    //Assigns colour to the selected skills
+    private fun changeSkillsColour(skill: String) {
+
+        lateinit var button: Button
+
+        //Assign button to change style
+        when (skill) {
+            "music_production" -> {
+                button = musicProductionBtn
+            }
+            "singing" -> {
+                button = singerBtn
+            }
+            "rapping" -> {
+                button = rapperBtn
+            }
+            "video_production" -> {
+                button = videoProductionBtn
+            }
+            "graphic_design" -> {
+                button = graphicDesignerBtn
+            }
+            "clothing_design" -> {
+                button = clothingDesignBtn
+            }
+        }
+
+        val documentRef = db.collection("users").document(uid).collection("skills").document(skill)
+
+        documentRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+                when {
+                    document.getString("skill") == "true" -> {
+
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style10)
+
+                    }
+                    document.getString("skill") == "false" -> {
+
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style4)
+
+                    }
+                    document.get(skill) == null -> {
+
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style4)
+
+                    }
+                    else -> {
+                        Log.d("doesn't exist", "No such document")
+
+                    }
+                }
+            }
+
+        }
+    }
+
+    private fun setProfilePicture(){
+        var imageLink : String?
+
+        val docRef = db.collection("users").document(uid)
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+
+                imageLink = document.getString("profile_image")
+
+                Glide.with(this)
+                    .load(imageLink)
+                    .transform(CircleCrop())
+                    .into(profileImageView)
+
+            } else {
+                Log.d("doesn't exist", "No such document")
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
+            }
+
+
+    }
+
+
+
+
+
 }
+

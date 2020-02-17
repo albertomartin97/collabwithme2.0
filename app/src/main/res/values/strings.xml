@@ -13,6 +13,7 @@
     <string name="email_input_hint">Email</string>
     <string name="password_input_hint">Password</string>
     <string name="lastname_input_hint">Last name</string>
+    <string name="city_input_hint">City</string>
     <string name="registration_button">Register</string>
     <string name="todo">TODO</string>
     <string name="welcome_textView">Welcome back</string>
@@ -50,7 +51,9 @@
     <string name="dublin">Dublin</string>
     <string name="select_city">Where do you live?</string>
     <string name="change_city_btn">Change city</string>
-
+    <string name="add_photo_btn">Add Photo</string>
+    <string name="add_photo_next_btn">Next</string>
+    <string name="add_photo_textView">Select a Profile Picture</string>
 
 
 </resources>

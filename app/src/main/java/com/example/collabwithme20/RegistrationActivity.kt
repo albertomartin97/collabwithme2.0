@@ -22,6 +22,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         registrationBtn.setOnClickListener {
             performRegistration()
+
         }
 
     }
@@ -75,15 +76,15 @@ class RegistrationActivity : AppCompatActivity() {
                         Log.w(TAG, "Error adding document", e)
                     }
 
-                Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
             }
+
+            val intent = Intent(this, ProfilePictureActivity::class.java)
+            intent.putExtra("caller", "RegistrationActivity")
+            startActivity(intent)
+
+
         }
-
-        val intent = Intent(this, ChooseCityActivity::class.java)
-        startActivity(intent)
-
-        //val intent = Intent(this, HomeScreenActivity::class.java)
-        //startActivity(intent)
 
     }
 

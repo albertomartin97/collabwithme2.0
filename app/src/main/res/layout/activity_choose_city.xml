@@ -13,7 +13,7 @@
             android:layout_height="170dp"
             android:id="@+id/londonBtn" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/bristolbtn"
-            app:layout_constraintBottom_toTopOf="@+id/birminghamBtn"/>
+            app:layout_constraintBottom_toTopOf="@+id/birminghamBtn" android:textSize="18sp" android:textStyle="bold"/>
     <Button
             android:text="@string/bristol"
             android:background="@drawable/bristol"
@@ -22,7 +22,7 @@
             android:id="@+id/bristolbtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/londonBtn"
-            app:layout_constraintBottom_toTopOf="@+id/manchesterBtn"/>
+            app:layout_constraintBottom_toTopOf="@+id/manchesterBtn" android:textSize="18sp" android:textStyle="bold"/>
 
     <Button
             android:text="@string/birmingham"
@@ -32,7 +32,7 @@
             android:id="@+id/birminghamBtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/manchesterBtn"
-            app:layout_constraintBottom_toTopOf="@+id/swanseaBtn"/>
+            app:layout_constraintBottom_toTopOf="@+id/swanseaBtn" android:textSize="18sp" android:textStyle="bold"/>
     <Button
             android:text="@string/manchester"
             android:background="@drawable/manchester"
@@ -41,7 +41,7 @@
             android:id="@+id/manchesterBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/cardiffBtn"
-            app:layout_constraintStart_toEndOf="@+id/birminghamBtn"/>
+            app:layout_constraintStart_toEndOf="@+id/birminghamBtn" android:textSize="18sp" android:textStyle="bold"/>
     <Button
             android:text="@string/cardiff"
             android:background="@drawable/cardiff"
@@ -50,7 +50,7 @@
             android:id="@+id/cardiffBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/edinburghBtn"
-            app:layout_constraintStart_toEndOf="@+id/swanseaBtn"/>
+            app:layout_constraintStart_toEndOf="@+id/swanseaBtn" android:textSize="18sp" android:textStyle="bold"/>
     <Button
             android:text="@string/swansea"
             android:background="@drawable/swansea"
@@ -58,7 +58,7 @@
             android:layout_height="170dp"
             android:id="@+id/swanseaBtn"
             app:layout_constraintBottom_toTopOf="@+id/dublinBtn" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cardiffBtn"/>
+            app:layout_constraintEnd_toStartOf="@+id/cardiffBtn" android:textSize="18sp" android:textStyle="bold"/>
     <Button
             android:text="@string/edinburgh"
             android:background="@drawable/edinburgh"
@@ -67,7 +67,7 @@
             android:id="@+id/edinburghBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/dublinBtn"/>
+            app:layout_constraintStart_toEndOf="@+id/dublinBtn" android:textSize="18sp" android:textStyle="bold"/>
     <Button
             android:text="@string/dublin"
             android:background="@drawable/dublin"
@@ -76,7 +76,7 @@
             android:id="@+id/dublinBtn"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@+id/edinburghBtn"
             app:layout_constraintStart_toStartOf="parent"
-    />
+            android:textSize="18sp" android:textStyle="bold"/>
     <TextView
             android:text="@string/select_city"
             android:layout_width="wrap_content"
