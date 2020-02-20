@@ -8,28 +8,37 @@
         tools:context=".MessagesActivity">
 
     <TextView
-            android:text="@string/messages_button"
-            android:layout_width="410dp"
+            android:id="@+id/activityTextView"
+            android:layout_width="411dp"
             android:layout_height="46dp"
-            android:id="@+id/activityTextView" android:textColor="@color/color6"
             android:background="@color/color8"
+            android:fontFamily="@font/alfa_slab_one"
+            android:paddingVertical="3dp"
             android:paddingStart="55dp"
             android:paddingEnd="20dp"
-            android:paddingVertical="3dp"
-            android:textSize="30sp" android:textStyle="bold"
-            android:fontFamily="@font/alfa_slab_one" android:typeface="normal"
+            android:singleLine="false"
+            android:text="@string/messages_button"
+            android:textColor="@color/color6"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:typeface="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:singleLine="false"/>
-
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp" app:srcCompat="@drawable/left_arrow"
+            android:id="@+id/backBtn"
+            android:layout_width="50dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="363dp"
             android:background="?android:attr/selectableItemBackground"
-            android:id="@+id/backBtn" android:layout_marginTop="14dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/activityTextView" android:layout_marginEnd="16dp"
-            app:layout_constraintHorizontal_bias="0.0" android:contentDescription="@string/todo"/>
+            android:contentDescription="@string/todo"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/activityTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/left_arrow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

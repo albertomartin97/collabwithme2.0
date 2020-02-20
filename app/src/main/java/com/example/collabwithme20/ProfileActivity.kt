@@ -44,7 +44,7 @@ class ProfileActivity : AppCompatActivity() {
         changeSkillsColour("graphic_design")
         changeSkillsColour("clothing_design")
 
-        savePhotoBtn.setOnClickListener {
+        changePhotoBtn.setOnClickListener {
             val intent = Intent(this, ProfilePictureActivity::class.java)
             intent.putExtra("caller", "ProfileActivity")
             startActivity(intent)
@@ -53,6 +53,7 @@ class ProfileActivity : AppCompatActivity() {
 
         selectCityBtn.setOnClickListener {
             val intent = Intent(this, ChooseCityActivity::class.java)
+            intent.putExtra("caller", "ProfileActivity" )
             startActivity(intent)
         }
 
@@ -300,7 +301,7 @@ class ProfileActivity : AppCompatActivity() {
                 Glide.with(this)
                     .load(imageLink)
                     .transform(CircleCrop())
-                    .into(profileImageView)
+                    .into(profileImageView2)
 
             } else {
                 Log.d("doesn't exist", "No such document")

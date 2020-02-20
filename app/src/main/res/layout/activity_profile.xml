@@ -12,83 +12,40 @@
             tools:context=".ProfileActivity">
 
         <TextView
-                android:text="@string/profile_button"
-                android:layout_width="410dp"
+                android:id="@+id/activityTextView"
+                android:layout_width="411dp"
                 android:layout_height="46dp"
-                android:id="@+id/activityTextView" android:textColor="@color/color6"
                 android:background="@color/color1"
+                android:fontFamily="@font/alfa_slab_one"
+                android:paddingVertical="3dp"
                 android:paddingStart="55dp"
                 android:paddingEnd="20dp"
-                android:paddingVertical="3dp"
-                android:textSize="30sp" android:textStyle="bold"
-                android:fontFamily="@font/alfa_slab_one" android:typeface="normal"
+                android:singleLine="false"
+                android:text="@string/profile_button"
+                android:textColor="@color/color6"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:typeface="normal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:singleLine="false"/>
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp" app:srcCompat="@drawable/left_arrow"
+                android:id="@+id/backBtn"
+                android:layout_width="50dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="363dp"
                 android:background="?android:attr/selectableItemBackground"
-                android:id="@+id/backBtn" android:layout_marginTop="14dp" app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/activityTextView" android:layout_marginEnd="16dp"
-                app:layout_constraintHorizontal_bias="0.0" android:contentDescription="@string/todo"/>
+                android:contentDescription="@string/todo"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/activityTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/left_arrow" />
 
-        <TextView
-                android:id="@+id/usernameTextView"
-                android:layout_width="296dp"
-                android:layout_height="47dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginEnd="100dp"
-                android:fontFamily="@font/alfa_slab_one"
-                android:gravity="center"
-                android:text="@string/user_name"
-                android:textSize="36sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
 
-        <TextView
-                android:text="@string/name_input_hint"
-                android:layout_width="120dp"
-                android:layout_height="34dp"
-                android:id="@+id/firstNameTextView" android:textSize="18sp"
-                android:layout_marginTop="44dp"
-                app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="32dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
-                app:layout_constraintHorizontal_bias="0.07"/>
-        <TextView
-                android:text="@string/email_input_hint"
-                android:layout_width="226dp"
-                android:layout_height="36dp"
-                android:id="@+id/emailTextView" android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
-                app:layout_constraintHorizontal_bias="0.132" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/lastNameTextView"/>
-        <TextView
-                android:text="@string/lastname_input_hint"
-                android:layout_width="120dp"
-                android:layout_height="34dp"
-                android:id="@+id/lastNameTextView" android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="32dp" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/firstNameTextView"
-                app:layout_constraintHorizontal_bias="0.07"/>
-        <TextView
-                android:text="@string/city_input_hint"
-                android:layout_width="120dp"
-                android:layout_height="34dp"
-                android:id="@+id/cityTextView" android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/emailTextView"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
-                app:layout_constraintHorizontal_bias="0.07"/>
         <Button
                 android:text="@string/video_production_btn"
                 android:layout_width="150dp"
@@ -178,58 +135,184 @@
                 android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/rapperBtn"
                 app:layout_constraintEnd_toStartOf="@+id/clothingDesignBtn" android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
+
         <TextView
-                android:text="@string/skills"
+                android:id="@+id/skillsTextView"
                 android:layout_width="410dp"
                 android:layout_height="25dp"
-                android:id="@+id/skillsTextView"
+                android:layout_marginStart="54dp"
                 android:background="@drawable/style9"
                 android:drawableStart="@drawable/down_arrow"
                 android:drawableEnd="@drawable/down_arrow"
-                android:paddingStart="25dp"
-                android:paddingEnd="15dp"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:gravity="center"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="54dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0" android:textSize="18sp"
                 android:fontFamily="@font/alfa_slab_one"
-                app:layout_constraintTop_toBottomOf="@+id/selectCityBtn" android:layout_marginTop="24dp"/>
-        <Button
-                android:text="@string/change_city_btn"
-                android:layout_width="188dp"
-                android:layout_height="36dp"
-                android:id="@+id/selectCityBtn"
+                android:gravity="center"
+                android:paddingStart="25dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="0dp"
+                android:text="@string/skills"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="32dp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="30dp" app:layout_constraintHorizontal_bias="0.1"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/cityTextView"/>
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/colourBackgroundTextView" />
+
 
         <Button
-                android:id="@+id/savePhotoBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="11dp"
-                android:text="@string/add_photo_btn"
-                app:layout_constraintEnd_toStartOf="@+id/profileImageView"
+                android:id="@+id/selectCityBtn"
+                android:layout_width="127dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/style6"
+                android:text="@string/change_city_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cityTextView" />
+
+        <TextView
+                android:id="@+id/colourBackgroundTextView"
+                android:layout_width="409dp"
+                android:layout_height="572dp"
+                android:background="@drawable/music_production1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
 
+        <TextView
+                android:id="@+id/usernameTextView"
+                android:layout_width="296dp"
+                android:layout_height="47dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginEnd="100dp"
+                android:fontFamily="@font/alfa_slab_one"
+                android:gravity="center"
+                android:text="@string/user_name"
+                android:textSize="36sp"
+                android:textColor="@color/color6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileImageView2" />
+
+        <TextView
+                android:id="@+id/firstNameTextView"
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/style12"
+                android:drawableStart="@drawable/user_black_ic"
+                android:drawablePadding="15dp"
+                android:fontFamily="@font/alfa_slab_one"
+                android:paddingStart="20dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="10dp"
+                android:text="@string/name_input_hint"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
+
+        <TextView
+                android:id="@+id/emailTextView"
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/style12"
+                android:drawableStart="@drawable/email_black_ic"
+                android:drawablePadding="15dp"
+                android:fontFamily="@font/alfa_slab_one"
+                android:paddingStart="20dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="10dp"
+                android:text="@string/email_input_hint"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastNameTextView" />
+
+        <TextView
+                android:id="@+id/lastNameTextView"
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/style12"
+                android:drawableStart="@drawable/user_black_ic"
+                android:drawablePadding="15dp"
+                android:fontFamily="@font/alfa_slab_one"
+                android:paddingStart="20dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="10dp"
+                android:text="@string/lastname_input_hint"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/firstNameTextView" />
+
+        <TextView
+                android:id="@+id/cityTextView"
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/style12"
+                android:drawableStart="@drawable/location_black_ic"
+                android:drawablePadding="15dp"
+                android:fontFamily="@font/alfa_slab_one"
+                android:paddingStart="20dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="10dp"
+                android:text="@string/city_input_hint"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
+
         <ImageView
-                android:id="@+id/profileImageView"
+                android:id="@+id/profileImageView2"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
+
+
+        <ImageView
+                android:id="@+id/changePhotoBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="138dp"
+                android:layout_marginEnd="110dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activityTextView"
+                app:srcCompat="@drawable/plus" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -3,7 +3,9 @@ package com.example.collabwithme20
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -22,43 +24,147 @@ class ChooseCityActivity : AppCompatActivity() {
 
         londonBtn.setOnClickListener {
             changeCity("London")
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+
+            Handler().postDelayed({
+                val caller = intent.getStringExtra("caller")
+
+                if (caller == "ProfilePictureActivity") {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }else if(caller == "ProfileActivity"){
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }, 1000)
+
         }
         bristolbtn.setOnClickListener {
             changeCity("Bristol")
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+
+            Handler().postDelayed({
+                val caller = intent.getStringExtra("caller")
+
+                if (caller == "ProfilePictureActivity") {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }else if(caller == "ProfileActivity"){
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }, 1000)
+
         }
         manchesterBtn.setOnClickListener {
             changeCity("Manchester")
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+
+            Handler().postDelayed({
+                val caller = intent.getStringExtra("caller")
+
+                if (caller == "ProfilePictureActivity") {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }else if(caller == "ProfileActivity"){
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }, 1000)
+
         }
         birminghamBtn.setOnClickListener {
             changeCity("Birmingham")
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+
+            Handler().postDelayed({
+                val caller = intent.getStringExtra("caller")
+
+                if (caller == "ProfilePictureActivity") {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }else if(caller == "ProfileActivity"){
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }, 1000)
+
         }
         swanseaBtn.setOnClickListener {
             changeCity("Swansea")
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+
+            Handler().postDelayed({
+                val caller = intent.getStringExtra("caller")
+
+                if (caller == "ProfilePictureActivity") {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }else if(caller == "ProfileActivity"){
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }, 1000)
+
         }
         cardiffBtn.setOnClickListener {
             changeCity("Cardiff")
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+
+            Handler().postDelayed({
+                val caller = intent.getStringExtra("caller")
+
+                if (caller == "ProfilePictureActivity") {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }else if(caller == "ProfileActivity"){
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }, 1000)
+
         }
         edinburghBtn.setOnClickListener {
             changeCity("Edinburgh")
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+
+            Handler().postDelayed({
+                val caller = intent.getStringExtra("caller")
+
+                if (caller == "ProfilePictureActivity") {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }else if(caller == "ProfileActivity"){
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }, 1000)
+
         }
         dublinBtn.setOnClickListener {
             changeCity("Dublin")
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+
+            Handler().postDelayed({
+                val caller = intent.getStringExtra("caller")
+
+                if (caller == "ProfilePictureActivity") {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }else if(caller == "ProfileActivity"){
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
+                }
+            }, 1000)
+
         }
 
     }

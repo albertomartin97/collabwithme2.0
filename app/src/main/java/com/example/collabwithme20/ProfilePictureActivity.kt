@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_profile.savePhotoBtn
 import kotlinx.android.synthetic.main.activity_profile_picture.*
 import java.util.*
 
@@ -54,10 +53,11 @@ class ProfilePictureActivity : AppCompatActivity() {
                     startActivity(intent)
                 }else if(caller == "RegistrationActivity"){
                     val intent = Intent(this, ChooseCityActivity::class.java)
+                    intent.putExtra("caller", "ProfilePictureActivity")
                     startActivity(intent)
 
                 }
-            }, 1000)
+            }, 3000)
         }
     }
 
@@ -97,13 +97,6 @@ class ProfilePictureActivity : AppCompatActivity() {
 
         }
 
-
-/*
-        ref.downloadUrl.addOnSuccessListener {
-            Log.d(TAG, "File location: $it")
-
-        }
-*/
     }
 
     private fun saveImageUrlToDB(profileImageUrl : String){

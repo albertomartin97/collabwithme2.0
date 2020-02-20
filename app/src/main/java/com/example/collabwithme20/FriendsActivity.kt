@@ -11,6 +11,7 @@ class FriendsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends)
 
+
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
             startActivity(intentGoToPreviousActivity)
