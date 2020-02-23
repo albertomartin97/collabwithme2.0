@@ -6,8 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.collabwithme20.Models.UserModel
 import com.firebase.ui.firestore.ClassSnapshotParser
 import com.firebase.ui.firestore.FirestoreArray
@@ -21,10 +19,6 @@ import kotlinx.android.synthetic.main.activity_profile.*
 
 open class FindPeopleActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    //private lateinit var viewAdapter: Adapter<*>
-    //private var viewAdapter: SearchUsersAdapter? = null
-    //private lateinit var viewManager: LayoutManager
-    //private var adapter: SearchUsersAdapter? = null
 
 
     private val db = FirebaseFirestore.getInstance()
@@ -32,7 +26,7 @@ open class FindPeopleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.collabwithme20.R.layout.activity_find_people)
+        setContentView(R.layout.activity_find_people)
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
@@ -49,9 +43,6 @@ open class FindPeopleActivity : AppCompatActivity() {
 
         val query = db.collection("users")
 
-        //val options = FirestoreRecyclerOptions.Builder<UserModel>()
-        //  .setQuery(query, UserModel::class.java).build()
-
         val array = FirestoreArray(query, ClassSnapshotParser(UserModel::class.java))
 
         val options = FirestoreRecyclerOptions.Builder<UserModel>()
@@ -60,11 +51,8 @@ open class FindPeopleActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.search_recyclerView)
 
         val adapter: FirestoreRecyclerAdapter<*, *> = SearchUsersAdapter(array, options)
-        //viewAdapter = SearchUsersAdapter(options)
 
-        //recyclerView.layoutManager = viewManager
         recyclerView.adapter = adapter
-
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 

@@ -9,24 +9,34 @@ import com.firebase.ui.firestore.FirestoreArray
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.search_user_row.view.*
+import kotlinx.android.synthetic.main.search_user_row.view.usernameTextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 
 
 
 
-
-class SearchUsersAdapter(var array: FirestoreArray<UserModel>,options: FirestoreRecyclerOptions<UserModel>):
+class SearchUsersAdapter(private var array: FirestoreArray<UserModel>,
+                         options: FirestoreRecyclerOptions<UserModel>):
     FirestoreRecyclerAdapter<UserModel, SearchUsersAdapter.ViewHolder>(options){
 
     class ViewHolder(private val containerView: View) : RecyclerView.ViewHolder(containerView){
         fun bindItems(user : UserModel){
             containerView.usernameTextView.text = user.first_name
+            containerView.lastNameTextViewList.text = user.last_name
+
+            Glide.with(containerView.profileImageViewList).load(user.profile_image).
+                transform(CircleCrop()).into(containerView.profileImageViewList)
 
         }
+
+
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchUsersAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val inflatedView = layoutInflater.inflate(com.example.collabwithme20.R.layout.search_user_row,
+        val inflatedView = layoutInflater.inflate(R.layout.search_user_row,
             parent, false)
         return ViewHolder(inflatedView)
     }
