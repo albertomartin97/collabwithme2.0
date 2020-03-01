@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,10 +33,13 @@ class ProfilePictureActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_picture)
 
+        var trueOrFalse = "false" //Check if profile picture has been selected
+
         //Profile picture onClick
         selectPhotoBtn.setOnClickListener {
             Log.d(TAG, "Try to show photo selector")
 
+            trueOrFalse = "true"
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 0)
@@ -43,21 +47,27 @@ class ProfilePictureActivity : AppCompatActivity() {
         }
 
         savePhotoBtn.setOnClickListener {
-            uploadImageToFirebase()
 
-            Handler().postDelayed({
-                val caller = intent.getStringExtra("caller")
+            if (trueOrFalse == "false") {
+                Toast.makeText(this, "Please select a profile picture",
+                    Toast.LENGTH_SHORT).show()
+            } else {
+                uploadImageToFirebase() //Upload image to firebase
 
-                if (caller == "ProfileActivity") {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
-                }else if(caller == "RegistrationActivity"){
-                    val intent = Intent(this, ChooseCityActivity::class.java)
-                    intent.putExtra("caller", "ProfilePictureActivity")
-                    startActivity(intent)
+                Handler().postDelayed({
+                    val caller = intent.getStringExtra("caller")
 
-                }
-            }, 3000)
+                    if (caller == "ProfileActivity") {
+                        val intent = Intent(this, ProfileActivity::class.java)
+                        startActivity(intent)
+                    } else if (caller == "RegistrationActivity") {
+                        val intent = Intent(this, ChooseCityActivity::class.java)
+                        intent.putExtra("caller", "ProfilePictureActivity")
+                        startActivity(intent)
+
+                    }
+                }, 2500)
+            }
         }
     }
 
@@ -98,6 +108,8 @@ class ProfilePictureActivity : AppCompatActivity() {
         }
 
     }
+
+
 
     private fun saveImageUrlToDB(profileImageUrl : String){
         val ref = db.collection("users").document(uid)

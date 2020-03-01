@@ -136,6 +136,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/clothingDesignBtn" android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
 
+
         <TextView
                 android:id="@+id/skillsTextView"
                 android:layout_width="410dp"
@@ -157,18 +158,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/colourBackgroundTextView" />
 
-
         <Button
                 android:id="@+id/selectCityBtn"
                 android:layout_width="127dp"
                 android:layout_height="37dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style6"
                 android:text="@string/change_city_btn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.058"
+                app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityTextView" />
 
@@ -203,7 +203,7 @@
                 android:layout_width="325dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style12"
                 android:drawableStart="@drawable/user_black_ic"
@@ -225,7 +225,7 @@
                 android:layout_width="325dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style12"
                 android:drawableStart="@drawable/email_black_ic"
@@ -236,30 +236,8 @@
                 android:paddingEnd="15dp"
                 android:paddingBottom="10dp"
                 android:text="@string/email_input_hint"
-                android:textSize="18sp"
                 android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lastNameTextView" />
-
-        <TextView
-                android:id="@+id/lastNameTextView"
-                android:layout_width="325dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/style12"
-                android:drawableStart="@drawable/user_black_ic"
-                android:drawablePadding="15dp"
-                android:fontFamily="@font/alfa_slab_one"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:paddingEnd="15dp"
-                android:paddingBottom="10dp"
-                android:text="@string/lastname_input_hint"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/firstNameTextView" />
@@ -269,7 +247,7 @@
                 android:layout_width="325dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style12"
                 android:drawableStart="@drawable/location_black_ic"
@@ -280,8 +258,8 @@
                 android:paddingEnd="15dp"
                 android:paddingBottom="10dp"
                 android:text="@string/city_input_hint"
-                android:textSize="18sp"
                 android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailTextView" />

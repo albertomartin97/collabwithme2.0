@@ -33,13 +33,8 @@ class RegistrationActivity : AppCompatActivity() {
         val password = passwordInput.text.toString()
         val firstName = nameInput.text.toString()
         val lastName = lastNameInput.text.toString()
-
         var userID : String
-        val user = hashMapOf(
-            "first_name" to firstName,
-            "last_name" to lastName,
-            "email" to email
-        )
+
 
         val db = FirebaseFirestore.getInstance()
 
@@ -67,6 +62,14 @@ class RegistrationActivity : AppCompatActivity() {
 
                 //Saving profile into Database
                 userID = FirebaseAuth.getInstance().currentUser?.uid ?: String()
+
+                val user = hashMapOf(
+                    "first_name" to firstName,
+                    "last_name" to lastName,
+                    "email" to email,
+                    "uid" to userID
+                )
+
 
                 val docRef =  db . collection ("users").document(userID)
                 docRef.set(user).addOnSuccessListener {

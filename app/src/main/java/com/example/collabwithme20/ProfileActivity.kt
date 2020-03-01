@@ -97,9 +97,10 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun getUserData(){
 
+        var firstName: String
+        var lastName : String
         val userName = usernameTextView
-        val firstName = firstNameTextView
-        val lastName = lastNameTextView
+        val fullName = firstNameTextView
         val email = emailTextView
         val city = cityTextView
 
@@ -109,8 +110,13 @@ class ProfileActivity : AppCompatActivity() {
             if (document != null) {
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
                 userName.text = document.getString("first_name")
-                firstName.text = document.getString("first_name")
-                lastName.text = document.getString("last_name")
+
+                firstName = document.getString("first_name").toString()
+                lastName = document.getString("last_name").toString()
+
+                val name  = "$firstName $lastName"
+
+                fullName.text = name
                 email.text = document.getString("email")
                 city.text = document.getString("city")
             } else {
