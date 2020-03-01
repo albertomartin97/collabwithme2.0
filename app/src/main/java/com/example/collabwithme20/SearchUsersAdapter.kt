@@ -1,10 +1,10 @@
 package com.example.collabwithme20
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -13,10 +13,12 @@ import com.firebase.ui.firestore.FirestoreArray
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.search_user_row.view.*
+import java.text.FieldPosition
 
 
 class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
-                         options: FirestoreRecyclerOptions<UserModel>):
+                         options: FirestoreRecyclerOptions<UserModel>,
+                         var clickListener: OnUserClickListener):
     FirestoreRecyclerAdapter<UserModel, SearchUsersAdapter.ViewHolder>(options){
 
 
@@ -24,22 +26,25 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
     private var temporaryList = array
 
 
-
     class ViewHolder(private val containerView: View) : RecyclerView.ViewHolder(containerView){
-        fun bindItems(user : UserModel){
+        fun bindItems(user : UserModel, action:OnUserClickListener){
 
             val fullName = user.first_name + " " + user.last_name
 
             containerView.usernameTextView.text = fullName
-            containerView.addUserBtn.setOnClickListener {
-
-
-            }
 
             Glide.with(containerView.profileImageViewList).load(user.profile_image).
                 transform(CircleCrop()).into(containerView.profileImageViewList)
 
+            containerView.addUserBtn.setOnClickListener {
+                action.onUserClick(user, adapterPosition, "addUserBtn")
+            }
+            containerView.setOnClickListener{
+                action.onUserClick(user, adapterPosition, "showUserProfile")
+            }
+
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -67,14 +72,16 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
             }
             else {
                 //getFilter().filter(charSequence)
-                p0.bindItems(temporaryList[p1])
+                p0.bindItems(temporaryList[p1], clickListener)
             }
         }
     }
 
     override fun getItemCount() = temporaryList.size
 
-
+    interface OnUserClickListener{
+        fun onUserClick(user: UserModel, position: Int, buttonName: String)
+    }
 }
 
 /*

@@ -11,32 +11,37 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ProfilePictureActivity"></activity>
-        <activity android:name=".ChooseCityActivity"></activity>
+        <activity android:name=".PopUpWindow"
+                android:screenOrientation="portrait" />
+
+        <activity android:name=".ProfilePictureActivity"
+                android:screenOrientation="portrait" />
+        <activity android:name=".ChooseCityActivity" />
         <activity
                 android:name=".SettingsActivity"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".MessagesActivity"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".FriendsActivity"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".FindPeopleActivity"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait" />
+
         <activity
                 android:name=".ProfileActivity"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".HomeScreenActivity"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".LoginActivity"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".RegistrationActivity"
-                android:screenOrientation="portrait"></activity>
+                android:screenOrientation="portrait" />
         <activity
                 android:name=".MainActivity"
                 android:screenOrientation="portrait">
