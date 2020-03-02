@@ -12,39 +12,53 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".PopUpWindow"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"
+                android:theme="@style/PopMe"/>
 
         <activity android:name=".ProfilePictureActivity"
-                android:screenOrientation="portrait" />
-        <activity android:name=".ChooseCityActivity" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".ChooseCityActivity"
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
         <activity
                 android:name=".SettingsActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
         <activity
                 android:name=".MessagesActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
         <activity
                 android:name=".FriendsActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
         <activity
                 android:name=".FindPeopleActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
 
         <activity
                 android:name=".ProfileActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
         <activity
                 android:name=".HomeScreenActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
         <activity
                 android:name=".LoginActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
         <activity
                 android:name=".RegistrationActivity"
-                android:screenOrientation="portrait" />
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity"/>
         <activity
                 android:name=".MainActivity"
-                android:screenOrientation="portrait">
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,9 +4,14 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.app.ActionBar
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.Gravity
+import android.view.WindowManager
 import androidx.core.graphics.ColorUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -26,6 +31,8 @@ class PopUpWindow : AppCompatActivity() {
         closeBtn.setOnClickListener {
             onBackPressed()
         }
+
+
         //Get data from FindPeopleActivity
         val bundle = intent.extras
         imageName = bundle?.getString("profileImage", "Image") ?: ""
@@ -41,20 +48,22 @@ class PopUpWindow : AppCompatActivity() {
         val alpha = 100 //between 0-255
         val alphaColor = ColorUtils.setAlphaComponent(Color.parseColor("#000000"), alpha)
         val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.TRANSPARENT, alphaColor)
-        colorAnimation.duration = 500 // milliseconds
+        colorAnimation.duration = 300 // milliseconds
         colorAnimation.addUpdateListener { animator ->
             pop_up_window_background.setBackgroundColor(animator.animatedValue as Int)
         }
         colorAnimation.start()
 
+
     }
+
 
     override fun onBackPressed() {
         // Fade animation for the background of Popup Window when you press the back button
         val alpha = 100 // between 0-255
         val alphaColor = ColorUtils.setAlphaComponent(Color.parseColor("#000000"), alpha)
         val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), alphaColor, Color.TRANSPARENT)
-        colorAnimation.duration = 500 // milliseconds
+        colorAnimation.duration = 300 // milliseconds
         colorAnimation.addUpdateListener { animator ->
             pop_up_window_background.setBackgroundColor(
                 animator.animatedValue as Int
@@ -71,5 +80,6 @@ class PopUpWindow : AppCompatActivity() {
         })
         colorAnimation.start()
     }
+
 
 }

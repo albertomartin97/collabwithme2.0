@@ -21,4 +21,15 @@
     <style name="styleSkillsTextView" parent="Theme.AppCompat.Light">
         <item name="color">@color/color8</item>
     </style>
+
+    <style name="PopMe" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+    </style>
 </resources>
