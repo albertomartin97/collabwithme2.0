@@ -52,6 +52,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
         val query = db.collection("users")
 
+
         val array = FirestoreArray(query, ClassSnapshotParser(UserModel::class.java))
 
 
@@ -84,6 +85,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             val intent = Intent(this, PopUpWindow::class.java)
             intent.putExtra("profileImage", user.profile_image)
             intent.putExtra("username", fullName)
+            intent.putExtra("uid", user.uid)
             startActivity(intent)
 
         }

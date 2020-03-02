@@ -58,6 +58,7 @@
     <string name="select_city_textView">Select a city</string>
     <string name="select_skills_textView">Select a skill</string>
     <string name="description_profile_textView">Description</string>
+    <string name="skillsPopUp">Skills</string>
 
 
 </resources>
