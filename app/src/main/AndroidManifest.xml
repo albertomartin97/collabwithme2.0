@@ -11,50 +11,55 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".PopUpWindow"
+        <activity android:name=".FriendsPopUpWindow"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"
-                android:theme="@style/PopMe"/>
-
-        <activity android:name=".ProfilePictureActivity"
-                android:screenOrientation="portrait"
+                android:theme="@style/PopMe"
                 tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".ChooseCityActivity"
+        <activity
+                android:name=".PopUpWindow"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
+                android:theme="@style/PopMe"
+                tools:ignore="LockedOrientationActivity" />
+        <activity
+                android:name=".ProfilePictureActivity"
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity" />
+        <activity
+                android:name=".ChooseCityActivity"
+                android:screenOrientation="portrait"
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".SettingsActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".MessagesActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".FriendsActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".FindPeopleActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
-
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".ProfileActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".HomeScreenActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".LoginActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".RegistrationActivity"
                 android:screenOrientation="portrait"
-                tools:ignore="LockedOrientationActivity"/>
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".MainActivity"
                 android:screenOrientation="portrait"

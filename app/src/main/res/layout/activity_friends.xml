@@ -41,4 +41,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/left_arrow" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/friends_recyclerView"
+            android:layout_width="412dp"
+            android:layout_height="810dp"
+            android:background="@color/color17"
+            android:foregroundGravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="30dp"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

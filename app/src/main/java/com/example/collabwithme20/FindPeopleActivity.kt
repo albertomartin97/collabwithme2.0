@@ -1,17 +1,8 @@
 package com.example.collabwithme20
 
-
-
-
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.View.OnTouchListener
-import android.widget.LinearLayout
-import android.widget.PopupWindow
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,11 +14,15 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_profile.*
-
+import kotlinx.android.synthetic.main.activity_find_people.*
+import kotlinx.android.synthetic.main.activity_profile.backBtn
 
 
 class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickListener {
+    companion object {
+        private const val TAG = "FindPeopleActivity"
+
+    }
     private lateinit var recyclerView: RecyclerView
 
     private val db = FirebaseFirestore.getInstance()
@@ -43,7 +38,6 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         createRecyclerView()
-
 
     }
 
@@ -78,17 +72,44 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     override fun onUserClick(user: UserModel, position: Int, buttonName: String){
 
-        if (buttonName == "addUserBtn"){
-            Toast.makeText(this, "Friend request sent" , Toast.LENGTH_SHORT).show()
+        if (buttonName == "addFriendBtn"){
+            Toast.makeText(this, "Friend added" , Toast.LENGTH_SHORT).show()
+            val fullName = user.first_name + " " + user.last_name
+            addFriendToDB(user.uid, fullName, user.profile_image, user.city, user.email)
         }else if(buttonName == "showUserProfile"){
             val fullName = user.first_name + " " + user.last_name
             val intent = Intent(this, PopUpWindow::class.java)
             intent.putExtra("profileImage", user.profile_image)
             intent.putExtra("username", fullName)
             intent.putExtra("uid", user.uid)
+            intent.putExtra("city", user.city)
             startActivity(intent)
 
         }
+
+    }
+
+    private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
+
+        val docRef = db.collection("users").document(uid)
+            .collection("friends").document(friendUID)
+
+        val user = hashMapOf(
+            "uid" to friendUID,
+            "fullName" to friendName,
+            "profile_image" to profileImage,
+            "city" to friendCity,
+            "email" to friendEmail
+        )
+
+        docRef.set(user).addOnSuccessListener {
+            Log.d(TAG, "Friend created for $uid")
+        }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
+
+
 
     }
 

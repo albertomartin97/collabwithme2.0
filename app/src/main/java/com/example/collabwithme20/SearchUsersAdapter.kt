@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -13,7 +12,6 @@ import com.firebase.ui.firestore.FirestoreArray
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.search_user_row.view.*
-import java.text.FieldPosition
 
 
 class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
@@ -36,8 +34,8 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
             Glide.with(containerView.profileImageViewList).load(user.profile_image).
                 transform(CircleCrop()).into(containerView.profileImageViewList)
 
-            containerView.addUserBtn.setOnClickListener {
-                action.onUserClick(user, adapterPosition, "addUserBtn")
+            containerView.addFriendBtn.setOnClickListener {
+                action.onUserClick(user, adapterPosition, "addFriendBtn")
             }
             containerView.setOnClickListener{
                 action.onUserClick(user, adapterPosition, "showUserProfile")

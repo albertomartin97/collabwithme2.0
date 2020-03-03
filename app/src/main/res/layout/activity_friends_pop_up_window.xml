@@ -11,15 +11,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/popup_window_background_container"
-            android:layout_width="320dp"
-            android:layout_height="310dp"
+            android:layout_width="370dp"
+            android:layout_height="520dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginStart="32dp"
             android:layout_marginTop="265dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="270dp"
-            android:background="@color/color17"
+            android:background="@color/color23"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/alfa_slab_one"
                 android:text="@string/user_name"
-                android:textSize="24sp"
+                android:textSize="28sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/alfa_slab_one"
                 android:text="@string/cities_prompt"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/usernameTextView" />
@@ -61,8 +61,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/profileImageView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -74,54 +74,54 @@
                 android:layout_width="wrap_content"
                 android:layout_height="37dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/style16"
                 android:padding="8dp"
                 android:text="@string/music_production_btn"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/singingPopUp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cityPopUp" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionFriend" />
 
         <Button
                 android:id="@+id/singingPopUp"
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/style16"
                 android:padding="8dp"
                 android:text="@string/singer_btn"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/videoProductionPopUp"
                 app:layout_constraintStart_toEndOf="@+id/musicProductionPopUp"
-                app:layout_constraintTop_toBottomOf="@+id/cityPopUp" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionFriend" />
 
         <Button
                 android:id="@+id/videoProductionPopUp"
                 android:layout_width="wrap_content"
                 android:layout_height="37dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/style16"
                 android:padding="8dp"
                 android:text="@string/video_production_btn"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/singingPopUp"
-                app:layout_constraintTop_toBottomOf="@+id/cityPopUp" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionFriend" />
 
         <Button
                 android:id="@+id/rapperPopUp"
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/style16"
                 android:padding="8dp"
                 android:text="@string/rapper_btn"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/graphicDesignerPopUp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/musicProductionPopUp" />
@@ -135,7 +135,7 @@
                 android:background="@drawable/style16"
                 android:padding="8dp"
                 android:text="@string/graphic_designer_btn"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/clothingDesignPopUp"
                 app:layout_constraintStart_toEndOf="@+id/rapperPopUp"
                 app:layout_constraintTop_toBottomOf="@+id/musicProductionPopUp" />
@@ -150,25 +150,51 @@
                 android:background="@drawable/style16"
                 android:padding="8dp"
                 android:text="@string/clothing_design_btn"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/graphicDesignerPopUp"
                 app:layout_constraintTop_toBottomOf="@+id/videoProductionPopUp" />
 
-
         <Button
-                android:id="@+id/addFriendPopUp"
-                android:layout_width="100dp"
+                android:id="@+id/removeFriendPopUp"
+                android:layout_width="120dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/style18"
-                android:text="@string/add_friend"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/style19"
+                android:text="@string/remove_friend"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/graphicDesignerPopUp"
-                app:layout_constraintVertical_bias="0.578" />
+                app:layout_constraintVertical_bias="0.882" />
+
+        <TextView
+                android:id="@+id/emailTextViewFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/alfa_slab_one"
+                android:text="@string/email_input_hint"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cityPopUp" />
+
+        <TextView
+                android:id="@+id/descriptionFriend"
+                android:layout_width="327dp"
+                android:layout_height="98dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/alfa_slab_one"
+                android:text="@string/description_friend"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailTextViewFriend" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

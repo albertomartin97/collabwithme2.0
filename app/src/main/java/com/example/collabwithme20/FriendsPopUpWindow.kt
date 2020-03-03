@@ -14,11 +14,21 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_friends_pop_up_window.*
 import kotlinx.android.synthetic.main.activity_pop_up_window.*
+import kotlinx.android.synthetic.main.activity_pop_up_window.cityPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.closeBtn
+import kotlinx.android.synthetic.main.activity_pop_up_window.clothingDesignPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.graphicDesignerPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.musicProductionPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.pop_up_window_background
+import kotlinx.android.synthetic.main.activity_pop_up_window.profileImageView
+import kotlinx.android.synthetic.main.activity_pop_up_window.rapperPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.singingPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.usernameTextView
+import kotlinx.android.synthetic.main.activity_pop_up_window.videoProductionPopUp
 
-
-class PopUpWindow : AppCompatActivity() {
+class FriendsPopUpWindow : AppCompatActivity(){
     companion object {
         private const val TAG = "PopUpWindow"
 
@@ -35,10 +45,14 @@ class PopUpWindow : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        overridePendingTransition(0, 0)
-        setContentView(R.layout.activity_pop_up_window)
+        setContentView(R.layout.activity_friends_pop_up_window)
 
         closeBtn.setOnClickListener {
+            onBackPressed()
+        }
+
+        removeFriendPopUp.setOnClickListener {
+            Toast.makeText(this, "Friend removed", Toast.LENGTH_SHORT).show()
             onBackPressed()
         }
 
@@ -50,19 +64,15 @@ class PopUpWindow : AppCompatActivity() {
         city = bundle?.getString("city", "City") ?: ""
         email = bundle?.getString("email", "Email") ?: ""
 
+        val emailWithStr = "Email : $email"
+
         //Set data
         Glide.with(profileImageView).load(imageName).
             transform(CircleCrop()).into(profileImageView)
         usernameTextView.text = userName
         cityPopUp.text = city
+        emailTextViewFriend.text = emailWithStr
         showSkills(userUID)
-
-        //Add friend to DB
-        addFriendPopUp.setOnClickListener{
-            addFriendToDB(userUID, userName, imageName, email)
-            Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
-            onBackPressed()
-        }
 
         // Fade animation for the background of Popup Window
         val alpha = 100 //between 0-255
@@ -146,7 +156,7 @@ class PopUpWindow : AppCompatActivity() {
 
         }
 
-       rapperDoc.get().addOnSuccessListener { document ->
+        rapperDoc.get().addOnSuccessListener { document ->
             if (document != null) {
                 when {
                     document.getString("skill") == "true" -> {
@@ -188,26 +198,5 @@ class PopUpWindow : AppCompatActivity() {
 
     }
 
-    private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String, friendEmail: String){
 
-        val docRef = db.collection("users").document(uid)
-            .collection("friends").document(friendUID)
-
-        val user = hashMapOf(
-            "uid" to friendUID,
-            "fullName" to friendName,
-            "profile_image" to profileImage,
-            "email" to friendEmail
-        )
-
-        docRef.set(user).addOnSuccessListener {
-            Log.d(TAG, "Friend created for $uid")
-        }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-
-
-
-    }
 }
