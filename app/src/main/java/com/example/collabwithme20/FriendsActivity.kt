@@ -1,11 +1,12 @@
 package com.example.collabwithme20
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.collabwithme20.Adapters.FriendsAdapter
 import com.example.collabwithme20.Models.FriendsModel
 import com.firebase.ui.firestore.ClassSnapshotParser
 import com.firebase.ui.firestore.FirestoreArray
@@ -32,7 +33,8 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intentGoToPreviousActivity)
+            startActivity(intentGoToPreviousActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
 
@@ -57,7 +59,13 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
         recyclerView = findViewById(R.id.friends_recyclerView)
 
 
-        val adapter: FirestoreRecyclerAdapter<*, *> = FriendsAdapter(uid, array, options, this)
+        val adapter: FirestoreRecyclerAdapter<*, *> =
+            FriendsAdapter(
+                uid,
+                array,
+                options,
+                this
+            )
 
 
         recyclerView.adapter = adapter
@@ -84,6 +92,12 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
         }
 
+    }
+
+    //Go to homescreen when pressed back button
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeScreenActivity::class.java)
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 
 }

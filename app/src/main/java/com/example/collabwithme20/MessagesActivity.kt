@@ -1,5 +1,6 @@
 package com.example.collabwithme20
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,9 +17,16 @@ class MessagesActivity : AppCompatActivity() {
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intentGoToPreviousActivity)
+            startActivity(intentGoToPreviousActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
 
+    }
+
+    //Go to homescreen when pressed back button
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeScreenActivity::class.java)
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 }

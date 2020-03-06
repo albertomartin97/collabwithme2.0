@@ -1,5 +1,6 @@
 package com.example.collabwithme20
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,27 +20,32 @@ class HomeScreenActivity : AppCompatActivity() {
 
         profileBtn.setOnClickListener{
             val intentGoToProfileActivity = Intent(this, ProfileActivity::class.java)
-            startActivity(intentGoToProfileActivity)
+            startActivity(intentGoToProfileActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         friendsBtn.setOnClickListener{
             val intentGoToFriendsActivity = Intent(this, FriendsActivity::class.java)
-            startActivity(intentGoToFriendsActivity)
+            startActivity(intentGoToFriendsActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         findPeopleBtn.setOnClickListener{
             val intentGoToFindPeopleActivity = Intent(this, FindPeopleActivity::class.java)
-            startActivity(intentGoToFindPeopleActivity)
+            startActivity(intentGoToFindPeopleActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         messagesBtn.setOnClickListener{
             val intentGoToMessagesActivity = Intent(this, MessagesActivity::class.java)
-            startActivity(intentGoToMessagesActivity)
+            startActivity(intentGoToMessagesActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         settingsBtn.setOnClickListener{
             val intentGoToSettingsActivity = Intent(this, SettingsActivity::class.java)
-            startActivity(intentGoToSettingsActivity)
+            startActivity(intentGoToSettingsActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
 

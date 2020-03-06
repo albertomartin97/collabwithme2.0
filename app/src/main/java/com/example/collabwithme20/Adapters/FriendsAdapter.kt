@@ -1,4 +1,4 @@
-package com.example.collabwithme20
+package com.example.collabwithme20.Adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.collabwithme20.Models.FriendsModel
-import com.example.collabwithme20.Models.UserModel
+import com.example.collabwithme20.R
 import com.firebase.ui.firestore.FirestoreArray
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -18,7 +18,8 @@ import kotlinx.android.synthetic.main.friends_row.view.*
 
 class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
                          options: FirestoreRecyclerOptions<FriendsModel>,
-                     var clickListener: OnUserClickListener):
+                     var clickListener: OnUserClickListener
+):
     FirestoreRecyclerAdapter<FriendsModel, FriendsAdapter.FriendsViewHolder>(options){
 
 
@@ -31,8 +32,13 @@ class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
 
             containerView.friendNameTextView.text = friend.fullName
 
-            Glide.with(containerView.profileImageFriend).load(friend.profile_image).
-                transform(CircleCrop()).into(containerView.profileImageFriend)
+            if(friend.profile_image == "") {
+                Glide.with(containerView.profileImageFriend).load(R.drawable.default_profile_pic)
+                    .transform(CircleCrop()).into(containerView.profileImageFriend)
+            }else {
+                Glide.with(containerView.profileImageFriend).load(friend.profile_image)
+                    .transform(CircleCrop()).into(containerView.profileImageFriend)
+            }
 
             containerView.setOnClickListener {
                 action.onUserClick(friend, adapterPosition, "showUserProfile")
@@ -45,7 +51,9 @@ class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
         val layoutInflater = LayoutInflater.from(parent.context)
         val inflatedView = layoutInflater.inflate(R.layout.friends_row, parent, false)
 
-        return FriendsViewHolder(inflatedView)
+        return FriendsViewHolder(
+            inflatedView
+        )
     }
 
 

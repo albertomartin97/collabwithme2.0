@@ -1,5 +1,6 @@
 package com.example.collabwithme20
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,5 +27,11 @@ class SettingsActivity : AppCompatActivity() {
             val intentGoToMainActivity = Intent(this, MainActivity::class.java)
             startActivity(intentGoToMainActivity)
         }
+    }
+
+    //Go to homescreen when pressed back button
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeScreenActivity::class.java)
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 }

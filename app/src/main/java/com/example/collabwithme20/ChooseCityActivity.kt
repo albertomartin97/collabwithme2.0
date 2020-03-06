@@ -1,5 +1,6 @@
 package com.example.collabwithme20
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 
 class ChooseCityActivity : AppCompatActivity() {
     companion object {
-        private const val TAG = "ProfileActivity"
+        private const val TAG = "ChooseCityActivity"
 
     }
 
@@ -31,15 +32,16 @@ class ChooseCityActivity : AppCompatActivity() {
                 if (caller == "ProfilePictureActivity") {
                     val intent = Intent(this, ProfileActivity::class.java)
                     Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 }else if(caller == "ProfileActivity"){
                     val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                 }
             }, 1000)
 
         }
+
         bristolbtn.setOnClickListener {
             changeCity("Bristol")
 
@@ -49,10 +51,10 @@ class ChooseCityActivity : AppCompatActivity() {
                 if (caller == "ProfilePictureActivity") {
                     val intent = Intent(this, ProfileActivity::class.java)
                     Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 }else if(caller == "ProfileActivity"){
                     val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                 }
             }, 1000)
@@ -67,10 +69,10 @@ class ChooseCityActivity : AppCompatActivity() {
                 if (caller == "ProfilePictureActivity") {
                     val intent = Intent(this, ProfileActivity::class.java)
                     Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 }else if(caller == "ProfileActivity"){
                     val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                 }
             }, 1000)
@@ -85,10 +87,10 @@ class ChooseCityActivity : AppCompatActivity() {
                 if (caller == "ProfilePictureActivity") {
                     val intent = Intent(this, ProfileActivity::class.java)
                     Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 }else if(caller == "ProfileActivity"){
                     val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                 }
             }, 1000)
@@ -103,10 +105,10 @@ class ChooseCityActivity : AppCompatActivity() {
                 if (caller == "ProfilePictureActivity") {
                     val intent = Intent(this, ProfileActivity::class.java)
                     Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 }else if(caller == "ProfileActivity"){
                     val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                 }
             }, 1000)
@@ -121,10 +123,10 @@ class ChooseCityActivity : AppCompatActivity() {
                 if (caller == "ProfilePictureActivity") {
                     val intent = Intent(this, ProfileActivity::class.java)
                     Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 }else if(caller == "ProfileActivity"){
                     val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                 }
             }, 1000)
@@ -139,10 +141,10 @@ class ChooseCityActivity : AppCompatActivity() {
                 if (caller == "ProfilePictureActivity") {
                     val intent = Intent(this, ProfileActivity::class.java)
                     Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 }else if(caller == "ProfileActivity"){
                     val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                 }
             }, 1000)
@@ -157,10 +159,10 @@ class ChooseCityActivity : AppCompatActivity() {
                 if (caller == "ProfilePictureActivity") {
                     val intent = Intent(this, ProfileActivity::class.java)
                     Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 }else if(caller == "ProfileActivity"){
                     val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                 }
             }, 1000)
@@ -184,5 +186,9 @@ class ChooseCityActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
+    }
+
+    override fun onBackPressed() {
+        // do something
     }
 }

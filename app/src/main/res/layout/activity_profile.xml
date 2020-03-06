@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/color17"
             tools:context=".ProfileActivity">
 
         <TextView
@@ -137,6 +138,7 @@
                 app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
 
 
+
         <TextView
                 android:id="@+id/skillsTextView"
                 android:layout_width="410dp"
@@ -157,20 +159,6 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/colourBackgroundTextView" />
-
-        <Button
-                android:id="@+id/selectCityBtn"
-                android:layout_width="127dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/style6"
-                android:text="@string/change_city_btn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.05"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cityTextView" />
 
         <TextView
                 android:id="@+id/colourBackgroundTextView"
@@ -203,10 +191,11 @@
                 android:layout_width="325dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style12"
                 android:drawableStart="@drawable/user_black_ic"
+                android:drawableEnd="@drawable/pencil_ic"
                 android:drawablePadding="15dp"
                 android:fontFamily="@font/alfa_slab_one"
                 android:paddingStart="20dp"
@@ -251,6 +240,7 @@
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/style12"
                 android:drawableStart="@drawable/location_black_ic"
+                android:drawableEnd="@drawable/pencil_ic"
                 android:drawablePadding="15dp"
                 android:fontFamily="@font/alfa_slab_one"
                 android:paddingStart="20dp"
@@ -290,6 +280,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activityTextView"
                 app:srcCompat="@drawable/plus" />
+
+        <EditText
+                android:id="@+id/descriptionEditText"
+                android:layout_width="325dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints="@string/description"
+                android:background="@drawable/style20"
+                android:fontFamily="@font/alfa_slab_one"
+                android:gravity="start|end"
+                android:hint="@string/description"
+                android:imeOptions=""
+                android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+                android:lines="5"
+                android:maxLength="150"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/color6"
+                android:textSize="16sp"
+                android:drawablePadding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cityTextView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

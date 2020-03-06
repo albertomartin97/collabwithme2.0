@@ -51,15 +51,20 @@ class PopUpWindow : AppCompatActivity() {
         email = bundle?.getString("email", "Email") ?: ""
 
         //Set data
-        Glide.with(profileImageView).load(imageName).
-            transform(CircleCrop()).into(profileImageView)
+        if(imageName == "") {
+            Glide.with(profileImageView).load(R.drawable.default_profile_pic).transform(CircleCrop())
+                .into(profileImageView)
+        }else{
+            Glide.with(profileImageView).load(imageName).transform(CircleCrop())
+                .into(profileImageView)
+        }
         usernameTextView.text = userName
         cityPopUp.text = city
         showSkills(userUID)
 
         //Add friend to DB
         addFriendPopUp.setOnClickListener{
-            addFriendToDB(userUID, userName, imageName, email)
+            addFriendToDB(userUID, userName, imageName, city, email)
             Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
             onBackPressed()
         }
@@ -188,7 +193,7 @@ class PopUpWindow : AppCompatActivity() {
 
     }
 
-    private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String, friendEmail: String){
+    private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
 
         val docRef = db.collection("users").document(uid)
             .collection("friends").document(friendUID)
@@ -197,6 +202,7 @@ class PopUpWindow : AppCompatActivity() {
             "uid" to friendUID,
             "fullName" to friendName,
             "profile_image" to profileImage,
+            "city" to friendCity,
             "email" to friendEmail
         )
 

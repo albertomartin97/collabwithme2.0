@@ -51,12 +51,9 @@ class FriendsPopUpWindow : AppCompatActivity(){
             onBackPressed()
         }
 
-        removeFriendPopUp.setOnClickListener {
-            Toast.makeText(this, "Friend removed", Toast.LENGTH_SHORT).show()
-            onBackPressed()
-        }
 
-        //Get data from FindPeopleActivity
+
+        //Get data from FriendsActivity
         val bundle = intent.extras
         imageName = bundle?.getString("profileImage", "Image") ?: ""
         userName = bundle?.getString("username", "Name") ?: ""
@@ -67,8 +64,13 @@ class FriendsPopUpWindow : AppCompatActivity(){
         val emailWithStr = "Email : $email"
 
         //Set data
-        Glide.with(profileImageView).load(imageName).
-            transform(CircleCrop()).into(profileImageView)
+        if(imageName == "") {
+            Glide.with(profileImageView).load(R.drawable.default_profile_pic).transform(CircleCrop())
+                .into(profileImageView)
+        }else{
+            Glide.with(profileImageView).load(imageName).transform(CircleCrop())
+                .into(profileImageView)
+        }
         usernameTextView.text = userName
         cityPopUp.text = city
         emailTextViewFriend.text = emailWithStr
@@ -84,6 +86,12 @@ class FriendsPopUpWindow : AppCompatActivity(){
         }
         colorAnimation.start()
 
+
+        removeFriendPopUp.setOnClickListener {
+            Toast.makeText(this, "Friend removed", Toast.LENGTH_SHORT).show()
+            removeFriendFromDB(userUID)
+            onBackPressed()
+        }
 
     }
 
@@ -137,6 +145,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
                 when {
                     document.getString("skill") == "true" -> {
                         musicProductionPopUp.setBackgroundResource(R.drawable.style17)
+                        musicProductionPopUp.setTextColor(Color.WHITE)
                     }
                 }
 
@@ -149,6 +158,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
                 when {
                     document.getString("skill") == "true" -> {
                         singingPopUp.setBackgroundResource(R.drawable.style17)
+                        singingPopUp.setTextColor(Color.WHITE)
                     }
                 }
 
@@ -161,6 +171,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
                 when {
                     document.getString("skill") == "true" -> {
                         rapperPopUp.setBackgroundResource(R.drawable.style17)
+                        rapperPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }
@@ -171,6 +182,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
                 when {
                     document.getString("skill") == "true" -> {
                         videoProductionPopUp.setBackgroundResource(R.drawable.style17)
+                        videoProductionPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }
@@ -181,6 +193,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
                 when {
                     document.getString("skill") == "true" -> {
                         graphicDesignerPopUp.setBackgroundResource(R.drawable.style17)
+                        graphicDesignerPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }
@@ -191,6 +204,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
                 when {
                     document.getString("skill") == "true" -> {
                         clothingDesignPopUp.setBackgroundResource(R.drawable.style17)
+                        clothingDesignPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }
@@ -198,5 +212,13 @@ class FriendsPopUpWindow : AppCompatActivity(){
 
     }
 
+    private fun removeFriendFromDB(friendUid: String){
+
+        db.collection("users").document(uid).collection("friends")
+            .document(friendUid).delete()
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+
+    }
 
 }

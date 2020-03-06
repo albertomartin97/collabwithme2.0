@@ -1,6 +1,7 @@
 package com.example.collabwithme20
 
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.example.collabwithme20.Models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -30,7 +32,8 @@ class ProfileActivity : AppCompatActivity() {
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intentGoToPreviousActivity)
+            startActivity(intentGoToPreviousActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         getUserData()   //Get user data from DB
@@ -44,6 +47,7 @@ class ProfileActivity : AppCompatActivity() {
         changeSkillsColour("graphic_design")
         changeSkillsColour("clothing_design")
 
+
         changePhotoBtn.setOnClickListener {
             val intent = Intent(this, ProfilePictureActivity::class.java)
             intent.putExtra("caller", "ProfileActivity")
@@ -51,7 +55,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
-        selectCityBtn.setOnClickListener {
+        cityTextView.setOnClickListener {
             val intent = Intent(this, ChooseCityActivity::class.java)
             intent.putExtra("caller", "ProfileActivity" )
             startActivity(intent)
@@ -304,10 +308,17 @@ class ProfileActivity : AppCompatActivity() {
 
                 imageLink = document.getString("profile_image")
 
-                Glide.with(this)
-                    .load(imageLink)
-                    .transform(CircleCrop())
-                    .into(profileImageView2)
+                if(imageLink == null){
+                    Glide.with(this)
+                        .load(R.drawable.default_profile_pic)
+                        .transform(CircleCrop())
+                        .into(profileImageView2)
+                }else {
+                    Glide.with(this)
+                        .load(imageLink)
+                        .transform(CircleCrop())
+                        .into(profileImageView2)
+                }
 
             } else {
                 Log.d("doesn't exist", "No such document")
@@ -320,7 +331,11 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-
+    //Go to homescreen when pressed back button
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeScreenActivity::class.java)
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+    }
 
 
 

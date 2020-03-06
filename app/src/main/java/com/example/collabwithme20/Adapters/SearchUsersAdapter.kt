@@ -1,4 +1,4 @@
-package com.example.collabwithme20
+package com.example.collabwithme20.Adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.collabwithme20.Models.UserModel
+import com.example.collabwithme20.R
 import com.firebase.ui.firestore.FirestoreArray
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -16,7 +17,8 @@ import kotlinx.android.synthetic.main.search_user_row.view.*
 
 class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
                          options: FirestoreRecyclerOptions<UserModel>,
-                         var clickListener: OnUserClickListener):
+                         var clickListener: OnUserClickListener
+):
     FirestoreRecyclerAdapter<UserModel, SearchUsersAdapter.ViewHolder>(options){
 
 
@@ -25,15 +27,19 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
 
 
     class ViewHolder(private val containerView: View) : RecyclerView.ViewHolder(containerView){
-        fun bindItems(user : UserModel, action:OnUserClickListener){
+        fun bindItems(user : UserModel, action: OnUserClickListener){
 
             val fullName = user.first_name + " " + user.last_name
 
             containerView.usernameTextView.text = fullName
 
-            Glide.with(containerView.profileImageViewList).load(user.profile_image).
-                transform(CircleCrop()).into(containerView.profileImageViewList)
-
+            if(user.profile_image == ""){
+                Glide.with(containerView.profileImageViewList).load(R.drawable.default_profile_pic)
+                    .transform(CircleCrop()).into(containerView.profileImageViewList)
+            }else {
+                Glide.with(containerView.profileImageViewList).load(user.profile_image)
+                    .transform(CircleCrop()).into(containerView.profileImageViewList)
+            }
             containerView.addFriendBtn.setOnClickListener {
                 action.onUserClick(user, adapterPosition, "addFriendBtn")
             }
@@ -47,10 +53,13 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val inflatedView = layoutInflater.inflate(R.layout.search_user_row,
+        val inflatedView = layoutInflater.inflate(
+            R.layout.search_user_row,
             parent, false)
 
-        return ViewHolder(inflatedView)
+        return ViewHolder(
+            inflatedView
+        )
     }
 
 

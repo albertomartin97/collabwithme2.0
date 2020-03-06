@@ -1,5 +1,6 @@
 package com.example.collabwithme20
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.collabwithme20.Adapters.SearchUsersAdapter
 import com.example.collabwithme20.Models.UserModel
 import com.firebase.ui.firestore.ClassSnapshotParser
 import com.firebase.ui.firestore.FirestoreArray
@@ -14,7 +16,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_find_people.*
 import kotlinx.android.synthetic.main.activity_profile.backBtn
 
 
@@ -34,7 +35,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intentGoToPreviousActivity)
+            startActivity(intentGoToPreviousActivity, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         createRecyclerView()
@@ -57,7 +58,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         recyclerView = findViewById(R.id.search_recyclerView)
 
 
-        val adapter: FirestoreRecyclerAdapter<*, *> = SearchUsersAdapter(uid, array, options, this)
+        val adapter: FirestoreRecyclerAdapter<*, *> =
+            SearchUsersAdapter(
+                uid,
+                array,
+                options,
+                this
+            )
 
 
         recyclerView.adapter = adapter
@@ -83,6 +90,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             intent.putExtra("username", fullName)
             intent.putExtra("uid", user.uid)
             intent.putExtra("city", user.city)
+            intent.putExtra("email", user.email)
             startActivity(intent)
 
         }
@@ -113,7 +121,11 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
-
+    //Go to homescreen when pressed back button
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeScreenActivity::class.java)
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+    }
 
 
 }

@@ -1,12 +1,14 @@
 package com.example.collabwithme20
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +37,23 @@ class ProfilePictureActivity : AppCompatActivity() {
 
         var trueOrFalse = "false" //Check if profile picture has been selected
 
+        //Get caller activity
+        val caller = intent.getStringExtra("caller")
+
+        //Set skip button invisible if coming from profile
+        if(caller == "ProfileActivity"){
+            skipTextView.visibility = View.INVISIBLE
+        }
+
+        skipTextView.setOnClickListener {
+
+            val intent = Intent(this, ChooseCityActivity::class.java)
+            intent.putExtra("caller", "ProfilePictureActivity")
+            startActivity(intent)
+
+
+        }
+
         //Profile picture onClick
         selectPhotoBtn.setOnClickListener {
             Log.d(TAG, "Try to show photo selector")
@@ -55,7 +74,6 @@ class ProfilePictureActivity : AppCompatActivity() {
                 uploadImageToFirebase() //Upload image to firebase
 
                 Handler().postDelayed({
-                    val caller = intent.getStringExtra("caller")
 
                     if (caller == "ProfileActivity") {
                         val intent = Intent(this, ProfileActivity::class.java)
@@ -129,6 +147,14 @@ class ProfilePictureActivity : AppCompatActivity() {
     }
 
 
+    override fun onBackPressed() {
+        val caller = intent.getStringExtra("caller")
+
+        if (caller == "ProfileActivity") {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
+    }
 
 
 
