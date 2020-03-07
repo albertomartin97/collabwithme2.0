@@ -90,6 +90,7 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
             intent.putExtra("uid", friend.uid)
             intent.putExtra("city", friend.city)
             intent.putExtra("email", friend.email)
+            intent.putExtra("description", friend.description)
             startActivity(intent)
 
         //Opens MessagesActivity

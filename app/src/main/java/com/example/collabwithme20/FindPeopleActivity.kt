@@ -16,6 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_profile.backBtn
 
 
@@ -82,7 +83,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         if (buttonName == "addFriendBtn"){
             Toast.makeText(this, "Friend added" , Toast.LENGTH_SHORT).show()
             val fullName = user.first_name + " " + user.last_name
-            addFriendToDB(user.uid, fullName, user.profile_image, user.city, user.email)
+            addFriendToDB(user.uid, fullName, user.profile_image, user.city, user.email, user.description)
         }else if(buttonName == "showUserProfile"){
             val fullName = user.first_name + " " + user.last_name
             val intent = Intent(this, PopUpWindow::class.java)
@@ -97,7 +98,8 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
-    private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
+    private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String,
+                              friendCity: String, friendEmail: String, friendDescription: String){
 
         val docRef = db.collection("users").document(uid)
             .collection("friends").document(friendUID)
@@ -107,10 +109,11 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             "fullName" to friendName,
             "profile_image" to profileImage,
             "city" to friendCity,
-            "email" to friendEmail
+            "email" to friendEmail,
+            "description" to friendDescription
         )
 
-        docRef.set(user).addOnSuccessListener {
+        docRef.set(user, SetOptions.merge()).addOnSuccessListener {
             Log.d(TAG, "Friend created for $uid")
         }
             .addOnFailureListener { e ->

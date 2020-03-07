@@ -52,7 +52,7 @@ class RegistrationActivity : AppCompatActivity() {
         Log.d("MainActivity", "Email is: $email")
         Log.d("MainActivity", "Paswword: $password")
 
-        //Auth registration
+        //Auth registration and save into DB
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (!it.isSuccessful) {
                 Toast.makeText(this, "Failed to create user", Toast.LENGTH_SHORT).show()

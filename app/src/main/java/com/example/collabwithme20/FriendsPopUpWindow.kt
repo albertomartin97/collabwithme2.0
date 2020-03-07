@@ -41,6 +41,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
     private var userUID = ""
     private var city = ""
     private var email = ""
+    private var description = ""
 
     private val db = FirebaseFirestore.getInstance()
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
@@ -61,6 +62,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
         userUID = bundle?.getString("uid", "User UID") ?: ""
         city = bundle?.getString("city", "City") ?: ""
         email = bundle?.getString("email", "Email") ?: ""
+        description = bundle?.getString("description", "Description") ?: ""
 
         val emailWithStr = "Email : $email"
 
@@ -75,6 +77,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
         usernameTextView.text = userName
         cityPopUp.text = city
         emailTextViewFriend.text = emailWithStr
+        descriptionFriend.text = description
         showSkills(userUID)
 
         // Fade animation for the background of Popup Window

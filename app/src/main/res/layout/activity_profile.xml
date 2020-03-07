@@ -181,7 +181,7 @@
                 android:drawableTop="@drawable/instrumentalist_ic"
                 android:fontFamily="@font/alfa_slab_one"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:paddingTop="15dp"
+                android:paddingTop="10dp"
                 android:paddingBottom="30dp"
                 android:text="@string/instrumentalist_btn"
                 android:textSize="16sp"
@@ -360,6 +360,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityTextView" />
+
+        <Button
+                android:id="@+id/saveDescriptionBtn"
+                android:layout_width="70dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/style6"
+                android:text="@string/save"
+                app:layout_constraintEnd_toEndOf="@+id/descriptionEditText"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/descriptionEditText"
+                app:layout_constraintTop_toTopOf="@+id/descriptionEditText" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
