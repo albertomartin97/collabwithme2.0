@@ -50,4 +50,8 @@ class HomeScreenActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onBackPressed() {
+        // do something
+    }
 }

@@ -25,6 +25,7 @@ class SettingsActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             Toast.makeText(this, "You have logged out", Toast.LENGTH_SHORT).show()
             val intentGoToMainActivity = Intent(this, MainActivity::class.java)
+            intent.putExtra("caller", "SettingsActivity")
             startActivity(intentGoToMainActivity)
         }
     }

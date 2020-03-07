@@ -46,7 +46,14 @@ class ProfileActivity : AppCompatActivity() {
         changeSkillsColour("video_production")
         changeSkillsColour("graphic_design")
         changeSkillsColour("clothing_design")
+        changeSkillsColour("sound_engineer")
+        changeSkillsColour("instrumentalist")
 
+        profileImageView2.setOnClickListener {
+            val intent = Intent(this, ProfilePictureActivity::class.java)
+            intent.putExtra("caller", "ProfileActivity")
+            startActivity(intent)
+        }
 
         changePhotoBtn.setOnClickListener {
             val intent = Intent(this, ProfilePictureActivity::class.java)
@@ -93,6 +100,18 @@ class ProfileActivity : AppCompatActivity() {
         clothingDesignBtn.setOnClickListener {
 
             updateSkills("clothing_design")
+
+        }
+
+        soundEngineeringBtn.setOnClickListener {
+
+            updateSkills("sound_engineer")
+
+        }
+
+        instrumentalistBtn.setOnClickListener {
+
+            updateSkills("instrumentalist")
 
         }
 
@@ -154,6 +173,12 @@ class ProfileActivity : AppCompatActivity() {
             }
             "clothing_design" -> {
                 button = clothingDesignBtn
+            }
+            "sound_engineer" -> {
+                button = soundEngineeringBtn
+            }
+            "instrumentalist" -> {
+                button = instrumentalistBtn
             }
         }
 
@@ -260,6 +285,12 @@ class ProfileActivity : AppCompatActivity() {
             }
             "clothing_design" -> {
                 button = clothingDesignBtn
+            }
+            "sound_engineer" -> {
+                button = soundEngineeringBtn
+            }
+            "instrumentalist" -> {
+                button = instrumentalistBtn
             }
         }
 

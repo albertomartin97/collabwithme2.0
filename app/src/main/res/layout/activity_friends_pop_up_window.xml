@@ -162,18 +162,47 @@
                 app:layout_constraintTop_toBottomOf="@+id/videoProductionPopUp" />
 
         <Button
+                android:id="@+id/soundEngineerPopUpFriends"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/style16"
+                android:padding="8dp"
+                android:text="@string/sound_engineer_btn"
+                android:textColor="@color/color17"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/instrumentalistPopUpFriends"
+                app:layout_constraintTop_toBottomOf="@+id/graphicDesignerPopUp" />
+
+        <Button
+                android:id="@+id/instrumentalistPopUpFriends"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/style16"
+                android:padding="8dp"
+                android:text="@string/instrumentalist_btn"
+                android:textColor="@color/color17"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/soundEngineerPopUpFriends"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rapperPopUp" />
+
+        <Button
                 android:id="@+id/removeFriendPopUp"
                 android:layout_width="120dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/style19"
                 android:text="@string/remove_friend"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/graphicDesignerPopUp"
-                app:layout_constraintVertical_bias="0.882" />
+                app:layout_constraintTop_toBottomOf="@+id/soundEngineerPopUpFriends" />
 
         <TextView
                 android:id="@+id/emailTextViewFriend"
@@ -190,7 +219,7 @@
         <TextView
                 android:id="@+id/descriptionFriend"
                 android:layout_width="320dp"
-                android:layout_height="77dp"
+                android:layout_height="47dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"

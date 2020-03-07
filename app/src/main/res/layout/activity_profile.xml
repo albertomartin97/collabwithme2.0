@@ -75,22 +75,27 @@
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="60dp"
                 android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/musicProductionBtn"
                 app:layout_constraintEnd_toStartOf="@+id/videoProductionBtn" android:layout_marginEnd="8dp"/>
+
         <Button
-                android:text="@string/clothing_design_btn"
+                android:id="@+id/clothingDesignBtn"
+                style="@android:style/Widget.Button"
                 android:layout_width="150dp"
                 android:layout_height="140dp"
-                android:id="@+id/clothingDesignBtn"
-                style="@android:style/Widget.Button" android:textSize="16sp" android:background="@drawable/style4"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="60dp"
+                android:background="@drawable/style4"
                 android:drawableTop="@drawable/clothing_designer"
-                android:paddingTop="35dp"
-                android:paddingBottom="30dp"
                 android:fontFamily="@font/alfa_slab_one"
                 android:foreground="?android:attr/selectableItemBackground"
+                android:paddingTop="35dp"
+                android:paddingBottom="30dp"
+                android:text="@string/clothing_design_btn"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="60dp" android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/videoProductionBtn"
-                app:layout_constraintStart_toEndOf="@+id/graphicDesignerBtn" android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
+                app:layout_constraintStart_toEndOf="@+id/graphicDesignerBtn"
+                app:layout_constraintTop_toBottomOf="@+id/videoProductionBtn" />
+
         <Button
                 android:text="@string/music_production_btn"
                 android:layout_width="150dp"
@@ -120,24 +125,72 @@
                 app:layout_constraintStart_toEndOf="@+id/musicProductionBtn" android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="60dp"
                 android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/skillsTextView"/>
+
+
         <Button
-                android:text="@string/graphic_designer_btn"
+                android:id="@+id/graphicDesignerBtn"
+                style="@android:style/Widget.Button"
                 android:layout_width="150dp"
                 android:layout_height="140dp"
-                android:id="@+id/graphicDesignerBtn"
-                style="@android:style/Widget.Button" android:textSize="16sp" android:background="@drawable/style4"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/style4"
                 android:drawableTop="@drawable/design"
-                android:paddingTop="35dp"
-                android:paddingBottom="30dp"
                 android:fontFamily="@font/alfa_slab_one"
                 android:foreground="?android:attr/selectableItemBackground"
+                android:paddingTop="35dp"
+                android:paddingBottom="30dp"
+                android:text="@string/graphic_designer_btn"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/clothingDesignBtn"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rapperBtn" />
+
+        <Button
+                android:id="@+id/soundEngineeringBtn"
+                style="@android:style/Widget.Button"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/rapperBtn"
-                app:layout_constraintEnd_toStartOf="@+id/clothingDesignBtn" android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/style4"
+                android:drawableTop="@drawable/sound_wave"
+                android:fontFamily="@font/alfa_slab_one"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:paddingTop="35dp"
+                android:paddingBottom="30dp"
+                android:text="@string/sound_engineer_btn"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/instrumentalistBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/graphicDesignerBtn" />
 
-
+        <Button
+                android:id="@+id/instrumentalistBtn"
+                style="@android:style/Widget.Button"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/style4"
+                android:drawableTop="@drawable/instrumentalist_ic"
+                android:fontFamily="@font/alfa_slab_one"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:paddingTop="15dp"
+                android:paddingBottom="30dp"
+                android:text="@string/instrumentalist_btn"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.205"
+                app:layout_constraintStart_toEndOf="@+id/soundEngineeringBtn"
+                app:layout_constraintTop_toBottomOf="@+id/clothingDesignBtn"
+                app:layout_constraintVertical_bias="1.0" />
 
         <TextView
                 android:id="@+id/skillsTextView"
@@ -302,6 +355,8 @@
                 android:textColor="@color/color6"
                 android:textSize="16sp"
                 android:drawablePadding="5dp"
+                android:linksClickable="true"
+                android:autoLink="web|email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityTextView" />

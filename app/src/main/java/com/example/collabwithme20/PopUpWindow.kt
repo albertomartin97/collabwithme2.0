@@ -14,8 +14,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_friends_pop_up_window.*
 import kotlinx.android.synthetic.main.activity_pop_up_window.*
+import kotlinx.android.synthetic.main.activity_pop_up_window.cityPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.closeBtn
+import kotlinx.android.synthetic.main.activity_pop_up_window.clothingDesignPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.graphicDesignerPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.musicProductionPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.pop_up_window_background
+import kotlinx.android.synthetic.main.activity_pop_up_window.profileImageView
+import kotlinx.android.synthetic.main.activity_pop_up_window.rapperPopUp
+import kotlinx.android.synthetic.main.activity_pop_up_window.singingPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.usernameTextView
+import kotlinx.android.synthetic.main.activity_pop_up_window.videoProductionPopUp
 
 
 class PopUpWindow : AppCompatActivity() {
@@ -126,12 +137,19 @@ class PopUpWindow : AppCompatActivity() {
         val clothingDesignDoc = db.collection("users").document(uid)
             .collection("skills").document("clothing_design")
 
+        val soundEngineerDoc = db.collection("users").document(uid)
+            .collection("skills").document("sound_engineer")
+
+        val instrumentalistDoc = db.collection("users").document(uid)
+            .collection("skills").document("instrumentalist")
+
 
         musicProductionDoc.get().addOnSuccessListener { document ->
             if (document != null) {
                 when {
                     document.getString("skill") == "true" -> {
                         musicProductionPopUp.setBackgroundResource(R.drawable.style17)
+                        musicProductionPopUp.setTextColor(Color.WHITE)
                     }
                 }
 
@@ -144,6 +162,7 @@ class PopUpWindow : AppCompatActivity() {
                 when {
                     document.getString("skill") == "true" -> {
                         singingPopUp.setBackgroundResource(R.drawable.style17)
+                        singingPopUp.setTextColor(Color.WHITE)
                     }
                 }
 
@@ -156,6 +175,7 @@ class PopUpWindow : AppCompatActivity() {
                 when {
                     document.getString("skill") == "true" -> {
                         rapperPopUp.setBackgroundResource(R.drawable.style17)
+                        rapperPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }
@@ -166,6 +186,7 @@ class PopUpWindow : AppCompatActivity() {
                 when {
                     document.getString("skill") == "true" -> {
                         videoProductionPopUp.setBackgroundResource(R.drawable.style17)
+                        videoProductionPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }
@@ -176,6 +197,7 @@ class PopUpWindow : AppCompatActivity() {
                 when {
                     document.getString("skill") == "true" -> {
                         graphicDesignerPopUp.setBackgroundResource(R.drawable.style17)
+                        graphicDesignerPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }
@@ -186,6 +208,29 @@ class PopUpWindow : AppCompatActivity() {
                 when {
                     document.getString("skill") == "true" -> {
                         clothingDesignPopUp.setBackgroundResource(R.drawable.style17)
+                        clothingDesignPopUp.setTextColor(Color.WHITE)
+                    }
+                }
+            }
+        }
+
+        soundEngineerDoc.get().addOnSuccessListener { document ->
+            if (document != null) {
+                when {
+                    document.getString("skill") == "true" -> {
+                        soundEngineerPopUp.setBackgroundResource(R.drawable.style17)
+                        soundEngineerPopUp.setTextColor(Color.WHITE)
+                    }
+                }
+            }
+        }
+
+        instrumentalistDoc.get().addOnSuccessListener { document ->
+            if (document != null) {
+                when {
+                    document.getString("skill") == "true" -> {
+                        instrumentalistPopUp.setBackgroundResource(R.drawable.style17)
+                        instrumentalistPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }

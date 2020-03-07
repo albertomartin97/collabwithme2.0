@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/popup_window_background_container"
             android:layout_width="320dp"
-            android:layout_height="310dp"
+            android:layout_height="350dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginStart="32dp"
@@ -79,6 +79,7 @@
                 android:padding="8dp"
                 android:text="@string/music_production_btn"
                 android:textSize="12sp"
+                android:textColor="@color/color17"
                 app:layout_constraintEnd_toStartOf="@+id/singingPopUp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cityPopUp" />
@@ -93,6 +94,7 @@
                 android:padding="8dp"
                 android:text="@string/singer_btn"
                 android:textSize="12sp"
+                android:textColor="@color/color17"
                 app:layout_constraintEnd_toStartOf="@+id/videoProductionPopUp"
                 app:layout_constraintStart_toEndOf="@+id/musicProductionPopUp"
                 app:layout_constraintTop_toBottomOf="@+id/cityPopUp" />
@@ -108,6 +110,7 @@
                 android:padding="8dp"
                 android:text="@string/video_production_btn"
                 android:textSize="12sp"
+                android:textColor="@color/color17"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/singingPopUp"
                 app:layout_constraintTop_toBottomOf="@+id/cityPopUp" />
@@ -122,6 +125,7 @@
                 android:padding="8dp"
                 android:text="@string/rapper_btn"
                 android:textSize="12sp"
+                android:textColor="@color/color17"
                 app:layout_constraintEnd_toStartOf="@+id/graphicDesignerPopUp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/musicProductionPopUp" />
@@ -135,6 +139,7 @@
                 android:background="@drawable/style16"
                 android:padding="8dp"
                 android:text="@string/graphic_designer_btn"
+                android:textColor="@color/color17"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/clothingDesignPopUp"
                 app:layout_constraintStart_toEndOf="@+id/rapperPopUp"
@@ -151,9 +156,40 @@
                 android:padding="8dp"
                 android:text="@string/clothing_design_btn"
                 android:textSize="12sp"
+                android:textColor="@color/color17"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/graphicDesignerPopUp"
                 app:layout_constraintTop_toBottomOf="@+id/videoProductionPopUp" />
+
+        <Button
+                android:id="@+id/soundEngineerPopUp"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/style16"
+                android:padding="8dp"
+                android:text="@string/sound_engineer_btn"
+                android:textColor="@color/color17"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/instrumentalistPopUp"
+                app:layout_constraintTop_toBottomOf="@+id/graphicDesignerPopUp" />
+
+        <Button
+                android:id="@+id/instrumentalistPopUp"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/style16"
+                android:padding="8dp"
+                android:text="@string/instrumentalist_btn"
+                android:textColor="@color/color17"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/soundEngineerPopUp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rapperPopUp" />
 
 
         <Button
@@ -167,8 +203,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/graphicDesignerPopUp"
-                app:layout_constraintVertical_bias="0.578" />
+                app:layout_constraintTop_toBottomOf="@+id/instrumentalistPopUp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

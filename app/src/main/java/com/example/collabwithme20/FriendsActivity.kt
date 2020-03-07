@@ -15,6 +15,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.friends_row.*
 
 class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener {
     companion object {
@@ -80,6 +81,7 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
     override fun onUserClick(friend: FriendsModel, position: Int, buttonName: String){
 
+        //Opens FriendsPopUpWindow
         if(buttonName == "showUserProfile"){
             val fullName = friend.fullName
             val intent = Intent(this, FriendsPopUpWindow::class.java)
@@ -90,8 +92,11 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
             intent.putExtra("email", friend.email)
             startActivity(intent)
 
+        //Opens MessagesActivity
+        }else if(buttonName == "chatBtn"){
+            val intent = Intent(this, MessagesActivity::class.java)
+            startActivity(intent)
         }
-
     }
 
     //Go to homescreen when pressed back button

@@ -30,6 +30,8 @@
     <string name="video_production_btn">Video Production</string>
     <string name="graphic_designer_btn">Graphic Designer</string>
     <string name="clothing_design_btn">Clothing Design</string>
+    <string name="sound_engineer_btn">Sound Engineer</string>
+    <string name="instrumentalist_btn">Instrumentalist</string>
     <string name="others_btn">Others</string>
     <string name="skills">Select one or more of your skills</string>
     <string name="cities_prompt">Choose a city</string>

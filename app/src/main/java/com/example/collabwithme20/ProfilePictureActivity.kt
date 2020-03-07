@@ -77,7 +77,7 @@ class ProfilePictureActivity : AppCompatActivity() {
 
                     if (caller == "ProfileActivity") {
                         val intent = Intent(this, ProfileActivity::class.java)
-                        startActivity(intent)
+                        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                     } else if (caller == "RegistrationActivity") {
                         val intent = Intent(this, ChooseCityActivity::class.java)
                         intent.putExtra("caller", "ProfilePictureActivity")

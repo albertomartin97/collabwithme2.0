@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,6 +28,7 @@ import kotlinx.android.synthetic.main.activity_pop_up_window.rapperPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.singingPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.usernameTextView
 import kotlinx.android.synthetic.main.activity_pop_up_window.videoProductionPopUp
+import kotlinx.android.synthetic.main.friends_row.*
 
 class FriendsPopUpWindow : AppCompatActivity(){
     companion object {
@@ -50,7 +52,6 @@ class FriendsPopUpWindow : AppCompatActivity(){
         closeBtn.setOnClickListener {
             onBackPressed()
         }
-
 
 
         //Get data from FriendsActivity
@@ -139,6 +140,12 @@ class FriendsPopUpWindow : AppCompatActivity(){
         val clothingDesignDoc = db.collection("users").document(uid)
             .collection("skills").document("clothing_design")
 
+        val soundEngineerDoc = db.collection("users").document(uid)
+            .collection("skills").document("sound_engineer")
+
+        val instrumentalistDoc = db.collection("users").document(uid)
+            .collection("skills").document("instrumentalist")
+
 
         musicProductionDoc.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -205,6 +212,28 @@ class FriendsPopUpWindow : AppCompatActivity(){
                     document.getString("skill") == "true" -> {
                         clothingDesignPopUp.setBackgroundResource(R.drawable.style17)
                         clothingDesignPopUp.setTextColor(Color.WHITE)
+                    }
+                }
+            }
+        }
+
+        soundEngineerDoc.get().addOnSuccessListener { document ->
+            if (document != null) {
+                when {
+                    document.getString("skill") == "true" -> {
+                        soundEngineerPopUpFriends.setBackgroundResource(R.drawable.style17)
+                        soundEngineerPopUpFriends.setTextColor(Color.WHITE)
+                    }
+                }
+            }
+        }
+
+        instrumentalistDoc.get().addOnSuccessListener { document ->
+            if (document != null) {
+                when {
+                    document.getString("skill") == "true" -> {
+                        instrumentalistPopUpFriends.setBackgroundResource(R.drawable.style17)
+                        instrumentalistPopUpFriends.setTextColor(Color.WHITE)
                     }
                 }
             }

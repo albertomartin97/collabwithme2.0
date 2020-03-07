@@ -43,6 +43,10 @@ class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
             containerView.setOnClickListener {
                 action.onUserClick(friend, adapterPosition, "showUserProfile")
             }
+
+            containerView.chatBtn.setOnClickListener {
+                action.onUserClick(friend, adapterPosition, "chatBtn")
+            }
         }
 
     }
