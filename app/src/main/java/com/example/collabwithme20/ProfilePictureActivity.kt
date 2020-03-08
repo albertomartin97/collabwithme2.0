@@ -84,7 +84,7 @@ class ProfilePictureActivity : AppCompatActivity() {
                         startActivity(intent)
 
                     }
-                }, 2500)
+                }, 3000)
             }
         }
     }

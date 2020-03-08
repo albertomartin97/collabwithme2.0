@@ -11,10 +11,13 @@
             android:roundIcon="@mipmap/app_logo_1_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".FriendsPopUpWindow"
+        <activity android:name=".DeleteAccountPopUp"></activity>
+        <activity android:name=".DeleteAccountPopUpWindow" />
+        <activity
+                android:name=".FriendsPopUpWindow"
                 android:screenOrientation="portrait"
                 android:theme="@style/PopMe"
-                tools:ignore="LockedOrientationActivity"/>
+                tools:ignore="LockedOrientationActivity" />
         <activity
                 android:name=".PopUpWindow"
                 android:screenOrientation="portrait"

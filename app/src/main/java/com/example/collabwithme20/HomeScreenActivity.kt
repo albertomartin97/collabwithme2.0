@@ -2,11 +2,11 @@ package com.example.collabwithme20
 
 import android.app.ActivityOptions
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.google.firebase.firestore.FirebaseFirestore
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_home_screen.*
+
+
 
 class HomeScreenActivity : AppCompatActivity() {
     companion object {
@@ -52,6 +52,10 @@ class HomeScreenActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        // do something
+        //Intent to go to homescreen of the phone
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 }

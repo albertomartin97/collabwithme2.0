@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
-import com.example.collabwithme20.Models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -26,6 +25,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -153,13 +153,13 @@ class ProfileActivity : AppCompatActivity() {
                 val name  = "$firstName $lastName"
                 val desc = document.getString("description")
 
-                fullName.text = name
+                fullName.hint = name
                 email.text = document.getString("email")
                 city.text = document.getString("city")
 
                 //Check if description exists and sets hint
                 if (desc == null || desc == "")
-                description.hint = "Description: "
+                description.hint = "Bio and link your work"
                 else{
                     description.hint = desc
                 }
@@ -402,9 +402,44 @@ class ProfileActivity : AppCompatActivity() {
             }
     }
 
+    private fun updateNameIntoDB(){
+        val name = firstNameTextView.text.toString()
+
+        val documentRef = db.collection("users").document(uid)
+
+        if(name != ""){
+            val lastName = name.substring(name.lastIndexOf(" ")+1)
+            val firstName = name.substring(0, name.lastIndexOf(" "))
+
+            val user = hashMapOf(
+                "first_name" to firstName,
+                "last_name" to lastName
+            )
+
+            //Set user document with the description
+            documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                Log.d(TAG, "User profile created for $uid")
+            }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error adding document", e)
+                }
+        }
+
+    }
+
 
     //Go to homescreen when pressed back button
     override fun onBackPressed() {
+        val name = firstNameTextView.text.toString()
+
+        val count = name.split(" ").size
+
+        if(count >= 2){
+            updateNameIntoDB()
+        }
+
+
+
         val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }

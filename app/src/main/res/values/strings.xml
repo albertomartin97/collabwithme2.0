@@ -59,16 +59,15 @@
     <string name="change_photo_btn">Change Profile Picture</string>
     <string name="select_city_textView">Select a city</string>
     <string name="select_skills_textView">Select a skill</string>
-    <string name="description_profile_textView">Description</string>
+    <string name="description_profile_textView">Bio and link your work</string>
     <string name="skillsPopUp">Skills</string>
     <string name="add_friend">Add friend</string>
     <string name="remove_friend">Remove friend</string>
     <string name="email_friend">Email : </string>
-    <string name="description">Description :</string>
-    <string name="description_friend">This is my test description and not sure if it alright uknow </string>
     <string name="skip">SKIP</string>
     <string name="save">Save</string>
-
+    <string name="delete_account">Delete Account</string>
+    <string name="delete_account_confirmation">Are you sure you want to delete your account?</string>
 
 
 </resources>

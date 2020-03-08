@@ -28,11 +28,12 @@ import kotlinx.android.synthetic.main.activity_pop_up_window.rapperPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.singingPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.usernameTextView
 import kotlinx.android.synthetic.main.activity_pop_up_window.videoProductionPopUp
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.friends_row.*
 
 class FriendsPopUpWindow : AppCompatActivity(){
     companion object {
-        private const val TAG = "PopUpWindow"
+        private const val TAG = "FriendsPopUpWindow"
 
     }
 
@@ -77,8 +78,8 @@ class FriendsPopUpWindow : AppCompatActivity(){
         usernameTextView.text = userName
         cityPopUp.text = city
         emailTextViewFriend.text = emailWithStr
-        descriptionFriend.text = description
         showSkills(userUID)
+        setDescription(userUID)
 
         // Fade animation for the background of Popup Window
         val alpha = 100 //between 0-255
@@ -244,6 +245,27 @@ class FriendsPopUpWindow : AppCompatActivity(){
 
     }
 
+    private fun setDescription(friendUid: String){
+        val description = descriptionEditText
+
+        val docRef = db.collection("users").document(friendUid)
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+
+                descriptionFriend.text = document.getString("description")
+
+
+            } else {
+                Log.d("doesn't exist", "No such document")
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
+            }
+
+    }
     private fun removeFriendFromDB(friendUid: String){
 
         db.collection("users").document(uid).collection("friends")

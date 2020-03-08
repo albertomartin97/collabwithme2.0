@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_delete_account_pop_up.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_settings.backBtn
@@ -27,6 +28,11 @@ class SettingsActivity : AppCompatActivity() {
             val intentGoToMainActivity = Intent(this, MainActivity::class.java)
             intent.putExtra("caller", "SettingsActivity")
             startActivity(intentGoToMainActivity)
+        }
+
+        deleteAccountBtn.setOnClickListener {
+            val intent = Intent(this, DeleteAccountPopUp::class.java)
+            startActivity(intent)
         }
     }
 
