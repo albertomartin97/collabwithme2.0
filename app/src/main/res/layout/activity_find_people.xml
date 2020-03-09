@@ -77,11 +77,25 @@
                 android:orientation="horizontal">
 
             <Button
-                    android:id="@+id/searchLondonBtn"
+                    android:id="@+id/allCitiesBtn"
                     style="@android:style/Widget.Button"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/style1"
+                    android:text="@string/all"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            <Button
+                    android:id="@+id/searchLondonBtn"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="0dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="2dp"
@@ -212,13 +226,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+            <Button
+                    android:id="@+id/allSkillsBtn"
+                    style="@android:style/Widget.Button"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/style1"
+                    android:text="@string/all"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             <Button
                     android:id="@+id/searchMusicProducerBtn"
                     style="@android:style/Widget.Button"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="0dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="2dp"

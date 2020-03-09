@@ -17,6 +17,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import kotlinx.android.synthetic.main.activity_choose_city.*
+import kotlinx.android.synthetic.main.activity_find_people.*
 import kotlinx.android.synthetic.main.activity_profile.backBtn
 
 
@@ -39,12 +41,43 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             startActivity(intentGoToPreviousActivity, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
-        createRecyclerView()
+        createRecyclerView("All")
+
+        allCitiesBtn.setOnClickListener {
+            createRecyclerView("All")
+            allCitiesBtn.setBackgroundResource(R.drawable.style22)
+        }
+
+        searchLondonBtn.setOnClickListener {
+            createRecyclerView("London")
+        }
+        searchBristolBtn.setOnClickListener {
+            createRecyclerView("Bristol")
+        }
+        searchBirminghamBtn.setOnClickListener {
+            createRecyclerView("Birmingham")
+        }
+        searchCardiffBtn.setOnClickListener {
+            createRecyclerView("Cardiff")
+        }
+        searchDublinBtn.setOnClickListener {
+            createRecyclerView("Dublin")
+        }
+        searchEdinburghBtn.setOnClickListener {
+            createRecyclerView("Edinburgh")
+        }
+        searchManchesterBtn.setOnClickListener {
+            createRecyclerView("Manchester")
+        }
+        searchSwanseaBtn.setOnClickListener {
+            createRecyclerView("Swansea")
+        }
+
 
     }
 
 
-    private fun createRecyclerView(){
+    private fun createRecyclerView(city: String){
 
         val query = db.collection("users")
 
@@ -64,7 +97,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 uid,
                 array,
                 options,
-                this
+                this, city
             )
 
 

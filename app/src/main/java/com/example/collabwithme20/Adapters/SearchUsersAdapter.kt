@@ -3,6 +3,7 @@ package com.example.collabwithme20.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,13 +18,15 @@ import kotlinx.android.synthetic.main.search_user_row.view.*
 
 class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
                          options: FirestoreRecyclerOptions<UserModel>,
-                         var clickListener: OnUserClickListener
+                         var clickListener: OnUserClickListener, var city: String
 ):
     FirestoreRecyclerAdapter<UserModel, SearchUsersAdapter.ViewHolder>(options){
 
 
 
     private var temporaryList = array
+
+
 
 
     class ViewHolder(private val containerView: View) : RecyclerView.ViewHolder(containerView){
@@ -69,18 +72,28 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
         p0.apply {
             //If uid from model equals to the current user' uid then it is omitted
             if(p2.uid == uid){
-
                 val param =
                     p0.itemView.layoutParams as RecyclerView.LayoutParams
                 param.height = 0
                 param.width = LinearLayout.LayoutParams.MATCH_PARENT
-                p0.itemView.visibility = View.VISIBLE
+                p0.itemView.visibility = View.INVISIBLE
 
+            }else if(city != "All" && p2.city != city){
+                val param =
+                    p0.itemView.layoutParams as RecyclerView.LayoutParams
+                param.height = 0
+                param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                p0.itemView.visibility = View.INVISIBLE
             }
-            else {
-                //getFilter().filter(charSequence)
+            else if(city == "All") {
                 p0.bindItems(temporaryList[p1], clickListener)
             }
+            else if(p2.city == city){
+                p0.bindItems(temporaryList[p1], clickListener)
+            }
+
+
+
         }
     }
 
@@ -91,26 +104,3 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
     }
 }
 
-/*
-fun getFilter(): Filter {
-    return object : Filter() {
-
-        override fun performFiltering(p0: CharSequence?): FilterResults {
-
-            if (user.uid == charSequence) temporaryList.remove(UserModel())
-
-            val filterResults = FilterResults()
-            filterResults.values = temporaryList
-
-            return filterResults
-        }
-
-        override fun publishResults(p0: CharSequence?, p1: FilterResults) {
-            temporaryList = p1.values as FirestoreArray<UserModel>
-            notifyDataSetChanged()
-        }
-
-    }
-}
-
-*/

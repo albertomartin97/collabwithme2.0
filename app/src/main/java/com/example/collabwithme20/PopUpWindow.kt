@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_friends_pop_up_window.*
 import kotlinx.android.synthetic.main.activity_pop_up_window.*
 import kotlinx.android.synthetic.main.activity_pop_up_window.cityPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.closeBtn
@@ -258,7 +257,6 @@ class PopUpWindow : AppCompatActivity() {
                 Log.w(TAG, "Error adding document", e)
             }
 
-
-
     }
+
 }

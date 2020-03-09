@@ -4,19 +4,17 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
-import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.ColorUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_friends_pop_up_window.*
-import kotlinx.android.synthetic.main.activity_pop_up_window.*
 import kotlinx.android.synthetic.main.activity_pop_up_window.cityPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.closeBtn
 import kotlinx.android.synthetic.main.activity_pop_up_window.clothingDesignPopUp
@@ -28,8 +26,8 @@ import kotlinx.android.synthetic.main.activity_pop_up_window.rapperPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.singingPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.usernameTextView
 import kotlinx.android.synthetic.main.activity_pop_up_window.videoProductionPopUp
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.friends_row.*
+
+
 
 class FriendsPopUpWindow : AppCompatActivity(){
     companion object {
@@ -246,7 +244,6 @@ class FriendsPopUpWindow : AppCompatActivity(){
     }
 
     private fun setDescription(friendUid: String){
-        val description = descriptionEditText
 
         val docRef = db.collection("users").document(friendUid)
 
@@ -255,7 +252,6 @@ class FriendsPopUpWindow : AppCompatActivity(){
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
 
                 descriptionFriend.text = document.getString("description")
-
 
             } else {
                 Log.d("doesn't exist", "No such document")
