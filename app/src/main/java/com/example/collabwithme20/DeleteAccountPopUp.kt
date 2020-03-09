@@ -79,9 +79,11 @@ class DeleteAccountPopUp : AppCompatActivity() {
     private fun deleteAccount(){
         val documentRef = db.collection("users").document(uid)
 
+
         //Delete account from DB
         documentRef.delete().addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+
 
         //Delete user from Authentication
         user?.delete()

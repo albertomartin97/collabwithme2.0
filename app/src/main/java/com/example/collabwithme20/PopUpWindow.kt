@@ -118,123 +118,63 @@ class PopUpWindow : AppCompatActivity() {
 
     private fun showSkills(uid: String) {
 
-        val musicProductionDoc = db.collection("users").document(uid)
-            .collection("skills").document("music_production")
+        val docRef = db.collection("users").document(uid)
 
-        val singingDoc = db.collection("users").document(uid)
-            .collection("skills").document("singing")
-
-        val rapperDoc = db.collection("users").document(uid)
-            .collection("skills").document("rapping")
-
-        val videoProductionDoc = db.collection("users").document(uid)
-            .collection("skills").document("video_production")
-
-        val graphicDesignerDoc = db.collection("users").document(uid)
-            .collection("skills").document("graphic_design")
-
-        val clothingDesignDoc = db.collection("users").document(uid)
-            .collection("skills").document("clothing_design")
-
-        val soundEngineerDoc = db.collection("users").document(uid)
-            .collection("skills").document("sound_engineer")
-
-        val instrumentalistDoc = db.collection("users").document(uid)
-            .collection("skills").document("instrumentalist")
-
-
-        musicProductionDoc.get().addOnSuccessListener { document ->
+        docRef.get().addOnSuccessListener { document ->
             if (document != null) {
                 when {
-                    document.getString("skill") == "true" -> {
+                    document.getString("music_production") == "true" -> {
                         musicProductionPopUp.setBackgroundResource(R.drawable.style17)
                         musicProductionPopUp.setTextColor(Color.WHITE)
                     }
                 }
-
-            }
-
-        }
-
-        singingDoc.get().addOnSuccessListener { document ->
-            if (document != null) {
                 when {
-                    document.getString("skill") == "true" -> {
+                    document.getString("singing") == "true" -> {
                         singingPopUp.setBackgroundResource(R.drawable.style17)
                         singingPopUp.setTextColor(Color.WHITE)
                     }
+
                 }
-
-            }
-
-        }
-
-       rapperDoc.get().addOnSuccessListener { document ->
-            if (document != null) {
                 when {
-                    document.getString("skill") == "true" -> {
+                    document.getString("video_production") == "true" -> {
+                        videoProductionPopUp.setBackgroundResource(R.drawable.style17)
+                        videoProductionPopUp.setTextColor(Color.WHITE)
+                    }
+                }
+                when {
+                    document.getString("graphic_design") == "true" -> {
+                        graphicDesignerPopUp.setBackgroundResource(R.drawable.style17)
+                        graphicDesignerPopUp.setTextColor(Color.WHITE)
+                    }
+                }
+                when {
+                    document.getString("clothing_design") == "true" -> {
+                        clothingDesignPopUp.setBackgroundResource(R.drawable.style17)
+                        clothingDesignPopUp.setTextColor(Color.WHITE)
+                    }
+                }
+                when {
+                    document.getString("sound_engineer") == "true" -> {
+                        soundEngineerPopUp.setBackgroundResource(R.drawable.style17)
+                        soundEngineerPopUp.setTextColor(Color.WHITE)
+                    }
+                }
+                when {
+                    document.getString("instrumentalist") == "true" -> {
+                        instrumentalistPopUp.setBackgroundResource(R.drawable.style17)
+                        instrumentalistPopUp.setTextColor(Color.WHITE)
+                    }
+                }
+                when {
+                    document.getString("rapping") == "true" -> {
                         rapperPopUp.setBackgroundResource(R.drawable.style17)
                         rapperPopUp.setTextColor(Color.WHITE)
                     }
                 }
             }
-        }
 
-        videoProductionDoc.get().addOnSuccessListener { document ->
-            if (document != null) {
-                when {
-                    document.getString("skill") == "true" -> {
-                        videoProductionPopUp.setBackgroundResource(R.drawable.style17)
-                        videoProductionPopUp.setTextColor(Color.WHITE)
-                    }
-                }
-            }
-        }
 
-        graphicDesignerDoc.get().addOnSuccessListener { document ->
-            if (document != null) {
-                when {
-                    document.getString("skill") == "true" -> {
-                        graphicDesignerPopUp.setBackgroundResource(R.drawable.style17)
-                        graphicDesignerPopUp.setTextColor(Color.WHITE)
-                    }
-                }
-            }
         }
-
-        clothingDesignDoc.get().addOnSuccessListener { document ->
-            if (document != null) {
-                when {
-                    document.getString("skill") == "true" -> {
-                        clothingDesignPopUp.setBackgroundResource(R.drawable.style17)
-                        clothingDesignPopUp.setTextColor(Color.WHITE)
-                    }
-                }
-            }
-        }
-
-        soundEngineerDoc.get().addOnSuccessListener { document ->
-            if (document != null) {
-                when {
-                    document.getString("skill") == "true" -> {
-                        soundEngineerPopUp.setBackgroundResource(R.drawable.style17)
-                        soundEngineerPopUp.setTextColor(Color.WHITE)
-                    }
-                }
-            }
-        }
-
-        instrumentalistDoc.get().addOnSuccessListener { document ->
-            if (document != null) {
-                when {
-                    document.getString("skill") == "true" -> {
-                        instrumentalistPopUp.setBackgroundResource(R.drawable.style17)
-                        instrumentalistPopUp.setTextColor(Color.WHITE)
-                    }
-                }
-            }
-        }
-
     }
 
     private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){

@@ -40,7 +40,7 @@ class ProfileActivity : AppCompatActivity() {
         getUserData()   //Get user data from DB
         setProfilePicture()  //Ge profile image name
 
-        //Update colours when activity is launched
+        //Set colours when activity is launched
         changeSkillsColour("music_production")
         changeSkillsColour("singing")
         changeSkillsColour("rapping")
@@ -79,7 +79,7 @@ class ProfileActivity : AppCompatActivity() {
 
         }
 
-
+        //Update skills
         musicProductionBtn.setOnClickListener {
 
             updateSkills("music_production")
@@ -173,115 +173,6 @@ class ProfileActivity : AppCompatActivity() {
             }
     }
 
-    private fun updateSkills(skill : String){
-        lateinit var button: Button
-
-        //Assign button being clicked
-        when (skill) {
-            "music_production" -> {
-                button = musicProductionBtn
-            }
-            "singing" -> {
-                button = singerBtn
-            }
-            "rapping" -> {
-                button = rapperBtn
-            }
-            "video_production" -> {
-                button = videoProductionBtn
-            }
-            "graphic_design" -> {
-                button = graphicDesignerBtn
-            }
-            "clothing_design" -> {
-                button = clothingDesignBtn
-            }
-            "sound_engineer" -> {
-                button = soundEngineeringBtn
-            }
-            "instrumentalist" -> {
-                button = instrumentalistBtn
-            }
-        }
-
-
-        val documentRef = db.collection("users").document(uid).
-            collection("skills").document(skill)
-
-        documentRef.get().addOnSuccessListener { document ->
-            if (document != null) {
-                Log.d("exists", "DocumentSnapshot data: ${document.data}")
-                when {
-                    document.getString("skill") == "true" -> {
-
-                        //Change style of button
-                        button.setBackgroundResource(R.drawable.style4)
-
-                        //Change skill to false
-                        val skillTrue = "false"
-                        val user = hashMapOf(
-                            "skill" to skillTrue
-                        )
-
-
-                        //Merge user document with the skill update
-                        documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
-                            Log.d(TAG, "User profile created for $uid")
-                        }
-                            .addOnFailureListener { e ->
-                                Log.w(TAG, "Error adding document", e)
-                            }
-
-                    }
-                    document.getString("skill") == "false" -> {
-
-                        //Change style of button
-                        button.setBackgroundResource(R.drawable.style10)
-
-                        //Change skill to true
-                        val skillTrue = "true"
-                        val user = hashMapOf(
-                            "skill" to skillTrue
-                        )
-
-                        //Merge user document with the skill update
-                        documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
-                            Log.d(TAG, "User profile created for $uid")
-                        }
-                            .addOnFailureListener { e ->
-                                Log.w(TAG, "Error adding document", e)
-                            }
-
-                    }
-                    document.get(skill) == null -> {
-
-                        //Change style of button
-                        button.setBackgroundResource(R.drawable.style10)
-
-                        //Change skill to true
-                        val skillTrue = "true"
-                        val user = hashMapOf(
-                            "skill" to skillTrue
-                        )
-
-                        //Set user document with the skill update
-                        documentRef.set(user).addOnSuccessListener {
-                            Log.d(TAG, "User profile created for $uid")
-                        }
-                            .addOnFailureListener { e ->
-                                Log.w(TAG, "Error adding document", e)
-                            }
-                    }
-                }
-
-            } else {
-                Log.d("doesn't exist", "No such document")
-
-
-            }
-        }
-
-    }
 
     //Assigns colour to the selected skills
     private fun changeSkillsColour(skill: String) {
@@ -316,25 +207,25 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
-        val documentRef = db.collection("users").document(uid).collection("skills").document(skill)
+        val documentRef = db.collection("users").document(uid)
 
         documentRef.get().addOnSuccessListener { document ->
             if (document != null) {
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
                 when {
-                    document.getString("skill") == "true" -> {
+                    document.getString(skill) == "true" -> {
 
                         //Change style of button
                         button.setBackgroundResource(R.drawable.style10)
 
                     }
-                    document.getString("skill") == "false" -> {
+                    document.getString(skill) == "false" -> {
 
                         //Change style of button
                         button.setBackgroundResource(R.drawable.style4)
 
                     }
-                    document.get(skill) == null -> {
+                    document.getString(skill) == null -> {
 
                         //Change style of button
                         button.setBackgroundResource(R.drawable.style4)
@@ -455,6 +346,116 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
+
+    }
+
+
+    private fun updateSkills(skill : String){
+        lateinit var button: Button
+
+        //Assign button being clicked
+        when (skill) {
+            "music_production" -> {
+                button = musicProductionBtn
+            }
+            "singing" -> {
+                button = singerBtn
+            }
+            "rapping" -> {
+                button = rapperBtn
+            }
+            "video_production" -> {
+                button = videoProductionBtn
+            }
+            "graphic_design" -> {
+                button = graphicDesignerBtn
+            }
+            "clothing_design" -> {
+                button = clothingDesignBtn
+            }
+            "sound_engineer" -> {
+                button = soundEngineeringBtn
+            }
+            "instrumentalist" -> {
+                button = instrumentalistBtn
+            }
+        }
+
+
+        val documentRef = db.collection("users").document(uid)
+
+        documentRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+                when {
+                    document.getString(skill) == "true" -> {
+
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style4)
+
+                        //Change skill to false
+                        val skillTrue = "false"
+                        val user = hashMapOf(
+                            skill to skillTrue
+                        )
+
+
+                        //Merge user document with the skill update
+                        documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                            Log.d(TAG, "User profile created for $uid")
+                        }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
+
+                    }
+                    document.getString(skill) == "false" -> {
+
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style10)
+
+                        //Change skill to true
+                        val skillTrue = "true"
+                        val user = hashMapOf(
+                            skill to skillTrue
+                        )
+
+                        //Merge user document with the skill update
+                        documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                            Log.d(TAG, "User profile created for $uid")
+                        }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
+
+                    }
+                    document.getString(skill) == null -> {
+
+                        //Change style of button
+                        button.setBackgroundResource(R.drawable.style10)
+
+                        //Change skill to true
+                        val skillTrue = "true"
+                        val user = hashMapOf(
+                            skill to skillTrue
+                        )
+
+                        //Set user document with the skill update
+                        documentRef.set(user, SetOptions.merge()).addOnSuccessListener {
+                            Log.d(TAG, "User profile created for $uid")
+                        }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error adding document", e)
+                            }
+                    }
+                }
+
+            } else {
+                Log.d("doesn't exist", "No such document")
+
+
+            }
+        }
 
     }
 

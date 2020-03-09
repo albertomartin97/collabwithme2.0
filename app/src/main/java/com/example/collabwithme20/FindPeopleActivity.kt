@@ -17,7 +17,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import kotlinx.android.synthetic.main.activity_choose_city.*
 import kotlinx.android.synthetic.main.activity_find_people.*
 import kotlinx.android.synthetic.main.activity_profile.backBtn
 
@@ -41,16 +40,23 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             startActivity(intentGoToPreviousActivity, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
+
         createRecyclerView("All")
 
         allCitiesBtn.setOnClickListener {
+
             createRecyclerView("All")
-            allCitiesBtn.setBackgroundResource(R.drawable.style22)
         }
+
+        allSkillsBtn.setOnClickListener {
+            createRecyclerView("All")
+        }
+
 
         searchLondonBtn.setOnClickListener {
             createRecyclerView("London")
         }
+
         searchBristolBtn.setOnClickListener {
             createRecyclerView("Bristol")
         }

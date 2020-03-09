@@ -25,13 +25,14 @@ class SettingsActivity : AppCompatActivity() {
         logoutTextView.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             Toast.makeText(this, "You have logged out", Toast.LENGTH_SHORT).show()
-            val intentGoToMainActivity = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra("caller", "SettingsActivity")
-            startActivity(intentGoToMainActivity)
+            startActivity(intent)
         }
 
         deleteAccountBtn.setOnClickListener {
-            val intent = Intent(this, DeleteAccountPopUp::class.java)
+            val intent = Intent(this,  DeleteAccountPopUp::class.java)
             startActivity(intent)
         }
     }

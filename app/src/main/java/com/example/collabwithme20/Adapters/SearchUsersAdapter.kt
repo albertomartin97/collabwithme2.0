@@ -78,6 +78,7 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
                 param.width = LinearLayout.LayoutParams.MATCH_PARENT
                 p0.itemView.visibility = View.INVISIBLE
 
+             //If user's city is different from the value passed is removed
             }else if(city != "All" && p2.city != city){
                 val param =
                     p0.itemView.layoutParams as RecyclerView.LayoutParams
@@ -85,13 +86,14 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
                 param.width = LinearLayout.LayoutParams.MATCH_PARENT
                 p0.itemView.visibility = View.INVISIBLE
             }
+            //If value passed is "All" show every person from db
             else if(city == "All") {
                 p0.bindItems(temporaryList[p1], clickListener)
             }
+            //Show user if the value passed is equal to user's city
             else if(p2.city == city){
                 p0.bindItems(temporaryList[p1], clickListener)
             }
-
 
 
         }

@@ -70,7 +70,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-                android:id="@+id/musicProductionPopUp"
+                android:id="@+id/musicProductionPopUpFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="37dp"
                 android:layout_marginStart="8dp"
@@ -80,12 +80,12 @@
                 android:text="@string/music_production_btn"
                 android:textColor="@color/color17"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/singingPopUp"
+                app:layout_constraintEnd_toStartOf="@+id/singingPopUpFriends"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionFriend" />
 
         <Button
-                android:id="@+id/singingPopUp"
+                android:id="@+id/singingPopUpFriends"
                 android:layout_width="70dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="6dp"
@@ -95,12 +95,12 @@
                 android:text="@string/singer_btn"
                 android:textColor="@color/color17"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/videoProductionPopUp"
-                app:layout_constraintStart_toEndOf="@+id/musicProductionPopUp"
+                app:layout_constraintEnd_toStartOf="@+id/videoProductionPopUpFriends"
+                app:layout_constraintStart_toEndOf="@+id/musicProductionPopUpFriends"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionFriend" />
 
         <Button
-                android:id="@+id/videoProductionPopUp"
+                android:id="@+id/videoProductionPopUpFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="37dp"
                 android:layout_marginStart="6dp"
@@ -112,11 +112,11 @@
                 android:textColor="@color/color17"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/singingPopUp"
+                app:layout_constraintStart_toEndOf="@+id/singingPopUpFriends"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionFriend" />
 
         <Button
-                android:id="@+id/rapperPopUp"
+                android:id="@+id/rapperPopUpFriends"
                 android:layout_width="70dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="8dp"
@@ -126,12 +126,12 @@
                 android:text="@string/rapper_btn"
                 android:textColor="@color/color17"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/graphicDesignerPopUp"
+                app:layout_constraintEnd_toStartOf="@+id/graphicDesignerPopUpFriends"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/musicProductionPopUp" />
+                app:layout_constraintTop_toBottomOf="@+id/musicProductionPopUpFriends" />
 
         <Button
-                android:id="@+id/graphicDesignerPopUp"
+                android:id="@+id/graphicDesignerPopUpFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="37dp"
                 android:layout_marginStart="6dp"
@@ -141,12 +141,12 @@
                 android:text="@string/graphic_designer_btn"
                 android:textColor="@color/color17"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/clothingDesignPopUp"
-                app:layout_constraintStart_toEndOf="@+id/rapperPopUp"
-                app:layout_constraintTop_toBottomOf="@+id/musicProductionPopUp" />
+                app:layout_constraintEnd_toStartOf="@+id/clothingDesignPopUpFriends"
+                app:layout_constraintStart_toEndOf="@+id/rapperPopUpFriends"
+                app:layout_constraintTop_toBottomOf="@+id/musicProductionPopUpFriends" />
 
         <Button
-                android:id="@+id/clothingDesignPopUp"
+                android:id="@+id/clothingDesignPopUpFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="37dp"
                 android:layout_marginStart="6dp"
@@ -158,8 +158,8 @@
                 android:textColor="@color/color17"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/graphicDesignerPopUp"
-                app:layout_constraintTop_toBottomOf="@+id/videoProductionPopUp" />
+                app:layout_constraintStart_toEndOf="@+id/graphicDesignerPopUpFriends"
+                app:layout_constraintTop_toBottomOf="@+id/videoProductionPopUpFriends" />
 
         <Button
                 android:id="@+id/soundEngineerPopUpFriends"
@@ -174,7 +174,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/instrumentalistPopUpFriends"
-                app:layout_constraintTop_toBottomOf="@+id/graphicDesignerPopUp" />
+                app:layout_constraintTop_toBottomOf="@+id/graphicDesignerPopUpFriends" />
 
         <Button
                 android:id="@+id/instrumentalistPopUpFriends"
@@ -189,7 +189,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/soundEngineerPopUpFriends"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rapperPopUp" />
+                app:layout_constraintTop_toBottomOf="@+id/rapperPopUpFriends" />
 
         <Button
                 android:id="@+id/removeFriendPopUp"
