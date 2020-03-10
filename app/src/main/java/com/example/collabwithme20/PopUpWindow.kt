@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_pop_up_window.*
 import kotlinx.android.synthetic.main.activity_pop_up_window.cityPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.closeBtn
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_pop_up_window.rapperPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.singingPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.usernameTextView
 import kotlinx.android.synthetic.main.activity_pop_up_window.videoProductionPopUp
+import kotlinx.android.synthetic.main.activity_profile.*
 
 
 class PopUpWindow : AppCompatActivity() {
@@ -74,8 +76,9 @@ class PopUpWindow : AppCompatActivity() {
 
         //Add friend to DB
         addFriendPopUp.setOnClickListener{
-            addFriendToDB(userUID, userName, imageName, city, email)
-            Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
+            //addFriendToDB(userUID, userName, imageName, city, email)
+            sendFriendRequest(userUID, userName, imageName, city, email)
+
             onBackPressed()
         }
 
@@ -177,12 +180,19 @@ class PopUpWindow : AppCompatActivity() {
         }
     }
 
-    private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
 
-        val docRef = db.collection("users").document(uid)
+    private fun sendFriendRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
+
+        val receiverRequestRef = db.collection("users").document(friendUID)
+            .collection("friend_requests").document(uid)
+
+        val currentUserRequestRef = db.collection("users").document(uid)
+            .collection("friend_requests").document(friendUID)
+
+        val currentUserFriendsRef = db.collection("users").document(uid)
             .collection("friends").document(friendUID)
 
-        val user = hashMapOf(
+        val friendUser = hashMapOf(
             "uid" to friendUID,
             "fullName" to friendName,
             "profile_image" to profileImage,
@@ -190,13 +200,115 @@ class PopUpWindow : AppCompatActivity() {
             "email" to friendEmail
         )
 
-        docRef.set(user).addOnSuccessListener {
-            Log.d(TAG, "Friend created for $uid")
+
+
+        val friendRequest = hashMapOf(
+            uid to "true"
+        )
+
+        currentUserRequestRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+                val trueOrFalse = document.getString(friendUID)
+
+                //If friend has sent you a request add to friends
+                if (trueOrFalse == "true"){
+                    addCurrentUserToFriendsDB(friendUID)
+
+                    currentUserFriendsRef.set(friendUser).addOnSuccessListener {
+                        Log.d(TAG, "Friend created for $uid")
+                    }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+                    Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
+                }else{
+
+                    receiverRequestRef.set(friendRequest, SetOptions.merge()).addOnSuccessListener {
+                        Log.d(TAG, "User profile created for $uid")
+                    }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+                    Toast.makeText(this, "Friend request sent", Toast.LENGTH_SHORT).show()
+                }
+
+            } else {
+                Log.d("doesn't exist", "No such document")
+
+            }
         }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
             }
 
+
+
+
+    }
+
+    private fun addCurrentUserToFriendsDB(friendUID: String){
+        val receiverFriendsRef  = db.collection("users").document(friendUID)
+            .collection("friends").document(uid)
+
+        var firstName = ""
+        var lastName = ""
+        var profileImage = ""
+        var city = ""
+        var email = ""
+
+
+
+        val docRef = db.collection("users").document(uid)
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+
+                firstName = document.getString("first_name").toString()
+                lastName = document.getString("last_name").toString()
+                val name  = "$firstName $lastName"
+                profileImage = document.getString("profile_image").toString()
+                city = document.getString("city").toString()
+                email = document.getString("email").toString()
+
+                val user = hashMapOf(
+                    "uid" to uid,
+                    "fullName" to name,
+                    "profile_image" to profileImage,
+                    "city" to city,
+                    "email" to email
+                )
+
+                receiverFriendsRef.set(user).addOnSuccessListener {
+                    Log.d(TAG, "Friend created for $uid")
+                }
+                    .addOnFailureListener { e ->
+                        Log.w(TAG, "Error adding document", e)
+                    }
+
+                deleteFriendRequests(friendUID)
+            } else {
+                Log.d("doesn't exist", "No such document")
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
+            }
+
+
+    }
+
+    private fun deleteFriendRequests(friendUID: String){
+
+        val currentUserRequestRef = db.collection("users").document(uid)
+            .collection("friend_requests").document(friendUID)
+
+        val receiverRequestRef = db.collection("users").document(friendUID)
+            .collection("friend_requests").document(uid)
+
+        currentUserRequestRef.delete()
+        receiverRequestRef.delete()
     }
 
 }

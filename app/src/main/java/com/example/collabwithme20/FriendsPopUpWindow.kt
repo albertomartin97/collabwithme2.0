@@ -204,11 +204,15 @@ class FriendsPopUpWindow : AppCompatActivity(){
     }
     private fun removeFriendFromDB(friendUid: String){
 
-        db.collection("users").document(uid).collection("friends")
-            .document(friendUid).delete()
-            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+        val currentUserFriends = db.collection("users").
+            document(uid).collection("friends")
+            .document(friendUid)
 
+        val receiverFriendsRef  = db.collection("users").document(friendUid)
+            .collection("friends").document(uid)
+
+        currentUserFriends.delete()
+        receiverFriendsRef.delete()
     }
 
 }

@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
                 val username = document.getString("first_name").toString()
 
-                Toast.makeText(this, "Welcome back $username", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Welcome back $username!", Toast.LENGTH_SHORT).show()
             } else {
                 Log.d("doesn't exist", "No such document")
             }

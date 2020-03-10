@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.search_user_row.view.*
 
 class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
                          options: FirestoreRecyclerOptions<UserModel>,
-                         var clickListener: OnUserClickListener, var city: String
+                         var clickListener: OnUserClickListener, var city: String, var skill: String
 ):
     FirestoreRecyclerAdapter<UserModel, SearchUsersAdapter.ViewHolder>(options){
 
@@ -89,10 +89,13 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
             //If value passed is "All" show every person from db
             else if(city == "All") {
                 p0.bindItems(temporaryList[p1], clickListener)
+
             }
             //Show user if the value passed is equal to user's city
             else if(p2.city == city){
                 p0.bindItems(temporaryList[p1], clickListener)
+
+
             }
 
 

@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_find_people.*
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.backBtn
 
 
@@ -41,49 +42,54 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
 
-        createRecyclerView("All")
+        createRecyclerView("All", "All")
 
         allCitiesBtn.setOnClickListener {
-
-            createRecyclerView("All")
+            createRecyclerView("All", "All")
         }
 
         allSkillsBtn.setOnClickListener {
-            createRecyclerView("All")
+            createRecyclerView("All", "All")
+        }
+
+        searchMusicProducerBtn.setOnClickListener {
+            createRecyclerView("All","music_production")
         }
 
 
+        //Create recyclerview for each city category
         searchLondonBtn.setOnClickListener {
-            createRecyclerView("London")
+            createRecyclerView("London", "none")
         }
+
 
         searchBristolBtn.setOnClickListener {
-            createRecyclerView("Bristol")
+            createRecyclerView("Bristol", "All")
         }
         searchBirminghamBtn.setOnClickListener {
-            createRecyclerView("Birmingham")
+            createRecyclerView("Birmingham", "All")
         }
         searchCardiffBtn.setOnClickListener {
-            createRecyclerView("Cardiff")
+            createRecyclerView("Cardiff", "All")
         }
         searchDublinBtn.setOnClickListener {
-            createRecyclerView("Dublin")
+            createRecyclerView("Dublin", "All")
         }
         searchEdinburghBtn.setOnClickListener {
-            createRecyclerView("Edinburgh")
+            createRecyclerView("Edinburgh", "All")
         }
         searchManchesterBtn.setOnClickListener {
-            createRecyclerView("Manchester")
+            createRecyclerView("Manchester", "All")
         }
         searchSwanseaBtn.setOnClickListener {
-            createRecyclerView("Swansea")
+            createRecyclerView("Swansea", "All")
         }
 
 
     }
 
 
-    private fun createRecyclerView(city: String){
+    private fun createRecyclerView(city: String, skill: String){
 
         val query = db.collection("users")
 
@@ -103,7 +109,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 uid,
                 array,
                 options,
-                this, city
+                this, city, skill
             )
 
 
@@ -120,9 +126,8 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
     override fun onUserClick(user: UserModel, position: Int, buttonName: String){
 
         if (buttonName == "addFriendBtn"){
-            Toast.makeText(this, "Friend added" , Toast.LENGTH_SHORT).show()
             val fullName = user.first_name + " " + user.last_name
-            addFriendToDB(user.uid, fullName, user.profile_image, user.city, user.email, user.description)
+            sendFriendRequest(user.uid, fullName, user.profile_image, user.city, user.email)
         }else if(buttonName == "showUserProfile"){
             val fullName = user.first_name + " " + user.last_name
             val intent = Intent(this, PopUpWindow::class.java)
@@ -137,31 +142,137 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
-    private fun addFriendToDB(friendUID: String, friendName: String, profileImage: String,
-                              friendCity: String, friendEmail: String, friendDescription: String){
 
-        val docRef = db.collection("users").document(uid)
+    private fun sendFriendRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
+
+        val receiverRequestRef = db.collection("users").document(friendUID)
+            .collection("friend_requests").document(uid)
+
+        val currentUserRequestRef = db.collection("users").document(uid)
+            .collection("friend_requests").document(friendUID)
+
+        val currentUserFriendsRef = db.collection("users").document(uid)
             .collection("friends").document(friendUID)
 
-        val user = hashMapOf(
+        val friendUser = hashMapOf(
             "uid" to friendUID,
             "fullName" to friendName,
             "profile_image" to profileImage,
             "city" to friendCity,
-            "email" to friendEmail,
-            "description" to friendDescription
+            "email" to friendEmail
         )
 
-        docRef.set(user, SetOptions.merge()).addOnSuccessListener {
-            Log.d(TAG, "Friend created for $uid")
+
+
+        val friendRequest = hashMapOf(
+            uid to "true"
+        )
+
+        currentUserRequestRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+                val trueOrFalse = document.getString(friendUID)
+
+                //If friend has sent you a request add to friends
+                if (trueOrFalse == "true"){
+                    addCurrentUserToFriendsDB(friendUID)
+
+                    currentUserFriendsRef.set(friendUser).addOnSuccessListener {
+                        Log.d(TAG, "Friend created for $uid")
+                    }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+                    Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
+                }else{
+
+                    receiverRequestRef.set(friendRequest, SetOptions.merge()).addOnSuccessListener {
+                        Log.d(TAG, "User profile created for $uid")
+                    }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+                    Toast.makeText(this, "Friend request sent", Toast.LENGTH_SHORT).show()
+                }
+
+            } else {
+                Log.d("doesn't exist", "No such document")
+
+            }
         }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
             }
 
 
 
+
     }
+
+    private fun addCurrentUserToFriendsDB(friendUID: String){
+        val receiverFriendsRef  = db.collection("users").document(friendUID)
+            .collection("friends").document(uid)
+
+        var firstName = ""
+        var lastName = ""
+        var profileImage = ""
+        var city = ""
+        var email = ""
+
+
+
+        val docRef = db.collection("users").document(uid)
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+
+                firstName = document.getString("first_name").toString()
+                lastName = document.getString("last_name").toString()
+                val name  = "$firstName $lastName"
+                profileImage = document.getString("profile_image").toString()
+                city = document.getString("city").toString()
+                email = document.getString("email").toString()
+
+                val user = hashMapOf(
+                    "uid" to uid,
+                    "fullName" to name,
+                    "profile_image" to profileImage,
+                    "city" to city,
+                    "email" to email
+                )
+
+                receiverFriendsRef.set(user).addOnSuccessListener {
+                    Log.d(TAG, "Friend created for $uid")
+                }
+                    .addOnFailureListener { e ->
+                        Log.w(TAG, "Error adding document", e)
+                    }
+
+                deleteFriendRequests(friendUID)
+            } else {
+                Log.d("doesn't exist", "No such document")
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
+            }
+
+
+    }
+
+    private fun deleteFriendRequests(friendUID: String){
+
+        val currentUserRequestRef = db.collection("users").document(uid)
+            .collection("friend_requests").document(friendUID)
+
+        val receiverRequestRef = db.collection("users").document(friendUID)
+            .collection("friend_requests").document(uid)
+
+        currentUserRequestRef.delete()
+        receiverRequestRef.delete()
+    }
+
 
     //Go to homescreen when pressed back button
     override fun onBackPressed() {

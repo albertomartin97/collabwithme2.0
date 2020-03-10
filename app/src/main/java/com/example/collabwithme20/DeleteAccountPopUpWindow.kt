@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_delete_account_pop_up.*
 
-class DeleteAccountPopUp : AppCompatActivity() {
+class DeleteAccountPopUpWindow : AppCompatActivity() {
     companion object {
         private const val TAG = "DeleteAccountPopUp"
 
