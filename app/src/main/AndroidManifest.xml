@@ -11,7 +11,8 @@
             android:roundIcon="@mipmap/app_logo_1_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".DeleteAccountPopUp"></activity>
+        <activity android:name=".FriendRequestsActivity"></activity>
+        <activity android:name=".DeleteAccountPopUp" />
         <activity android:name=".DeleteAccountPopUpWindow" />
         <activity
                 android:name=".FriendsPopUpWindow"

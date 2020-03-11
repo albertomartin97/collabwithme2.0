@@ -183,8 +183,7 @@ class PopUpWindow : AppCompatActivity() {
 
     private fun sendFriendRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
 
-        val receiverRequestRef = db.collection("users").document(friendUID)
-            .collection("friend_requests").document(uid)
+
 
         val currentUserRequestRef = db.collection("users").document(uid)
             .collection("friend_requests").document(friendUID)
@@ -201,15 +200,10 @@ class PopUpWindow : AppCompatActivity() {
         )
 
 
-
-        val friendRequest = hashMapOf(
-            uid to "true"
-        )
-
         currentUserRequestRef.get().addOnSuccessListener { document ->
             if (document != null) {
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
-                val trueOrFalse = document.getString(friendUID)
+                val trueOrFalse = document.getString("request_state")
 
                 //If friend has sent you a request add to friends
                 if (trueOrFalse == "true"){
@@ -224,18 +218,67 @@ class PopUpWindow : AppCompatActivity() {
                     Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
                 }else{
 
-                    receiverRequestRef.set(friendRequest, SetOptions.merge()).addOnSuccessListener {
-                        Log.d(TAG, "User profile created for $uid")
-                    }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Error adding document", e)
-                        }
+                    sendRequestToFriend(friendUID)
+
                     Toast.makeText(this, "Friend request sent", Toast.LENGTH_SHORT).show()
                 }
 
             } else {
                 Log.d("doesn't exist", "No such document")
 
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
+            }
+
+
+
+
+    }
+
+    private fun sendRequestToFriend(friendUID: String){
+
+        var firstName = ""
+        var lastName = ""
+        var profileImage = ""
+        var city = ""
+        var email = ""
+
+        val receiverRequestRef = db.collection("users").document(friendUID)
+            .collection("friend_requests").document(uid)
+
+        val currentUserInfoRef = db.collection("users").document(uid)
+
+        currentUserInfoRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+
+                firstName = document.getString("first_name").toString()
+                lastName = document.getString("last_name").toString()
+                val name  = "$firstName $lastName"
+                profileImage = document.getString("profile_image").toString()
+                city = document.getString("city").toString()
+                email = document.getString("email").toString()
+
+                val user = hashMapOf(
+                    "uid" to uid,
+                    "fullName" to name,
+                    "profile_image" to profileImage,
+                    "city" to city,
+                    "email" to email,
+                    "request_state" to "true"
+                )
+
+                receiverRequestRef.set(user).addOnSuccessListener {
+                    Log.d(TAG, "Friend created for $uid")
+                }
+                    .addOnFailureListener { e ->
+                        Log.w(TAG, "Error adding document", e)
+                    }
+
+            } else {
+                Log.d("doesn't exist", "No such document")
             }
         }
             .addOnFailureListener { exception ->

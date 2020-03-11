@@ -14,7 +14,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_friends.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_profile.backBtn
 import kotlinx.android.synthetic.main.friends_row.*
 
 class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener {
@@ -35,6 +37,12 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
             startActivity(intentGoToPreviousActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
+
+        friendRequestsBtn.setOnClickListener {
+            val intent = Intent(this, FriendRequestsActivity::class.java)
+            startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 

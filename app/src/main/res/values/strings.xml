@@ -69,6 +69,8 @@
     <string name="delete_account">Delete Account</string>
     <string name="delete_account_confirmation">Are you sure you want to delete your account?</string>
     <string name="all">All</string>
+    <string name="friend_requests">Friend Requests</string>
+    <string name="accept_request">Accept</string>
 
 
 </resources>
