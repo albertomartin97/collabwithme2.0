@@ -3,20 +3,25 @@ package com.example.collabwithme20
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_home_screen.*
 
 
 
 class HomeScreenActivity : AppCompatActivity() {
-    companion object {
-        private val TAG = "HomeScreenActivity"
-    }
 
+    private val db = FirebaseFirestore.getInstance()
+    private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
+
+        //Set notification icon if friend requests exist
+        updateNotificationIcon()
 
         profileBtn.setOnClickListener{
             val intentGoToProfileActivity = Intent(this, ProfileActivity::class.java)
@@ -48,6 +53,21 @@ class HomeScreenActivity : AppCompatActivity() {
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
+
+    }
+
+    private fun updateNotificationIcon(){
+        val notification = notificationHomeScreen
+
+        val docRef = db.collection("users").document(uid)
+            .collection("friend_requests")
+
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document.size() > 0)  {
+                notification.setBackgroundResource(R.drawable.circle_32)
+            }
+        }
 
     }
 

@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.collabwithme20.Adapters.FriendsAdapter
@@ -15,9 +16,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_friends.*
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.backBtn
-import kotlinx.android.synthetic.main.friends_row.*
+
 
 class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener {
     companion object {
@@ -40,18 +40,30 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
+        //Open friend requests
         friendRequestsBtn.setOnClickListener {
             val intent = Intent(this, FriendRequestsActivity::class.java)
+            startActivity(intent)
+        }
+
+        //Open FindPeopleActivity (Discover)
+        discoverBtn.setOnClickListener {
+            val intent = Intent(this, FindPeopleActivity::class.java)
             startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
+        //Set discoverBtn invisible
+        discoverBtn.visibility = View.INVISIBLE
 
         createRecyclerView()
 
+        updateNotificationIcon()
 
+        checkRecyclerViewIsEmpty()
 
     }
+
     private fun createRecyclerView(){
 
         val query = db.collection("users").document(uid)
@@ -59,7 +71,6 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
 
         val array = FirestoreArray(query, ClassSnapshotParser(FriendsModel::class.java))
-
 
 
         val options = FirestoreRecyclerOptions.Builder<FriendsModel>()
@@ -78,7 +89,6 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
 
         recyclerView.adapter = adapter
-
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -99,6 +109,7 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
             intent.putExtra("city", friend.city)
             intent.putExtra("email", friend.email)
             intent.putExtra("description", friend.description)
+            intent.putExtra("context", "FriendsActivity")
             startActivity(intent)
 
         //Opens MessagesActivity
@@ -106,6 +117,43 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
             val intent = Intent(this, MessagesActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun checkRecyclerViewIsEmpty(){
+        val docRef = db.collection("users").document(uid)
+            .collection("friends")
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document.size() > 0)  {
+                recyclerView.visibility = View.VISIBLE
+                discoverBtn.visibility = View.INVISIBLE
+            } else {
+                recyclerView.visibility = View.INVISIBLE
+
+                empty_friends.setText(R.string.empty_friends)
+                discoverBtn.visibility = View.VISIBLE
+            }
+        }
+
+
+    }
+
+    private fun updateNotificationIcon(){
+        val notificationBell = friendRequestsBtn
+
+        val docRef = db.collection("users").document(uid)
+            .collection("friend_requests")
+
+        //Check if there are friend requests
+        docRef.get().addOnSuccessListener { document ->
+            if (document.size() > 0)  {
+                notificationBell.setBackgroundResource(R.drawable.notification)
+
+            } else {
+                notificationBell.setBackgroundResource(R.drawable.bell)
+            }
+        }
+
     }
 
     //Go to homescreen when pressed back button

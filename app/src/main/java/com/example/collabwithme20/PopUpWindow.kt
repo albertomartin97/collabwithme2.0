@@ -77,9 +77,9 @@ class PopUpWindow : AppCompatActivity() {
         //Add friend to DB
         addFriendPopUp.setOnClickListener{
             //addFriendToDB(userUID, userName, imageName, city, email)
-            sendFriendRequest(userUID, userName, imageName, city, email)
-
+            checkIfUsersAreFriends(userUID, userName, imageName, city, email)
             onBackPressed()
+
         }
 
         // Fade animation for the background of Popup Window
@@ -181,9 +181,35 @@ class PopUpWindow : AppCompatActivity() {
     }
 
 
+    private fun checkIfUsersAreFriends(friendUID: String, friendName: String, profileImage: String,
+                                       friendCity: String, friendEmail: String){
+
+        val docRef = db.collection("users").document(uid).
+            collection("friends").document(friendUID)
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+                val name = document.getString("fullName")
+
+                if(name == friendName){
+                    Toast.makeText(this, "You are already friends" , Toast.LENGTH_SHORT).show()
+                }else{
+                    sendFriendRequest(friendUID, friendName, profileImage, friendCity, friendEmail)
+                }
+
+            } else {
+                Log.d("doesn't exist", "No such document")
+
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
+            }
+
+    }
+
     private fun sendFriendRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
-
-
 
         val currentUserRequestRef = db.collection("users").document(uid)
             .collection("friend_requests").document(friendUID)
@@ -196,7 +222,8 @@ class PopUpWindow : AppCompatActivity() {
             "fullName" to friendName,
             "profile_image" to profileImage,
             "city" to friendCity,
-            "email" to friendEmail
+            "email" to friendEmail,
+            "chat" to "false"
         )
 
 
@@ -239,11 +266,11 @@ class PopUpWindow : AppCompatActivity() {
 
     private fun sendRequestToFriend(friendUID: String){
 
-        var firstName = ""
-        var lastName = ""
-        var profileImage = ""
-        var city = ""
-        var email = ""
+        var firstName: String
+        var lastName: String
+        var profileImage: String
+        var city: String
+        var email: String
 
         val receiverRequestRef = db.collection("users").document(friendUID)
             .collection("friend_requests").document(uid)
@@ -294,11 +321,11 @@ class PopUpWindow : AppCompatActivity() {
         val receiverFriendsRef  = db.collection("users").document(friendUID)
             .collection("friends").document(uid)
 
-        var firstName = ""
-        var lastName = ""
-        var profileImage = ""
-        var city = ""
-        var email = ""
+        var firstName: String
+        var lastName: String
+        var profileImage: String
+        var city: String
+        var email: String
 
 
 
@@ -320,7 +347,8 @@ class PopUpWindow : AppCompatActivity() {
                     "fullName" to name,
                     "profile_image" to profileImage,
                     "city" to city,
-                    "email" to email
+                    "email" to email,
+                    "chat" to "false"
                 )
 
                 receiverFriendsRef.set(user).addOnSuccessListener {

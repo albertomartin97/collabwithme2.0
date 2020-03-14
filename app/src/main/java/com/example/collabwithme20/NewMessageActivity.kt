@@ -4,7 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.collabwithme20.Adapters.FriendsAdapter
@@ -15,14 +15,11 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_find_people.*
-import kotlinx.android.synthetic.main.activity_messages.*
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.activity_profile.backBtn
+import kotlinx.android.synthetic.main.activity_new_message.backBtn
 
-class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener {
+class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener {
     companion object {
-        private const val TAG = "MessagesActivity"
+        private const val TAG = "NewMessageActivity"
 
     }
     private lateinit var recyclerView: RecyclerView
@@ -32,27 +29,24 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_messages)
+        setContentView(R.layout.activity_new_message)
 
         backBtn.setOnClickListener {
-            val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intentGoToPreviousActivity,
-                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        }
-
-        newMessageBtn.setOnClickListener {
-            val intent = Intent(this, NewMessageActivity::class.java)
-            startActivity(intent)
+            val intent = Intent(this, MessagesActivity::class.java)
+            val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.slide_in_left, android.R.anim.fade_out)
+            startActivity(intent, options.toBundle())
         }
 
         createRecyclerView()
+
+
 
     }
 
     private fun createRecyclerView(){
 
         val query = db.collection("users").document(uid)
-            .collection("friends").whereEqualTo("chat", "true")
+            .collection("friends").whereEqualTo("chat", "false")
 
 
         val array = FirestoreArray(query, ClassSnapshotParser(FriendsModel::class.java))
@@ -61,7 +55,7 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
         val options = FirestoreRecyclerOptions.Builder<FriendsModel>()
             .setSnapshotArray(array).setLifecycleOwner(this).build()
 
-        recyclerView = findViewById(R.id.messages_recyclerView)
+        recyclerView = findViewById(R.id.new_message_recyclerView)
 
 
         val adapter: FirestoreRecyclerAdapter<*, *> =
@@ -94,17 +88,20 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
             intent.putExtra("city", friend.city)
             intent.putExtra("email", friend.email)
             intent.putExtra("description", friend.description)
-            intent.putExtra("context", "FriendsActivity")
+            intent.putExtra("context", "NewMessageActivity")
             startActivity(intent)
 
         }
     }
 
 
-
     //Go to homescreen when pressed back button
     override fun onBackPressed() {
-        val intent = Intent(this, HomeScreenActivity::class.java)
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        val intent = Intent(this, MessagesActivity::class.java)
+        val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.slide_in_left, android.R.anim.fade_out)
+        startActivity(intent, options.toBundle())
     }
+
+
+
 }

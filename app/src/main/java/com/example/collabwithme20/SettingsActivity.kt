@@ -40,4 +40,5 @@ class SettingsActivity : AppCompatActivity() {
         val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
+    
 }

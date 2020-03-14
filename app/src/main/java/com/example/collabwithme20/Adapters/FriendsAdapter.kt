@@ -40,6 +40,8 @@ class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
                     .transform(CircleCrop()).into(containerView.profileImageFriend)
             }
 
+
+            containerView.chatBtn.visibility = View.INVISIBLE
             containerView.setOnClickListener {
                 action.onUserClick(friend, adapterPosition, "showUserProfile")
             }

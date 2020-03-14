@@ -52,16 +52,11 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             createRecyclerView("All", "All")
         }
 
-        searchMusicProducerBtn.setOnClickListener {
-            createRecyclerView("All","music_production")
-        }
-
 
         //Create recyclerview for each city category
         searchLondonBtn.setOnClickListener {
             createRecyclerView("London", "none")
         }
-
 
         searchBristolBtn.setOnClickListener {
             createRecyclerView("Bristol", "All")
@@ -125,9 +120,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     override fun onUserClick(user: UserModel, position: Int, buttonName: String){
 
+        //Check button being clicked in recyclerView
         if (buttonName == "addFriendBtn"){
             val fullName = user.first_name + " " + user.last_name
-            sendFriendRequest(user.uid, fullName, user.profile_image, user.city, user.email)
+            checkIfUsersAreFriends(user.uid, fullName, user.profile_image, user.city, user.email)
         }else if(buttonName == "showUserProfile"){
             val fullName = user.first_name + " " + user.last_name
             val intent = Intent(this, PopUpWindow::class.java)
@@ -142,10 +138,36 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
+    private fun checkIfUsersAreFriends(friendUID: String, friendName: String, profileImage: String,
+                                       friendCity: String, friendEmail: String){
 
-    private fun sendFriendRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
+        val docRef = db.collection("users").document(uid).
+            collection("friends").document(friendUID)
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data: ${document.data}")
+                val name = document.getString("fullName")
+
+                if(name == friendName){
+                    Toast.makeText(this, "You are already friends" , Toast.LENGTH_SHORT).show()
+                }else{
+                    checkRequest(friendUID, friendName, profileImage, friendCity, friendEmail)
+                }
 
 
+            } else {
+                Log.d("doesn't exist", "No such document")
+
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
+            }
+
+    }
+
+    private fun checkRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
 
         val currentUserRequestRef = db.collection("users").document(uid)
             .collection("friend_requests").document(friendUID)
@@ -158,7 +180,8 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             "fullName" to friendName,
             "profile_image" to profileImage,
             "city" to friendCity,
-            "email" to friendEmail
+            "email" to friendEmail,
+            "chat" to "false"
         )
 
 
@@ -180,6 +203,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
                 }else{
 
+                    //If current user does not have a request from that person send him a request
                     sendRequestToFriend(friendUID)
 
                     Toast.makeText(this, "Friend request sent", Toast.LENGTH_SHORT).show()
@@ -201,16 +225,17 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     private fun sendRequestToFriend(friendUID: String){
 
-        var firstName = ""
-        var lastName = ""
-        var profileImage = ""
-        var city = ""
-        var email = ""
-
         val receiverRequestRef = db.collection("users").document(friendUID)
             .collection("friend_requests").document(uid)
 
         val currentUserInfoRef = db.collection("users").document(uid)
+
+        var firstName: String
+        var lastName: String
+        var profileImage: String
+        var city: String
+        var email: String
+
 
         currentUserInfoRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -232,6 +257,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     "request_state" to "true"
                 )
 
+                //Save request to receiver requests list
                 receiverRequestRef.set(user).addOnSuccessListener {
                     Log.d(TAG, "Friend created for $uid")
                 }
@@ -256,15 +282,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         val receiverFriendsRef  = db.collection("users").document(friendUID)
             .collection("friends").document(uid)
 
-        var firstName = ""
-        var lastName = ""
-        var profileImage = ""
-        var city = ""
-        var email = ""
-
-
-
         val docRef = db.collection("users").document(uid)
+
+        var firstName: String
+        var lastName: String
+        var profileImage: String
+        var city: String
+        var email: String
 
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
@@ -282,9 +306,11 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     "fullName" to name,
                     "profile_image" to profileImage,
                     "city" to city,
-                    "email" to email
+                    "email" to email,
+                    "chat" to "false"
                 )
 
+                //Save current user's info to other user friend's list
                 receiverFriendsRef.set(user).addOnSuccessListener {
                     Log.d(TAG, "Friend created for $uid")
                 }

@@ -80,6 +80,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         //Update skills
+
         musicProductionBtn.setOnClickListener {
 
             updateSkills("music_production")

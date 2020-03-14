@@ -15,18 +15,12 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_friends_pop_up_window.*
-import kotlinx.android.synthetic.main.activity_pop_up_window.*
 import kotlinx.android.synthetic.main.activity_pop_up_window.cityPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.closeBtn
-import kotlinx.android.synthetic.main.activity_pop_up_window.clothingDesignPopUp
-import kotlinx.android.synthetic.main.activity_pop_up_window.graphicDesignerPopUp
-import kotlinx.android.synthetic.main.activity_pop_up_window.musicProductionPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.pop_up_window_background
 import kotlinx.android.synthetic.main.activity_pop_up_window.profileImageView
-import kotlinx.android.synthetic.main.activity_pop_up_window.rapperPopUp
-import kotlinx.android.synthetic.main.activity_pop_up_window.singingPopUp
 import kotlinx.android.synthetic.main.activity_pop_up_window.usernameTextView
-import kotlinx.android.synthetic.main.activity_pop_up_window.videoProductionPopUp
+
 
 
 class FriendsPopUpWindow : AppCompatActivity(){
@@ -41,6 +35,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
     private var city = ""
     private var email = ""
     private var description = ""
+    private var context = ""
 
     private val db = FirebaseFirestore.getInstance()
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
@@ -62,6 +57,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
         city = bundle?.getString("city", "City") ?: ""
         email = bundle?.getString("email", "Email") ?: ""
         description = bundle?.getString("description", "Description") ?: ""
+        context = bundle?.getString("context", "Context") ?: ""
 
         val emailWithStr = "Email : $email"
 
@@ -89,12 +85,22 @@ class FriendsPopUpWindow : AppCompatActivity(){
         }
         colorAnimation.start()
 
+        if(context == "FriendsActivity"){
+            removeFriendPopUp.setOnClickListener {
+                Toast.makeText(this, "Friend removed", Toast.LENGTH_SHORT).show()
+                removeFriendFromDB(userUID)
+                onBackPressed()
+            }
+        }else if(context == "FriendRequestsActivity"){
+            removeFriendPopUp.setText(R.string.decline_request)
 
-        removeFriendPopUp.setOnClickListener {
-            Toast.makeText(this, "Friend removed", Toast.LENGTH_SHORT).show()
-            removeFriendFromDB(userUID)
-            onBackPressed()
+            removeFriendPopUp.setOnClickListener {
+                Toast.makeText(this, "Friend request declined", Toast.LENGTH_SHORT).show()
+                declineRequest(userUID)
+                onBackPressed()
+            }
         }
+
 
     }
 
@@ -208,11 +214,44 @@ class FriendsPopUpWindow : AppCompatActivity(){
             document(uid).collection("friends")
             .document(friendUid)
 
-        val receiverFriendsRef  = db.collection("users").document(friendUid)
+        val receiverFriends  = db.collection("users").document(friendUid)
             .collection("friends").document(uid)
 
         currentUserFriends.delete()
-        receiverFriendsRef.delete()
+        receiverFriends.delete()
+
+        //Delete messages once they are no longer friends
+        removeMessagesFromDB(friendUid)
+
+
+
+    }
+
+    private fun removeMessagesFromDB(friendUid: String) {
+        val chatName: String
+
+        if(friendUid < uid){
+            chatName = friendUid + uid
+        }else{
+            chatName = uid + friendUid
+        }
+
+        val chatRef = db.collection("chat").
+            document(chatName).collection("messages").document()
+
+        chatRef.delete()
+
+
+    }
+
+
+    private fun declineRequest(friendUid: String){
+        val currentUserRequests = db.collection("users").
+            document(uid).collection("friend_requests")
+            .document(friendUid)
+
+        currentUserRequests.delete()
+
     }
 
 }

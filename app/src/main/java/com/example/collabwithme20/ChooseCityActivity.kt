@@ -24,8 +24,10 @@ class ChooseCityActivity : AppCompatActivity() {
         setContentView(R.layout.activity_choose_city)
 
         londonBtn.setOnClickListener {
+            //Save city selection
             changeCity("London")
 
+            //Check caller activity
             Handler().postDelayed({
                 val caller = intent.getStringExtra("caller")
 
@@ -43,8 +45,10 @@ class ChooseCityActivity : AppCompatActivity() {
         }
 
         bristolbtn.setOnClickListener {
+            //Save city selection
             changeCity("Bristol")
 
+            //Check caller activity
             Handler().postDelayed({
                 val caller = intent.getStringExtra("caller")
 
@@ -61,8 +65,10 @@ class ChooseCityActivity : AppCompatActivity() {
 
         }
         manchesterBtn.setOnClickListener {
+            //Save city selection
             changeCity("Manchester")
 
+            //Check caller activity
             Handler().postDelayed({
                 val caller = intent.getStringExtra("caller")
 
@@ -79,8 +85,10 @@ class ChooseCityActivity : AppCompatActivity() {
 
         }
         birminghamBtn.setOnClickListener {
+            //Save city selection
             changeCity("Birmingham")
 
+            //Check caller activity
             Handler().postDelayed({
                 val caller = intent.getStringExtra("caller")
 
@@ -97,8 +105,10 @@ class ChooseCityActivity : AppCompatActivity() {
 
         }
         swanseaBtn.setOnClickListener {
+            //Save city selection
             changeCity("Swansea")
 
+            //Check caller activity
             Handler().postDelayed({
                 val caller = intent.getStringExtra("caller")
 
@@ -115,8 +125,10 @@ class ChooseCityActivity : AppCompatActivity() {
 
         }
         cardiffBtn.setOnClickListener {
+            //Save city selection
             changeCity("Cardiff")
 
+            //Check caller activity
             Handler().postDelayed({
                 val caller = intent.getStringExtra("caller")
 
@@ -133,8 +145,10 @@ class ChooseCityActivity : AppCompatActivity() {
 
         }
         edinburghBtn.setOnClickListener {
+            //Save city selection
             changeCity("Edinburgh")
 
+            //Check caller activity
             Handler().postDelayed({
                 val caller = intent.getStringExtra("caller")
 
@@ -151,8 +165,10 @@ class ChooseCityActivity : AppCompatActivity() {
 
         }
         dublinBtn.setOnClickListener {
+            //Save city selection
             changeCity("Dublin")
 
+            //Check caller activity
             Handler().postDelayed({
                 val caller = intent.getStringExtra("caller")
 

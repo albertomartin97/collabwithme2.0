@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ChatLogActivity">
+
+    <TextView
+            android:id="@+id/activityTextView"
+            android:layout_width="411dp"
+            android:layout_height="46dp"
+            android:background="@color/color8"
+            android:fontFamily="@font/alfa_slab_one"
+            android:paddingVertical="3dp"
+            android:paddingStart="55dp"
+            android:paddingEnd="20dp"
+            android:singleLine="false"
+            android:textColor="@color/color6"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="50dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="363dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/todo"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/activityTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/left_arrow" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/messageEditText"
+            android:layout_width="297dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:autoLink="web|email"
+            android:background="@drawable/style26"
+            android:fontFamily="sans-serif"
+            android:gravity="start|top"
+            android:hint="@string/enter_message"
+            android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+            android:paddingStart="20dp"
+            android:paddingTop="13dp"
+            android:paddingEnd="20dp"
+            android:singleLine="false"
+            android:textColor="@color/color6"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sendMessageBtn"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+            android:id="@+id/sendMessageBtn"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/style24"
+            android:text="@string/send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/messageEditText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatLogRecyclerView"
+            android:layout_width="411dp"
+            android:layout_height="712dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
+
+    <ImageView
+            android:id="@+id/chatProfilePicture"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/todo"
+            app:layout_constraintBottom_toBottomOf="@+id/activityTextView"
+            app:layout_constraintStart_toEndOf="@+id/backBtn"
+            app:layout_constraintTop_toTopOf="@+id/activityTextView"
+            app:srcCompat="@drawable/default_profile_pic" />
+
+    <TextView
+            android:id="@+id/chatName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/alfa_slab_one"
+            android:textColor="@color/color6"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/activityTextView"
+            app:layout_constraintEnd_toEndOf="@+id/activityTextView"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toEndOf="@+id/chatProfilePicture"
+            app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

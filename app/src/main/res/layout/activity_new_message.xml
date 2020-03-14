@@ -5,21 +5,19 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color17"
-        tools:context=".FriendsActivity">
-
+        tools:context=".NewMessageActivity">
 
     <TextView
             android:id="@+id/activityTextView"
             android:layout_width="411dp"
             android:layout_height="46dp"
-            android:background="@color/color4"
+            android:background="@color/color8"
             android:fontFamily="@font/alfa_slab_one"
             android:paddingVertical="3dp"
             android:paddingStart="55dp"
             android:paddingEnd="20dp"
             android:singleLine="false"
-            android:text="@string/friends_button"
+            android:text="@string/select_user"
             android:textColor="@color/color6"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -44,7 +42,7 @@
             app:srcCompat="@drawable/left_arrow" />
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/friends_recyclerView"
+            android:id="@+id/new_message_recyclerView"
             android:layout_width="412dp"
             android:layout_height="810dp"
             android:background="@color/color17"
@@ -58,49 +56,4 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
-
-    <ImageView
-            android:id="@+id/friendRequestsBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="@string/todo"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/activityTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-            android:id="@+id/empty_friends"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:fontFamily="@font/alfa_slab_one"
-            android:textSize="28sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
-
-    <Button
-            android:id="@+id/discoverBtn"
-            style="@android:style/Widget.Button"
-            android:layout_width="140dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/style21"
-            android:fontFamily="@font/alfa_slab_one"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:text="@string/find_people_button"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/empty_friends" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,8 @@ class RegistrationActivity : AppCompatActivity() {
         private val TAG = "RegistrationActivity"
     }
 
+    val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
@@ -35,15 +37,13 @@ class RegistrationActivity : AppCompatActivity() {
         val lastName = lastNameInput.text.toString()
         var userID : String
 
-
-        val db = FirebaseFirestore.getInstance()
-
-
+        //Check edit texts are not empty
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show()
             return
         }
 
+        //Check password has more than 6 characters
         if (password.length < 6) {
             Toast.makeText(this, "Passwords must have at least 7 characters", Toast.LENGTH_SHORT).show()
             return
@@ -60,7 +60,7 @@ class RegistrationActivity : AppCompatActivity() {
             } else {
                 Log.d("Main", "Successfully created user with uid: ${it.result?.user?.uid} ")
 
-                //Saving profile into Database
+                //Get user uid
                 userID = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
                 val user = hashMapOf(
@@ -70,7 +70,7 @@ class RegistrationActivity : AppCompatActivity() {
                     "uid" to userID
                 )
 
-
+                //Save user to database
                 val docRef =  db . collection ("users").document(userID)
                 docRef.set(user).addOnSuccessListener {
                     Log.d(TAG, "User profile created for $userID")
@@ -79,9 +79,9 @@ class RegistrationActivity : AppCompatActivity() {
                         Log.w(TAG, "Error adding document", e)
                     }
 
-                //Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT).show()
             }
 
+            //Go to Profile picture
             val intent = Intent(this, ProfilePictureActivity::class.java)
             intent.putExtra("caller", "RegistrationActivity")
             startActivity(intent)

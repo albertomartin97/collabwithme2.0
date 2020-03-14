@@ -46,11 +46,9 @@ class ProfilePictureActivity : AppCompatActivity() {
         }
 
         skipTextView.setOnClickListener {
-
             val intent = Intent(this, ChooseCityActivity::class.java)
             intent.putExtra("caller", "ProfilePictureActivity")
             startActivity(intent)
-
 
         }
 
@@ -62,9 +60,9 @@ class ProfilePictureActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
             startActivityForResult(intent, 0)
-
         }
 
+        //Save profile picture
         savePhotoBtn.setOnClickListener {
 
             if (trueOrFalse == "false") {
@@ -94,7 +92,7 @@ class ProfilePictureActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
-            //proceed and check what the selected image was
+            //Proceed and check what the selected image was
             Log.d(TAG, "Photo was selected")
 
             selectedPhotoUri = data.data
@@ -131,7 +129,6 @@ class ProfilePictureActivity : AppCompatActivity() {
 
     private fun saveImageUrlToDB(profileImageUrl : String){
         val ref = db.collection("users").document(uid)
-
 
         val user = hashMapOf(
             "profile_image" to profileImageUrl

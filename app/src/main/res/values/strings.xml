@@ -19,7 +19,7 @@
     <string name="welcome_textView">Welcome back</string>
     <string name="profile_button">Profile</string>
     <string name="friends_button">Friends</string>
-    <string name="find_people_button">Find New People</string>
+    <string name="find_people_button">Discover</string>
     <string name="messages_button">Messages</string>
     <string name="settings_textView">Settings</string>
     <string name="logout_textView">Log out</string>
@@ -71,6 +71,12 @@
     <string name="all">All</string>
     <string name="friend_requests">Friend Requests</string>
     <string name="accept_request">Accept</string>
+    <string name="decline_request">Decline request</string>
+    <string name="empty_friends">Start looking for new friends</string>
+    <string name="new_message">New message</string>
+    <string name="select_user">Select User</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="send">Send</string>
 
 
 </resources>

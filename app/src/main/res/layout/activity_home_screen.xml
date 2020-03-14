@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         tools:context=".HomeScreenActivity">
 
+
+
             <Button
                     android:id="@+id/profileBtn"
                     style="@android:style/Widget.Button"
@@ -25,11 +27,24 @@
                     android:paddingTop="35dp"
                     android:paddingBottom="30dp"
                     android:text="@string/profile_button"
-                    android:textSize="24sp"
+                    android:textSize="28sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.516"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/appTextView" />
+
+
+            <ImageView
+                    android:id="@+id/notificationHomeScreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="147dp"
+                    android:contentDescription="@string/todo"
+                    android:translationZ="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/friendsBtn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.98"
+                    app:layout_constraintStart_toStartOf="@+id/friendsBtn" />
 
             <Button
                     android:id="@+id/friendsBtn"
@@ -44,9 +59,10 @@
                     android:paddingTop="35dp"
                     android:paddingBottom="30dp"
                     android:text="@string/friends_button"
-                    android:textSize="24sp"
+                    android:textSize="28sp"
+
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.483"
+                    app:layout_constraintHorizontal_bias="0.516"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profileBtn" />
 
@@ -65,7 +81,7 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="30dp"
                     android:text="@string/find_people_button"
-                    android:textSize="24sp"
+                    android:textSize="28sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.491"
                     app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +100,7 @@
                     android:paddingTop="35dp"
                     android:paddingBottom="30dp"
                     android:text="@string/messages_button"
-                    android:textSize="24sp"
+                    android:textSize="28sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.516"
                     app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +120,7 @@
                     android:paddingTop="35dp"
                     android:paddingBottom="30dp"
                     android:text="@string/settings_textView"
-                    android:textSize="24sp"
+                    android:textSize="28sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.483"
@@ -125,6 +141,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                     android:singleLine="false"/>
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

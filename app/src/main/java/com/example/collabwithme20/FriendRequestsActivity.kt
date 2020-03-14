@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.R.anim
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,8 +36,8 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, FriendsActivity::class.java)
-            startActivity(intentGoToPreviousActivity,
-                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            val options = ActivityOptions.makeCustomAnimation(this, anim.slide_in_left, anim.fade_out)
+            startActivity(intentGoToPreviousActivity, options.toBundle())
         }
 
 
@@ -90,6 +91,7 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
             intent.putExtra("uid", friendRequest.uid)
             intent.putExtra("city", friendRequest.city)
             intent.putExtra("email", friendRequest.email)
+            intent.putExtra("context", "FriendRequestsActivity")
             startActivity(intent)
 
             //Opens MessagesActivity
@@ -111,38 +113,41 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
             "fullName" to friendName,
             "profile_image" to profileImage,
             "city" to friendCity,
-            "email" to friendEmail
+            "email" to friendEmail,
+            "chat" to "false"
         )
 
+        //Save current user info to the other person's friend list
         addCurrentUserToFriendsDB(friendUID)
 
+        //Save friend to current users' friend list
         currentUserFriendsRef.set(friendUser).addOnSuccessListener {
             Log.d(TAG, "Friend created for $uid")
         }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
+
         Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
 
-
-
-
     }
+
+
     private fun addCurrentUserToFriendsDB(friendUID: String){
         val receiverFriendsRef  = db.collection("users").document(friendUID)
             .collection("friends").document(uid)
 
-        var firstName = ""
-        var lastName = ""
-        var profileImage = ""
-        var city = ""
-        var email = ""
+        val currentUserRef = db.collection("users").document(uid)
+
+        var firstName: String
+        var lastName: String
+        var profileImage: String
+        var city: String
+        var email: String
 
 
-
-        val docRef = db.collection("users").document(uid)
-
-        docRef.get().addOnSuccessListener { document ->
+        //Get current user's information and save it to other person's friend list
+        currentUserRef.get().addOnSuccessListener { document ->
             if (document != null) {
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
 
@@ -158,9 +163,11 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
                     "fullName" to name,
                     "profile_image" to profileImage,
                     "city" to city,
-                    "email" to email
+                    "email" to email,
+                    "chat" to "false"
                 )
 
+                //Save to other person's friend list
                 receiverFriendsRef.set(user).addOnSuccessListener {
                     Log.d(TAG, "Friend created for $uid")
                 }
@@ -168,7 +175,9 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
                         Log.w(TAG, "Error adding document", e)
                     }
 
+                //Delete friend request when saved into db
                 deleteFriendRequests(friendUID)
+
             } else {
                 Log.d("doesn't exist", "No such document")
             }
@@ -195,7 +204,8 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
     //Go to homescreen when pressed back button
     override fun onBackPressed() {
         val intent = Intent(this, FriendsActivity::class.java)
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        val options = ActivityOptions.makeCustomAnimation(this, anim.slide_in_left, anim.fade_out)
+        startActivity(intent, options.toBundle())
     }
 
 

@@ -21,13 +21,10 @@ class MainActivity : AppCompatActivity() {
         val TAG = "MainActivity"
     }
 
-
     public override fun onResume() {
         super.onResume()
         videoView.start()
     }
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
+        //Set video
         val videoView = findViewById<VideoView>(R.id.videoView)
         val path = "android.resource://" + packageName + "/" + R.raw.djstudio_vertical_zoom
         videoView?.setVideoURI(Uri.parse(path))
@@ -61,7 +58,6 @@ class MainActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
 
         if (user != null) { // User is signed in
-
             //Get user's name
             val db = FirebaseFirestore.getInstance()
             val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
@@ -73,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("exists", "DocumentSnapshot data: ${document.data}")
                 val username = document.getString("first_name").toString()
 
+                //Display welcome message
                 Toast.makeText(this, "Welcome back $username!", Toast.LENGTH_SHORT).show()
             } else {
                 Log.d("doesn't exist", "No such document")

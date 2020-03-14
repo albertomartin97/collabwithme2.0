@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val email = emailInput.text.toString()
         val password = passwordInput.text.toString()
 
-
+        //Check edit texts are not empty
         if(email.isEmpty() && password.isEmpty()){
             Toast.makeText(this, "Please enter your email and password", Toast.LENGTH_SHORT).show()
             return
@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         Log.d("MainActivity", "Email is: $email")
         Log.d("MainActivity", "Paswword: $password")
 
+        //Check email and password are correct
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if(!it.isSuccessful){
                 Toast.makeText(this, "You have entered an invalid username or password", Toast.LENGTH_SHORT).show()
