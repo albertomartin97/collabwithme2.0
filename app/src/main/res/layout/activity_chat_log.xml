@@ -52,6 +52,7 @@
             android:gravity="start|top"
             android:hint="@string/enter_message"
             android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+            android:linksClickable="true"
             android:paddingStart="20dp"
             android:paddingTop="13dp"
             android:paddingEnd="20dp"
@@ -92,8 +93,7 @@
             android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="@+id/activityTextView"
             app:layout_constraintStart_toEndOf="@+id/backBtn"
-            app:layout_constraintTop_toTopOf="@+id/activityTextView"
-            app:srcCompat="@drawable/default_profile_pic" />
+            app:layout_constraintTop_toTopOf="@+id/activityTextView"/>
 
     <TextView
             android:id="@+id/chatName"

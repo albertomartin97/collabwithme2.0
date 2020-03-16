@@ -68,13 +68,17 @@ class ChatLogActivity : AppCompatActivity() {
         //Set activity title
         chatName.text = friendName
 
+        messageEditText.isLongClickable = true
+
+
         createRecyclerView(friendUID)
 
         sendMessageBtn.setOnClickListener{
             val messageContent = messageEditText.text.toString()
 
             if(messageContent != ""){
-                checkIfUsersChat(friendUID)
+                addChatValueToFriends(friendUID)
+                //checkIfUsersChat(friendUID)
                 sendMessage(friendUID)
                 messageEditText.text?.clear()
             }
@@ -158,38 +162,6 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
-
-    private fun checkIfUsersChat(friendUID: String){
-        val chatID: String
-
-        if(uid < friendUID) {
-            chatID = uid + friendUID
-        }else{
-            chatID = friendUID + uid
-        }
-
-        val chatRef = db.collection("chat").
-            document(chatID).collection("messages")
-
-        chatRef.get().addOnSuccessListener { document ->
-            if (document != null) {
-                Log.d("exists", "DocumentSnapshot data")
-
-                //Toast.makeText(this, "DocumentExists", Toast.LENGTH_SHORT).show()
-            } else {
-                Log.d("doesn't exist", "No such document")
-                //Toast.makeText(this, "Document not Exists", Toast.LENGTH_SHORT).show()
-                addChatValueToFriends(friendUID)
-            }
-        }
-            .addOnFailureListener { exception ->
-                Log.d("error db", "get failed with ", exception)
-            }
-
-
-
-    }
-
     private fun addChatValueToFriends(friendUID: String){
 
         val currentUserRef = db.collection("users").
@@ -221,9 +193,7 @@ class ChatLogActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val intent = Intent(this, MessagesActivity::class.java)
-        val options = ActivityOptions.makeCustomAnimation(this,
-            android.R.anim.slide_in_left, android.R.anim.fade_out)
-        startActivity(intent, options.toBundle())
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 
 }

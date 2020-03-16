@@ -2,9 +2,15 @@ package com.example.collabwithme20
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.MotionEvent
+import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.collabwithme20.Adapters.FriendsAdapter
@@ -45,7 +51,23 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
             startActivity(intent)
         }
 
+        newMessageBtn.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN ->
+                    newMessageBtn.setBackgroundResource(R.drawable.plus_black_filled)
+                MotionEvent.ACTION_UP ->
+                    newMessageBtn.setBackgroundResource(R.drawable.plus_black)
+            }
+            v?.onTouchEvent(event) ?: true
+        }
+
+        //Set arrow image invisible
+        empty_messages_ig.visibility = View.INVISIBLE
+        empty_messages.visibility = View.INVISIBLE
+
+        checkRecyclerViewIsEmpty()
         createRecyclerView()
+
 
     }
 
@@ -79,7 +101,6 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
 
         adapter.startListening()
 
-
     }
 
     override fun onUserClick(friend: FriendsModel, position: Int, buttonName: String){
@@ -95,12 +116,32 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
             intent.putExtra("email", friend.email)
             intent.putExtra("description", friend.description)
             intent.putExtra("context", "FriendsActivity")
-            startActivity(intent)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
         }
     }
 
+    private fun checkRecyclerViewIsEmpty(){
+        val docRef = db.collection("users").document(uid)
+            .collection("friends").whereEqualTo("chat", "true")
 
+        docRef.get().addOnSuccessListener { document ->
+            if (document.size() > 0)  {
+                recyclerView.visibility = View.VISIBLE
+                empty_messages_ig.visibility = View.INVISIBLE
+            } else {
+                recyclerView.visibility = View.INVISIBLE
+
+                empty_messages_ig.setImageResource(R.drawable.grey_arrow)
+                empty_messages.setText(R.string.empty_messages)
+                empty_messages.visibility = View.VISIBLE
+                empty_messages_ig.visibility = View.VISIBLE
+
+            }
+        }
+
+
+    }
 
 
     //Go to homescreen when pressed back button

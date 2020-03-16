@@ -5,7 +5,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color17"
         tools:context=".FriendsActivity">
 
 
@@ -47,13 +46,13 @@
             android:id="@+id/friends_recyclerView"
             android:layout_width="412dp"
             android:layout_height="810dp"
-            android:background="@color/color17"
             android:foregroundGravity="center"
             android:paddingStart="5dp"
-            android:paddingTop="5dp"
+            android:paddingTop="3.5dp"
             android:paddingEnd="24dp"
             android:paddingBottom="30dp"
             android:scrollbars="vertical"
+            android:scrollbarSize="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

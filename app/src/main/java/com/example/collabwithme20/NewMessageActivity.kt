@@ -89,7 +89,7 @@ class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListen
             intent.putExtra("email", friend.email)
             intent.putExtra("description", friend.description)
             intent.putExtra("context", "NewMessageActivity")
-            startActivity(intent)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
         }
     }

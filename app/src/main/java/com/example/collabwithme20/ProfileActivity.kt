@@ -75,9 +75,8 @@ class ProfileActivity : AppCompatActivity() {
                 saveDescriptionIntoDB()
                 Toast.makeText(this, "Description updated", Toast.LENGTH_SHORT).show()
             }
-
-
         }
+
 
         //Update skills
 

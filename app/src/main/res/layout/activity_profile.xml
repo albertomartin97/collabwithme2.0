@@ -348,7 +348,6 @@
                 android:fontFamily="@font/alfa_slab_one"
                 android:gravity="start|end"
                 android:hint="@string/description_profile_textView"
-                android:imeOptions=""
                 android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
                 android:lines="5"
                 android:linksClickable="true"
