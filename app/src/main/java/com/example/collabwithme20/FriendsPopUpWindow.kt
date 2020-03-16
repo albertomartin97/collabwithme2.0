@@ -221,7 +221,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
         receiverFriends.delete()
 
         //Delete messages once they are no longer friends
-        removeMessagesFromDB(friendUid)
+       // removeMessagesFromDB(friendUid)
 
 
 

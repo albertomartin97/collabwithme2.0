@@ -65,6 +65,7 @@ class ChatLogActivity : AppCompatActivity() {
         }
 
 
+        //Set activity title
         chatName.text = friendName
 
         createRecyclerView(friendUID)
@@ -73,6 +74,7 @@ class ChatLogActivity : AppCompatActivity() {
             val messageContent = messageEditText.text.toString()
 
             if(messageContent != ""){
+                checkIfUsersChat(friendUID)
                 sendMessage(friendUID)
                 messageEditText.text?.clear()
             }
@@ -144,16 +146,47 @@ class ChatLogActivity : AppCompatActivity() {
             "timestamp" to timestamp
         )
 
-        addChatValueToFriends(friendUID)
-
         //Set message
         documentRef.set(message, SetOptions.merge()).addOnSuccessListener {
             Log.d(TAG, "User profile created for $uid")
             Toast.makeText(this, "Message sent", Toast.LENGTH_SHORT).show()
+
         }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
+
+    }
+
+
+    private fun checkIfUsersChat(friendUID: String){
+        val chatID: String
+
+        if(uid < friendUID) {
+            chatID = uid + friendUID
+        }else{
+            chatID = friendUID + uid
+        }
+
+        val chatRef = db.collection("chat").
+            document(chatID).collection("messages")
+
+        chatRef.get().addOnSuccessListener { document ->
+            if (document != null) {
+                Log.d("exists", "DocumentSnapshot data")
+
+                //Toast.makeText(this, "DocumentExists", Toast.LENGTH_SHORT).show()
+            } else {
+                Log.d("doesn't exist", "No such document")
+                //Toast.makeText(this, "Document not Exists", Toast.LENGTH_SHORT).show()
+                addChatValueToFriends(friendUID)
+            }
+        }
+            .addOnFailureListener { exception ->
+                Log.d("error db", "get failed with ", exception)
+            }
+
+
 
     }
 
@@ -171,7 +204,6 @@ class ChatLogActivity : AppCompatActivity() {
 
         currentUserRef.set(friend, SetOptions.merge()).addOnSuccessListener {
             Log.d(TAG, "User profile created for $uid")
-            addChatValueToFriends(friendUID)
         }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
@@ -179,13 +211,10 @@ class ChatLogActivity : AppCompatActivity() {
 
         friendRef.set(friend, SetOptions.merge()).addOnSuccessListener {
             Log.d(TAG, "User profile created for $uid")
-            addChatValueToFriends(friendUID)
         }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
-
-
 
 
     }

@@ -102,6 +102,7 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
 
 
 
+
     //Go to homescreen when pressed back button
     override fun onBackPressed() {
         val intent = Intent(this, HomeScreenActivity::class.java)
