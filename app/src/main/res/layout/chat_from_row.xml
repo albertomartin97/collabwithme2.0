@@ -22,14 +22,16 @@
 
         <TextView
                 android:id="@+id/messageTextViewRow"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/style25"
                 android:linksClickable="true"
-                android:maxLines="40"
+                android:autoLink="web"
+                android:maxLines="10"
                 android:minLines="1"
+                android:maxWidth="300dp"
                 android:paddingStart="15dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="15dp"

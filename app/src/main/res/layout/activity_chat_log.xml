@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".ChatLogActivity">
 
     <TextView
@@ -39,49 +41,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/left_arrow" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/messageEditText"
-            android:layout_width="297dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            android:autoLink="web|email"
-            android:background="@drawable/style26"
-            android:fontFamily="sans-serif"
-            android:gravity="start|top"
-            android:hint="@string/enter_message"
-            android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
-            android:linksClickable="true"
-            android:paddingStart="20dp"
-            android:paddingTop="13dp"
-            android:paddingEnd="20dp"
-            android:singleLine="false"
-            android:textColor="@color/color6"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/sendMessageBtn"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-            android:id="@+id/sendMessageBtn"
-            android:layout_width="60dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/style24"
-            android:text="@string/send"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/messageEditText" />
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/chatLogRecyclerView"
             android:layout_width="411dp"
-            android:layout_height="712dp"
+            android:layout_height="705dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
@@ -111,5 +75,47 @@
             app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toEndOf="@+id/chatProfilePicture"
             app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/messageEditText"
+            android:layout_width="297dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:autoLink="web|email"
+            android:background="@drawable/style26"
+            android:fontFamily="sans-serif"
+            android:elevation="4dp"
+            android:gravity="start|top"
+            android:hint="@string/enter_message"
+            android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
+            android:linksClickable="true"
+            android:textIsSelectable="true"
+            android:paddingStart="20dp"
+            android:paddingTop="13dp"
+            android:paddingEnd="20dp"
+            android:singleLine="false"
+            android:textColor="@color/color6"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sendMessageBtn"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+            android:id="@+id/sendMessageBtn"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/style24"
+            android:text="@string/send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/messageEditText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

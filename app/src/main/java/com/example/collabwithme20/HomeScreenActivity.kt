@@ -24,32 +24,32 @@ class HomeScreenActivity : AppCompatActivity() {
         updateNotificationIcon()
 
         profileBtn.setOnClickListener{
-            val intentGoToProfileActivity = Intent(this, ProfileActivity::class.java)
-            startActivity(intentGoToProfileActivity,
+            val intent= Intent(this, ProfileActivity::class.java)
+            startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         friendsBtn.setOnClickListener{
-            val intentGoToFriendsActivity = Intent(this, FriendsActivity::class.java)
-            startActivity(intentGoToFriendsActivity,
+            val intent = Intent(this, FriendsActivity::class.java)
+            startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         findPeopleBtn.setOnClickListener{
-            val intentGoToFindPeopleActivity = Intent(this, FindPeopleActivity::class.java)
-            startActivity(intentGoToFindPeopleActivity,
+            val intent = Intent(this, FindPeopleActivity::class.java)
+            startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         messagesBtn.setOnClickListener{
-            val intentGoToMessagesActivity = Intent(this, MessagesActivity::class.java)
-            startActivity(intentGoToMessagesActivity,
+            val intent = Intent(this, MessagesActivity::class.java)
+            startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         settingsBtn.setOnClickListener{
-            val intentGoToSettingsActivity = Intent(this, SettingsActivity::class.java)
-            startActivity(intentGoToSettingsActivity,
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 

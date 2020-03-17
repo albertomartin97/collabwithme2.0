@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="410dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:cardBackgroundColor="@color/cardview_dark_background">
@@ -22,14 +22,16 @@
 
         <TextView
                 android:id="@+id/messageTextViewRow"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/style23"
                 android:linksClickable="true"
-                android:maxLines="40"
+                android:autoLink="web"
+                android:maxLines="10"
                 android:minLines="1"
+                android:maxWidth="300dp"
                 android:paddingStart="15dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="15dp"

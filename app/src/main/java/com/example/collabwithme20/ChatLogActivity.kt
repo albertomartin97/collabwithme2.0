@@ -2,11 +2,16 @@ package com.example.collabwithme20
 
 import android.app.ActivityOptions
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.WindowManager
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -47,7 +52,7 @@ class ChatLogActivity : AppCompatActivity() {
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, MessagesActivity::class.java)
-            startActivity(intentGoToPreviousActivity)
+            startActivity(intentGoToPreviousActivity, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
         //Get data from NewMessageActivity
@@ -63,6 +68,8 @@ class ChatLogActivity : AppCompatActivity() {
             Glide.with(chatProfilePicture).load(friendImageName).transform(CircleCrop())
                 .into(chatProfilePicture)
         }
+
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
 
         //Set activity title
@@ -88,13 +95,14 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
-    private fun createRecyclerView(friendUID: String){
+    private fun createRecyclerView(friendUID: String) {
         val chatName: String
+        val mLinearLayoutManager = LinearLayoutManager(this)
 
         //Check chat name
-        if(friendUID < uid){
+        if (friendUID < uid) {
             chatName = friendUID + uid
-        }else{
+        } else {
             chatName = uid + friendUID
         }
 
@@ -120,10 +128,21 @@ class ChatLogActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        mLinearLayoutManager.stackFromEnd = true //Opens the end of the list from recyclerview
+
+        recyclerView.layoutManager = mLinearLayoutManager
 
         adapter.startListening()
 
+        //Scrolls recyclerView to last message sent
+        adapter.registerAdapterDataObserver( object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(
+                positionStart: Int,
+                itemCount: Int
+            ) {
+                recyclerView.scrollToPosition(positionStart)
+            }
+        })
 
     }
 

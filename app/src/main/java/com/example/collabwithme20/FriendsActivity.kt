@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,6 +46,18 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
             val intent = Intent(this, FriendRequestsActivity::class.java)
             startActivity(intent)
         }
+
+        friendRequestsBtn.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN ->
+                    friendRequestsBtn.setBackgroundResource(R.drawable.bright_bell)
+                MotionEvent.ACTION_UP ->
+                    friendRequestsBtn.setBackgroundResource(R.drawable.bell)
+            }
+            v?.onTouchEvent(event) ?: true
+        }
+
+
 
         //Open FindPeopleActivity (Discover)
         discoverBtn.setOnClickListener {
@@ -139,7 +152,6 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
     }
 
     private fun updateNotificationIcon(){
-        val notificationBell = friendRequestsBtn
 
         val docRef = db.collection("users").document(uid)
             .collection("friend_requests")
@@ -147,10 +159,30 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
         //Check if there are friend requests
         docRef.get().addOnSuccessListener { document ->
             if (document.size() > 0)  {
-                notificationBell.setBackgroundResource(R.drawable.notification)
+                friendRequestsBtn.setBackgroundResource(R.drawable.notification)
+
+                friendRequestsBtn.setOnTouchListener { v, event ->
+                    when (event.action) {
+                        MotionEvent.ACTION_DOWN ->
+                            friendRequestsBtn.setBackgroundResource(R.drawable.bright_notification)
+                        MotionEvent.ACTION_UP ->
+                            friendRequestsBtn.setBackgroundResource(R.drawable.notification)
+                    }
+                    v?.onTouchEvent(event) ?: true
+                }
 
             } else {
-                notificationBell.setBackgroundResource(R.drawable.bell)
+                friendRequestsBtn.setBackgroundResource(R.drawable.bell)
+
+                friendRequestsBtn.setOnTouchListener { v, event ->
+                    when (event.action) {
+                        MotionEvent.ACTION_DOWN ->
+                            friendRequestsBtn.setBackgroundResource(R.drawable.bright_bell)
+                        MotionEvent.ACTION_UP ->
+                            friendRequestsBtn.setBackgroundResource(R.drawable.bell)
+                    }
+                    v?.onTouchEvent(event) ?: true
+                }
             }
         }
 
