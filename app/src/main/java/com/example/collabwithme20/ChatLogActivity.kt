@@ -2,13 +2,17 @@ package com.example.collabwithme20
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
@@ -27,6 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.activity_chat_log.backBtn
+import kotlinx.android.synthetic.main.activity_messages.*
 import java.util.*
 
 
@@ -92,6 +98,28 @@ class ChatLogActivity : AppCompatActivity() {
 
         }
 
+        //Check when keyboard is visible and set size of recyclerView
+        val rootView: ViewGroup = findViewById(android.R.id.content)
+        rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val r = Rect()
+            rootView.getWindowVisibleDisplayFrame(r);
+
+            val heightDiff = rootView.rootView.height - (r.bottom - r.top);
+            if (heightDiff > rootView.rootView.height / 4) {
+                //Keyboard shown
+                chatLogRecyclerView.layoutParams = chatLogRecyclerView.layoutParams.apply {
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    height = 1180
+                }
+
+            }else{
+                //Keyboard
+                chatLogRecyclerView.layoutParams = chatLogRecyclerView.layoutParams.apply {
+                    width = 0
+                    height = 0
+                }
+            }
+        }
 
     }
 
