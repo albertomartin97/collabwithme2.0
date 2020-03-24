@@ -1,15 +1,22 @@
 package com.example.collabwithme20
 
-import android.app.ActivityOptions
+import android.app.*
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_settings.backBtn
 
 class SettingsActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +40,8 @@ class SettingsActivity : AppCompatActivity() {
             val intent = Intent(this,  DeleteAccountPopUpWindow::class.java)
             startActivity(intent)
         }
+
+
     }
 
     //Go to homescreen when pressed back button

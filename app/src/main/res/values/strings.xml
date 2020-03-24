@@ -78,6 +78,7 @@
     <string name="enter_message">Enter Message</string>
     <string name="send">Send</string>
     <string name="empty_messages">Start a new chat</string>
+    <string name="empty_friend_requests">No friend requests</string>
 
 
 </resources>

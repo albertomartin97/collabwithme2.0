@@ -1,11 +1,16 @@
 package com.example.collabwithme20
 
-import android.app.ActivityOptions
+import android.app.*
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.collabwithme20.Adapters.SearchUsersAdapter
@@ -27,10 +32,19 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         private const val TAG = "FindPeopleActivity"
 
     }
+    //RecyclerView
     private lateinit var recyclerView: RecyclerView
 
+    //Firebase
     private val db = FirebaseFirestore.getInstance()
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
+
+    //Notification
+    lateinit var notificationChannel: NotificationChannel
+    lateinit var notificationManager: NotificationManager
+    lateinit var builder: Notification.Builder
+    private var channelID = "com.example.collabwithme20"
+    private var description = "Test notification"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -265,6 +279,9 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                         Log.w(TAG, "Error adding document", e)
                     }
 
+                //Set notification
+                sendNotification(name)
+
             } else {
                 Log.d("doesn't exist", "No such document")
             }
@@ -340,6 +357,43 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
         currentUserRequestRef.delete()
         receiverRequestRef.delete()
+    }
+
+    private fun sendNotification(name: String){
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+
+            val intent = Intent(this, LauncherActivity::class.java)
+            val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                notificationChannel = NotificationChannel(channelID, description, NotificationManager.IMPORTANCE_HIGH)
+                notificationChannel.enableLights(true)
+                notificationChannel.lightColor = Color.GREEN
+                notificationChannel.enableVibration(false)
+                notificationManager.createNotificationChannel(notificationChannel)
+
+
+                builder = Notification.Builder(this, channelID)
+                    .setAutoCancel(true)
+                    .setContentTitle("CollabWithMe")
+                    .setContentText("New friend request from $name")
+                    .setSmallIcon(R.drawable.app_logo_1_round_draw)
+                    .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.app_logo_1_round_draw))
+                    .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+                    .setContentIntent(pendingIntent)
+            }else{
+
+                builder = Notification.Builder(this)
+                    .setAutoCancel(true)
+                    .setContentTitle("CollabWithMe")
+                    .setContentText("Test dis ting")
+                    .setSmallIcon(R.drawable.app_logo_1_round_draw)
+                    .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.app_logo_1_round_draw))
+                    .setContentIntent(pendingIntent)
+            }
+            notificationManager.notify(1234, builder.build())
+
     }
 
 

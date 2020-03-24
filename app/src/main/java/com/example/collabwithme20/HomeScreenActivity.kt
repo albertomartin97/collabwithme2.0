@@ -67,6 +67,38 @@ class HomeScreenActivity : AppCompatActivity() {
             if (document.size() > 0)  {
                 notification.setBackgroundResource(R.drawable.circle_32)
             }
+            if (document.size() == 1){
+                notificationNumberTextView.text = "1"
+            }
+            if (document.size() == 2){
+                notificationNumberTextView.text = "2"
+            }
+            if (document.size() == 3){
+                notificationNumberTextView.text = "3"
+            }
+            if (document.size() == 4){
+                notificationNumberTextView.text = "4"
+            }
+            if (document.size() == 5){
+                notificationNumberTextView.text = "5"
+            }
+            if (document.size() == 6){
+                notificationNumberTextView.text = "6"
+            }
+            if (document.size() == 7){
+                notificationNumberTextView.text = "7"
+            }
+            if (document.size() == 8){
+                notificationNumberTextView.text = "8"
+            }
+            if (document.size() == 9){
+                notificationNumberTextView.text = "9"
+            }
+            if (document.size() > 9){
+                notificationNumberTextView.text = "9+"
+                notificationNumberTextView.x = 1050F
+            }
+
         }
 
     }

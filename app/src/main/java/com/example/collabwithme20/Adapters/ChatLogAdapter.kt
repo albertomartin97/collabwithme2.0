@@ -58,7 +58,6 @@ class ChatLogAdapter(array: FirestoreArray<MessagesModel>,
             inflatedView = layoutInflater.inflate(R.layout.chat_from_row, parent, false)
         }
 
-
         return ChatLogViewHolder(
             inflatedView
         )

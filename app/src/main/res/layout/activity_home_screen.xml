@@ -141,6 +141,16 @@
                     app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                     android:singleLine="false"/>
 
+            <TextView
+                    android:id="@+id/notificationNumberTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="11dp"
+                    android:elevation="6dp"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="@+id/friendsBtn"
+                    app:layout_constraintTop_toTopOf="@+id/friendsBtn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

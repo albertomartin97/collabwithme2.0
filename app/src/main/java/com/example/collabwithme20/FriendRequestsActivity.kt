@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.R.anim
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_friend_requests.*
+import kotlinx.android.synthetic.main.activity_friend_requests.backBtn
 
 
 class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUserClickListener{
@@ -36,12 +38,14 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, FriendsActivity::class.java)
-            val options = ActivityOptions.makeCustomAnimation(this, anim.slide_in_left, anim.fade_out)
+            val options = ActivityOptions.makeCustomAnimation(this,
+                anim.slide_in_left, anim.fade_out)
             startActivity(intentGoToPreviousActivity, options.toBundle())
         }
 
-
         createRecyclerView()
+
+        checkRecyclerViewIsEmpty()
 
     }
 
@@ -199,6 +203,22 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
 
         currentUserRequestRef.delete()
         receiverRequestRef.delete()
+    }
+
+    private fun checkRecyclerViewIsEmpty(){
+        val docRef = db.collection("users").document(uid)
+            .collection("friend_requests")
+
+        docRef.get().addOnSuccessListener { document ->
+            if (document.size() > 0)  {
+                recyclerView.visibility = View.VISIBLE
+            } else {
+                recyclerView.visibility = View.INVISIBLE
+                empty_friend_requests.setText(R.string.empty_friend_requests)
+            }
+        }
+
+
     }
 
     //Go to homescreen when pressed back button
