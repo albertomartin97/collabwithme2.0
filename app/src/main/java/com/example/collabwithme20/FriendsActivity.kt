@@ -158,7 +158,7 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
         //Check if there are friend requests
         docRef.get().addOnSuccessListener { document ->
-            if (document.size() > 0)  {
+            if (document.size() > 0) {
                 friendRequestsBtn.setBackgroundResource(R.drawable.notification)
 
                 friendRequestsBtn.setOnTouchListener { v, event ->
@@ -171,7 +171,42 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
                     v?.onTouchEvent(event) ?: true
                 }
 
-            } else {
+                //Assign notification number
+                if (document.size() == 1){
+                    smallNotificationNumber.text = "1"
+                }
+                if (document.size() == 2){
+                    smallNotificationNumber.text = "2"
+                }
+                if (document.size() == 3){
+                    smallNotificationNumber.text = "3"
+                }
+                if (document.size() == 4){
+                    smallNotificationNumber.text = "4"
+                }
+                if (document.size() == 5){
+                    smallNotificationNumber.text = "5"
+                }
+                if (document.size() == 6){
+                    smallNotificationNumber.text = "6"
+                }
+                if (document.size() == 7){
+                    smallNotificationNumber.text = "7"
+                }
+                if (document.size() == 8){
+                    smallNotificationNumber.text = "8"
+                }
+                if (document.size() == 9){
+                    smallNotificationNumber.text = "9"
+                }
+                if (document.size() > 9){
+                    smallNotificationNumber.text = "9+"
+                    smallNotificationNumber.x = 1050F
+                }
+
+            }
+
+            else {
                 friendRequestsBtn.setBackgroundResource(R.drawable.bell)
 
                 friendRequestsBtn.setOnTouchListener { v, event ->

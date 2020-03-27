@@ -95,7 +95,6 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
             else if(p2.city == city){
                 p0.bindItems(temporaryList[p1], clickListener)
 
-
             }
 
 

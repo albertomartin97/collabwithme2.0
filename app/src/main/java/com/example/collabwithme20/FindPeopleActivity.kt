@@ -55,43 +55,307 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             startActivity(intentGoToPreviousActivity, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
+        //Variable to assign style
+        var allCitiesStyle = 0
+        var londonStyle = 0
+        var bristolStyle = 0
+        var birminghamStyle = 0
+        var manchesterStyle = 0
+        var swanseaStyle = 0
+        var dublinStyle = 0
+        var cardiffStyle = 0
+        var edinburghStyle = 0
+
 
         createRecyclerView("All", "All")
 
-        allCitiesBtn.setOnClickListener {
-            createRecyclerView("All", "All")
-        }
-
-        allSkillsBtn.setOnClickListener {
-            createRecyclerView("All", "All")
-        }
-
-
         //Create recyclerview for each city category
+
+        allCitiesBtn.setOnClickListener {
+            if(allCitiesStyle == 1){
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                allCitiesStyle = 0
+            }else{
+                allCitiesBtn.setBackgroundResource(R.drawable.style27)
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "none")
+
+                allCitiesStyle = 1
+                londonStyle = 0
+                bristolStyle = 0
+                birminghamStyle = 0
+                manchesterStyle = 0
+                swanseaStyle = 0
+                dublinStyle = 0
+                cardiffStyle = 0
+                edinburghStyle = 0
+            }
+        }
+
         searchLondonBtn.setOnClickListener {
-            createRecyclerView("London", "none")
+            if(londonStyle == 1){
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                londonStyle = 0
+            }else{
+                searchLondonBtn.setBackgroundResource(R.drawable.style27)
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("London", "All")
+
+                londonStyle = 1
+                allCitiesStyle = 0
+                bristolStyle = 0
+                birminghamStyle = 0
+                manchesterStyle = 0
+                swanseaStyle = 0
+                dublinStyle = 0
+                cardiffStyle = 0
+                edinburghStyle = 0
+            }
         }
 
         searchBristolBtn.setOnClickListener {
-            createRecyclerView("Bristol", "All")
+            if(bristolStyle == 1){
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                bristolStyle = 0
+            }else{
+                searchBristolBtn.setBackgroundResource(R.drawable.style27)
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("Bristol", "All")
+
+                bristolStyle = 1
+                allCitiesStyle = 0
+                londonStyle = 0
+                birminghamStyle = 0
+                manchesterStyle = 0
+                swanseaStyle = 0
+                dublinStyle = 0
+                cardiffStyle = 0
+                edinburghStyle = 0
+            }
         }
+
         searchBirminghamBtn.setOnClickListener {
-            createRecyclerView("Birmingham", "All")
+            if(birminghamStyle == 1){
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                birminghamStyle = 0
+            }else{
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style27)
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("Birmingham", "All")
+
+                birminghamStyle = 1
+                allCitiesStyle = 0
+                londonStyle = 0
+                bristolStyle = 0
+                manchesterStyle = 0
+                swanseaStyle = 0
+                dublinStyle = 0
+                cardiffStyle = 0
+                edinburghStyle = 0
+            }
         }
+
         searchCardiffBtn.setOnClickListener {
-            createRecyclerView("Cardiff", "All")
+            if(cardiffStyle == 1){
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                cardiffStyle = 0
+            }else{
+
+                searchCardiffBtn.setBackgroundResource(R.drawable.style27)
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("Cardiff", "All")
+
+                cardiffStyle = 1
+                allCitiesStyle = 0
+                londonStyle = 0
+                bristolStyle = 0
+                birminghamStyle = 0
+                manchesterStyle = 0
+                swanseaStyle = 0
+                dublinStyle = 0
+                edinburghStyle = 0
+            }
         }
+
         searchDublinBtn.setOnClickListener {
-            createRecyclerView("Dublin", "All")
+            if(dublinStyle == 1){
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                dublinStyle = 0
+            }else{
+
+                searchDublinBtn.setBackgroundResource(R.drawable.style27)
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("Dublin", "All")
+
+                dublinStyle = 1
+                allCitiesStyle = 0
+                londonStyle = 0
+                bristolStyle = 0
+                birminghamStyle = 0
+                cardiffStyle = 0
+                manchesterStyle = 0
+                swanseaStyle = 0
+                edinburghStyle = 0
+            }
         }
+
         searchEdinburghBtn.setOnClickListener {
-            createRecyclerView("Edinburgh", "All")
+            if(edinburghStyle == 1){
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                edinburghStyle = 0
+            }else{
+
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style27)
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("Edinburgh", "All")
+
+                edinburghStyle = 1
+                allCitiesStyle = 0
+                londonStyle = 0
+                bristolStyle = 0
+                birminghamStyle = 0
+                cardiffStyle = 0
+                manchesterStyle = 0
+                dublinStyle = 0
+                swanseaStyle = 0
+
+            }
         }
+
         searchManchesterBtn.setOnClickListener {
-            createRecyclerView("Manchester", "All")
+            if(manchesterStyle == 1){
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                manchesterStyle = 0
+            }else{
+
+                searchManchesterBtn.setBackgroundResource(R.drawable.style27)
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("Manchester", "All")
+
+                manchesterStyle = 1
+                allCitiesStyle = 0
+                londonStyle = 0
+                bristolStyle = 0
+                birminghamStyle = 0
+                cardiffStyle = 0
+                edinburghStyle = 0
+                dublinStyle = 0
+                swanseaStyle = 0
+
+            }
         }
         searchSwanseaBtn.setOnClickListener {
-            createRecyclerView("Swansea", "All")
+            if(swanseaStyle == 1){
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
+
+                createRecyclerView("All", "All")
+                swanseaStyle = 0
+            }else{
+
+                searchSwanseaBtn.setBackgroundResource(R.drawable.style27)
+                allCitiesBtn.setBackgroundResource(R.drawable.style1)
+                searchLondonBtn.setBackgroundResource(R.drawable.style1)
+                searchBristolBtn.setBackgroundResource(R.drawable.style1)
+                searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
+                searchCardiffBtn.setBackgroundResource(R.drawable.style1)
+                searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
+                searchDublinBtn.setBackgroundResource(R.drawable.style1)
+                searchManchesterBtn.setBackgroundResource(R.drawable.style1)
+
+
+                createRecyclerView("Swansea", "All")
+
+                swanseaStyle = 1
+                allCitiesStyle = 0
+                londonStyle = 0
+                bristolStyle = 0
+                birminghamStyle = 0
+                cardiffStyle = 0
+                edinburghStyle = 0
+                dublinStyle = 0
+                manchesterStyle = 0
+
+            }
         }
 
 
@@ -102,10 +366,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
         val query = db.collection("users")
 
-
         val array = FirestoreArray(query, ClassSnapshotParser(UserModel::class.java))
-
-
 
         val options = FirestoreRecyclerOptions.Builder<UserModel>()
           .setSnapshotArray(array).setLifecycleOwner(this).build()
@@ -280,7 +541,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     }
 
                 //Set notification
-                sendNotification(name)
+                //sendNotification(name)
 
             } else {
                 Log.d("doesn't exist", "No such document")

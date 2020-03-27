@@ -221,25 +221,31 @@ class FriendsPopUpWindow : AppCompatActivity(){
         receiverFriends.delete()
 
         //Delete messages once they are no longer friends
-       // removeMessagesFromDB(friendUid)
+        //removeMessagesFromDB(friendUid)
+
 
 
 
     }
 
     private fun removeMessagesFromDB(friendUid: String) {
-        val chatName: String
+        val chatID: String
+        val batch = db.batch()
 
-        if(friendUid < uid){
-            chatName = friendUid + uid
+        if(uid < friendUid) {
+            chatID = uid + friendUid
         }else{
-            chatName = uid + friendUid
+            chatID = friendUid + uid
         }
 
         val chatRef = db.collection("chat").
-            document(chatName).collection("messages").document()
+            document(chatID).collection("messages")
 
-        chatRef.delete()
+        chatRef.get().result?.forEach {
+            batch.delete(it.reference)
+        }
+
+        batch.commit()
 
 
     }
