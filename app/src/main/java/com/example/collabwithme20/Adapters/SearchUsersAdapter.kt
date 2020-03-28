@@ -146,6 +146,24 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
                     param.width = LinearLayout.LayoutParams.MATCH_PARENT
                     p0.itemView.visibility = View.INVISIBLE
                 }
+                if (skill == "instrumentalist" && p2.instrumentalist == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "instrumentalist" && p2.instrumentalist != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "sound_engineer" && p2.sound_engineer == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "sound_engineer" && p2.sound_engineer != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
 
             }
             //Show user if the value passed is equal to user's city
@@ -208,6 +226,25 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
                     param.width = LinearLayout.LayoutParams.MATCH_PARENT
                     p0.itemView.visibility = View.INVISIBLE
                 }
+                if (skill == "instrumentalist" && p2.instrumentalist == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "instrumentalist" && p2.instrumentalist != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "sound_engineer" && p2.sound_engineer == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "sound_engineer" && p2.sound_engineer != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+
 
             }
 

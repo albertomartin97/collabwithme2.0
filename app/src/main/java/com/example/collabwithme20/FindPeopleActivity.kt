@@ -21,9 +21,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_find_people.*
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.backBtn
 
 
@@ -52,7 +50,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
         backBtn.setOnClickListener {
             val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intentGoToPreviousActivity, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(
+                intentGoToPreviousActivity,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+            )
         }
 
         //Variable to assign style
@@ -73,6 +74,8 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         var videoProductionStyle = 0
         var graphicDesignStyle = 0
         var clothingDesignStyle = 0
+        var instrumentalistStyle = 0
+        var soundEngineerStyle = 0
 
 
 
@@ -84,12 +87,12 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         //Create recyclerview for each city category
 
         allCitiesBtn.setOnClickListener {
-            if(allCitiesStyle == 1){
+            if (allCitiesStyle == 1) {
                 //allCitiesBtn.setBackgroundResource(R.drawable.style1)
 
                 createRecyclerView("All", "All")
                 allCitiesStyle = 0
-            }else{
+            } else {
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
                 searchBristolBtn.setBackgroundResource(R.drawable.style1)
@@ -100,7 +103,34 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("All", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("All", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("All", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("All", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("All", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("All", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("All", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("All", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("All", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("All", "sound_engineer")
+                }
+
 
                 allCitiesStyle = 1
                 londonStyle = 0
@@ -115,13 +145,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchLondonBtn.setOnClickListener {
-            if(londonStyle == 1){
+            if (londonStyle == 1) {
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 londonStyle = 0
-            }else{
+            } else {
                 searchLondonBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchBristolBtn.setBackgroundResource(R.drawable.style1)
@@ -132,7 +162,33 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("London", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("London", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("London", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("London", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("London", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("London", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("London", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("London", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("London", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("London", "sound_engineer")
+                }
 
                 londonStyle = 1
                 allCitiesStyle = 0
@@ -147,13 +203,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchBristolBtn.setOnClickListener {
-            if(bristolStyle == 1){
+            if (bristolStyle == 1) {
                 searchBristolBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 bristolStyle = 0
-            }else{
+            } else {
                 searchBristolBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -164,7 +220,33 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("Bristol", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("Bristol", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("Bristol", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("Bristol", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("Bristol", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("Bristol", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("Bristol", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("Bristol", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("Bristol", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("Bristol", "sound_engineer")
+                }
 
                 bristolStyle = 1
                 allCitiesStyle = 0
@@ -179,13 +261,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchBirminghamBtn.setOnClickListener {
-            if(birminghamStyle == 1){
+            if (birminghamStyle == 1) {
                 searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 birminghamStyle = 0
-            }else{
+            } else {
                 searchBirminghamBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -196,7 +278,33 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("Birmingham", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("Birmingham", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("Birmingham", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("Birmingham", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("Birmingham", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("Birmingham", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("Birmingham", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("Birmingham", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("Birmingham", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("Birmingham", "sound_engineer")
+                }
 
                 birminghamStyle = 1
                 allCitiesStyle = 0
@@ -211,13 +319,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchCardiffBtn.setOnClickListener {
-            if(cardiffStyle == 1){
+            if (cardiffStyle == 1) {
                 searchCardiffBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 cardiffStyle = 0
-            }else{
+            } else {
 
                 searchCardiffBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
@@ -229,7 +337,33 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("Cardiff", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("Cardiff", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("Cardiff", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("Cardiff", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("Cardiff", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("Cardiff", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("Cardiff", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("Cardiff", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("Cardiff", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("Cardiff", "sound_engineer")
+                }
 
                 cardiffStyle = 1
                 allCitiesStyle = 0
@@ -244,13 +378,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchDublinBtn.setOnClickListener {
-            if(dublinStyle == 1){
+            if (dublinStyle == 1) {
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 dublinStyle = 0
-            }else{
+            } else {
 
                 searchDublinBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
@@ -262,7 +396,33 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("Dublin", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("Dublin", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("Dublin", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("Dublin", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("Dublin", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("Dublin", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("Dublin", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("Dublin", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("Dublin", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("Dublin", "sound_engineer")
+                }
 
                 dublinStyle = 1
                 allCitiesStyle = 0
@@ -277,13 +437,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchEdinburghBtn.setOnClickListener {
-            if(edinburghStyle == 1){
+            if (edinburghStyle == 1) {
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 edinburghStyle = 0
-            }else{
+            } else {
 
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
@@ -295,7 +455,33 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("Edinburgh", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("Edinburgh", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("Edinburgh", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("Swansea", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("Edinburgh", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("Edinburgh", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("Edinburgh", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("Edinburgh", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("Edinburgh", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("Edinburgh", "sound_engineer")
+                }
 
                 edinburghStyle = 1
                 allCitiesStyle = 0
@@ -311,13 +497,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchManchesterBtn.setOnClickListener {
-            if(manchesterStyle == 1){
+            if (manchesterStyle == 1) {
                 searchManchesterBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 manchesterStyle = 0
-            }else{
+            } else {
 
                 searchManchesterBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
@@ -329,7 +515,33 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("Manchester", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("Manchester", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("Manchester", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("Swansea", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("Manchester", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("Manchester", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("Manchester", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("Manchester", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("Manchester", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("Manchester", "sound_engineer")
+                }
 
                 manchesterStyle = 1
                 allCitiesStyle = 0
@@ -344,13 +556,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             }
         }
         searchSwanseaBtn.setOnClickListener {
-            if(swanseaStyle == 1){
+            if (swanseaStyle == 1) {
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 swanseaStyle = 0
-            }else{
+            } else {
 
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
@@ -363,7 +575,33 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchManchesterBtn.setBackgroundResource(R.drawable.style1)
 
 
-                createRecyclerView("Swansea", "All")
+                if (allSkillsStyle == 1 || allSkillsStyle == 0) {
+                    createRecyclerView("Swansea", "All")
+                }
+                if (musicProducerStyle == 1) {
+                    createRecyclerView("Swansea", "music_production")
+                }
+                if (rapperStyle == 1) {
+                    createRecyclerView("Swansea", "rapping")
+                }
+                if (singerStyle == 1) {
+                    createRecyclerView("Swansea", "singing")
+                }
+                if (videoProductionStyle == 1) {
+                    createRecyclerView("Swansea", "video_production")
+                }
+                if (graphicDesignStyle == 1) {
+                    createRecyclerView("Swansea", "graphic_designer")
+                }
+                if (clothingDesignStyle == 1) {
+                    createRecyclerView("Swansea", "clothing_design")
+                }
+                if (instrumentalistStyle == 1) {
+                    createRecyclerView("Swansea", "instrumentalist")
+                }
+                if (soundEngineerStyle == 1) {
+                    createRecyclerView("Swansea", "sound_engineer")
+                }
 
                 swanseaStyle = 1
                 allCitiesStyle = 0
@@ -380,38 +618,38 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
         allSkillsBtn.setOnClickListener {
 
-            if(allSkillsStyle == 1){
+            if (allSkillsStyle == 1) {
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "All" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "All" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "All" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "All" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "All" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "All" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "All" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "All" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "All" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
                 }
 
                 musicProducerStyle = 0
-            }else{
+            } else {
 
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
@@ -420,34 +658,36 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "All" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "All" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "All" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "All" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "All" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "All" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "All" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "All" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "All" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
                 }
 
                 allSkillsStyle = 1
@@ -457,45 +697,47 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 videoProductionStyle = 0
                 graphicDesignStyle = 0
                 clothingDesignStyle = 0
+                instrumentalistStyle = 0
+                soundEngineerStyle = 0
             }
         }
 
         searchMusicProducerBtn.setOnClickListener {
 
-            if(musicProducerStyle == 1){
+            if (musicProducerStyle == 1) {
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "All" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "All" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "All" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "All" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "All" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "All" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "All" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "All" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "All" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
                 }
 
                 musicProducerStyle = 0
-            }else{
+            } else {
 
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
@@ -504,34 +746,36 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "music_production" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "music_production")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "music_production" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "music_production")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "music_production" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "music_production")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "music_production" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "music_production")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "music_production" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "music_production")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "music_production" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "music_production")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "music_production" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "music_production")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "music_production" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "music_production")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "music_production" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "music_production")
                 }
 
                 musicProducerStyle = 1
@@ -541,45 +785,47 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 videoProductionStyle = 0
                 graphicDesignStyle = 0
                 clothingDesignStyle = 0
+                instrumentalistStyle = 0
+                soundEngineerStyle = 0
             }
         }
 
         searchSingerBtn.setOnClickListener {
 
-            if(singerStyle == 1){
+            if (singerStyle == 1) {
                 searchSingerBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "All" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "All" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "All" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "All" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "All" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "All" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "All" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "All" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "All" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
                 }
 
                 singerStyle = 0
-            }else{
+            } else {
 
                 searchSingerBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
@@ -588,34 +834,36 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "singing" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "singing")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "singing" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "singing")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "singing" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "singing")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "singing" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "singing")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "singing" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "singing")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "singing" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "singing")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "singing" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "singing")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "singing" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "singing")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "singing" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "singing")
                 }
 
                 singerStyle = 1
@@ -625,45 +873,47 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 videoProductionStyle = 0
                 graphicDesignStyle = 0
                 clothingDesignStyle = 0
+                instrumentalistStyle = 0
+                soundEngineerStyle = 0
             }
         }
 
         searchRapperBtn.setOnClickListener {
 
-            if(rapperStyle == 1){
+            if (rapperStyle == 1) {
                 searchRapperBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "All" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "All" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "All" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "All" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "All" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "All" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "All" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "All" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "All" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
                 }
 
                 rapperStyle = 0
-            }else{
+            } else {
 
                 searchRapperBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
@@ -672,34 +922,36 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "rapping" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "rapping")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "rapping" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "rapping")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "rapping" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "rapping")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "rapping" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "rapping")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "rapping" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "rapping")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "rapping" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "rapping")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "rapping" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "rapping")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "rapping" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "rapping")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "rapping" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "rapping")
                 }
 
                 rapperStyle = 1
@@ -709,45 +961,47 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 videoProductionStyle = 0
                 graphicDesignStyle = 0
                 clothingDesignStyle = 0
+                instrumentalistStyle = 0
+                soundEngineerStyle = 0
             }
         }
 
         searchVideoProductionBtn.setOnClickListener {
 
-            if(videoProductionStyle == 1){
+            if (videoProductionStyle == 1) {
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "All" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "All" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "All" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "All" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "All" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "All" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "All" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "All" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "All" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
                 }
 
                 videoProductionStyle = 0
-            }else{
+            } else {
 
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
@@ -756,34 +1010,36 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchRapperBtn.setBackgroundResource(R.drawable.style1)
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "video_production" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "video_production")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "video_production" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "video_production")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "video_production" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "video_production")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "video_production" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "video_production")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "video_production" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "video_production")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "video_production" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "video_production")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "video_production" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "video_production")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "video_production" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "video_production")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "video_production" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "video_production")
                 }
 
                 videoProductionStyle = 1
@@ -793,45 +1049,47 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 rapperStyle = 0
                 graphicDesignStyle = 0
                 clothingDesignStyle = 0
+                instrumentalistStyle = 0
+                soundEngineerStyle = 0
             }
         }
 
         searchGraphicDesignerBtn.setOnClickListener {
 
-            if(graphicDesignStyle == 1){
+            if (graphicDesignStyle == 1) {
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "All" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "All" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "All" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "All" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "All" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "All" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "All" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "All" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "All" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
                 }
 
                 graphicDesignStyle = 0
-            }else{
+            } else {
 
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
@@ -840,34 +1098,36 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
                 searchRapperBtn.setBackgroundResource(R.drawable.style1)
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "graphic_designer" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "graphic_designer")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "graphic_designer" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "graphic_designer")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "graphic_designer" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "graphic_designer")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "graphic_designer" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "graphic_designer")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "graphic_designer" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "graphic_designer")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "graphic_designer" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "graphic_designer")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "graphic_designer" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "graphic_designer")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "graphic_designer" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "graphic_designer")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "graphic_designer" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "graphic_designer")
                 }
 
                 graphicDesignStyle = 1
@@ -877,45 +1137,47 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 rapperStyle = 0
                 videoProductionStyle = 0
                 clothingDesignStyle = 0
+                instrumentalistStyle = 0
+                soundEngineerStyle = 0
             }
         }
 
         searchClothingDesignBtn.setOnClickListener {
 
-            if(clothingDesignStyle == 1){
+            if (clothingDesignStyle == 1) {
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "All" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "All" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "All" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "All" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "All" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "All" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "All" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "All" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "All" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
                 }
 
                 clothingDesignStyle = 0
-            }else{
+            } else {
 
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
@@ -924,34 +1186,36 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
                 searchRapperBtn.setBackgroundResource(R.drawable.style1)
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
 
-                if (allCitiesStyle == 1 || allCitiesStyle == 0){
-                    createRecyclerView("All", "clothing_design" )
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "clothing_design")
                 }
-                if (londonStyle == 1){
-                    createRecyclerView("London", "clothing_design" )
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "clothing_design")
                 }
-                if (bristolStyle == 1){
-                    createRecyclerView("Bristol", "clothing_design" )
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "clothing_design")
                 }
-                if (birminghamStyle == 1){
-                    createRecyclerView("Birmingham", "clothing_design" )
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "clothing_design")
                 }
-                if (manchesterStyle == 1){
-                    createRecyclerView("Manchester", "clothing_design" )
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "clothing_design")
                 }
-                if (swanseaStyle == 1){
-                    createRecyclerView("Swansea", "clothing_design" )
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "clothing_design")
                 }
-                if (cardiffStyle == 1){
-                    createRecyclerView("Cardiff", "clothing_design" )
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "clothing_design")
                 }
-                if (dublinStyle == 1){
-                    createRecyclerView("Dublin", "clothing_design" )
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "clothing_design")
                 }
-                if (edinburghStyle == 1){
-                    createRecyclerView("Edinburgh", "clothing_design" )
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "clothing_design")
                 }
 
                 clothingDesignStyle = 1
@@ -961,9 +1225,191 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 rapperStyle = 0
                 videoProductionStyle = 0
                 graphicDesignStyle = 0
+                instrumentalistStyle = 0
+                soundEngineerStyle = 0
 
             }
         }
+
+        searchInstrumentalistBtn.setOnClickListener {
+
+            if (instrumentalistStyle == 1) {
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
+                allSkillsBtn.setBackgroundResource(R.drawable.style27)
+
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
+                }
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
+                }
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
+                }
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
+                }
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
+                }
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
+                }
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
+                }
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
+                }
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
+                }
+
+                instrumentalistStyle = 0
+            } else {
+
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style27)
+                allSkillsBtn.setBackgroundResource(R.drawable.style1)
+                searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
+                searchSingerBtn.setBackgroundResource(R.drawable.style1)
+                searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
+                searchRapperBtn.setBackgroundResource(R.drawable.style1)
+                searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
+                searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+
+
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "instrumentalist")
+                }
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "instrumentalist")
+                }
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "instrumentalist")
+                }
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "instrumentalist")
+                }
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "instrumentalist")
+                }
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "instrumentalist")
+                }
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "instrumentalist")
+                }
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "instrumentalist")
+                }
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "instrumentalist")
+                }
+
+                instrumentalistStyle = 1
+                allSkillsStyle = 0
+                musicProducerStyle = 0
+                singerStyle = 0
+                rapperStyle = 0
+                videoProductionStyle = 0
+                graphicDesignStyle = 0
+                clothingDesignStyle = 0
+                soundEngineerStyle = 0
+
+            }
+        }
+
+        searchSoundEngineerBtn.setOnClickListener {
+
+            if (soundEngineerStyle == 1) {
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
+                allSkillsBtn.setBackgroundResource(R.drawable.style27)
+
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "All")
+                }
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "All")
+                }
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "All")
+                }
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "All")
+                }
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "All")
+                }
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "All")
+                }
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "All")
+                }
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "All")
+                }
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "All")
+                }
+
+                soundEngineerStyle = 0
+            } else {
+
+                searchSoundEngineerBtn.setBackgroundResource(R.drawable.style27)
+                allSkillsBtn.setBackgroundResource(R.drawable.style1)
+                searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
+                searchSingerBtn.setBackgroundResource(R.drawable.style1)
+                searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
+                searchRapperBtn.setBackgroundResource(R.drawable.style1)
+                searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
+                searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
+                searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
+
+
+                if (allCitiesStyle == 1 || allCitiesStyle == 0) {
+                    createRecyclerView("All", "sound_engineer")
+                }
+                if (londonStyle == 1) {
+                    createRecyclerView("London", "sound_engineer")
+                }
+                if (bristolStyle == 1) {
+                    createRecyclerView("Bristol", "sound_engineer")
+                }
+                if (birminghamStyle == 1) {
+                    createRecyclerView("Birmingham", "sound_engineer")
+                }
+                if (manchesterStyle == 1) {
+                    createRecyclerView("Manchester", "sound_engineer")
+                }
+                if (swanseaStyle == 1) {
+                    createRecyclerView("Swansea", "sound_engineer")
+                }
+                if (cardiffStyle == 1) {
+                    createRecyclerView("Cardiff", "sound_engineer")
+                }
+                if (dublinStyle == 1) {
+                    createRecyclerView("Dublin", "sound_engineer")
+                }
+                if (edinburghStyle == 1) {
+                    createRecyclerView("Edinburgh", "sound_engineer")
+                }
+
+                soundEngineerStyle = 1
+                allSkillsStyle = 0
+                musicProducerStyle = 0
+                singerStyle = 0
+                rapperStyle = 0
+                videoProductionStyle = 0
+                graphicDesignStyle = 0
+                clothingDesignStyle = 0
+                instrumentalistStyle = 0
+
+            }
+
+    }
+
 
     }
 
