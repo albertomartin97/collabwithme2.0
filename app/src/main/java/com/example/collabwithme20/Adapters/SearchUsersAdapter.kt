@@ -88,12 +88,126 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
             }
             //If value passed is "All" show every person from db
             else if(city == "All") {
-                p0.bindItems(temporaryList[p1], clickListener)
+
+                if(skill == "All"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }
+                if (skill == "music_production" && p2.music_production == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "music_production" && p2.music_production != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "singing" && p2.singing == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "singing" && p2.singing != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "rapping" && p2.rapping == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "rapping" && p2.rapping != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "video_production" && p2.video_production == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "video_production" && p2.video_production != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "graphic_designer" && p2.graphic_design == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "graphic_designer" && p2.graphic_design != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "clothing_design" && p2.clothing_design == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "clothing_design" && p2.clothing_design != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
 
             }
             //Show user if the value passed is equal to user's city
             else if(p2.city == city){
-                p0.bindItems(temporaryList[p1], clickListener)
+
+                if(skill == "All"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }
+                if (skill == "music_production" && p2.music_production == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "music_production" && p2.music_production != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "singing" && p2.singing == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "singing" && p2.singing != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "rapping" && p2.rapping == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "rapping" && p2.rapping != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "video_production" && p2.video_production == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "video_production" && p2.video_production != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "graphic_designer" && p2.graphic_design == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "graphic_designer" && p2.graphic_design != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
+                if (skill == "clothing_design" && p2.clothing_design == "true"){
+                    p0.bindItems(temporaryList[p1], clickListener)
+                }else if (skill == "clothing_design" && p2.clothing_design != "true"){
+                    val param =
+                        p0.itemView.layoutParams as RecyclerView.LayoutParams
+                    param.height = 0
+                    param.width = LinearLayout.LayoutParams.MATCH_PARENT
+                    p0.itemView.visibility = View.INVISIBLE
+                }
 
             }
 

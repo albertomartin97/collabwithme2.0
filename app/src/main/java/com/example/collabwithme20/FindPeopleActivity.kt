@@ -88,7 +88,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
-                createRecyclerView("All", "none")
+                createRecyclerView("All", "All")
 
                 allCitiesStyle = 1
                 londonStyle = 0
@@ -358,6 +358,252 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             }
         }
 
+        allSkillsBtn.setOnClickListener {
+            if (allCitiesStyle == 1 || allCitiesStyle == 0){
+                createRecyclerView("All", "All" )
+            }
+            if (londonStyle == 1){
+                createRecyclerView("London", "All" )
+            }
+            if (bristolStyle == 1){
+                createRecyclerView("Bristol", "All" )
+            }
+            if (birminghamStyle == 1){
+                createRecyclerView("Birmingham", "All" )
+            }
+            if (manchesterStyle == 1){
+                createRecyclerView("Manchester", "All" )
+            }
+            if (swanseaStyle == 1){
+                createRecyclerView("Swansea", "All" )
+            }
+            if (cardiffStyle == 1){
+                createRecyclerView("Cardiff", "All" )
+            }
+            if (dublinStyle == 1){
+                createRecyclerView("Dublin", "All" )
+            }
+            if (edinburghStyle == 1){
+                createRecyclerView("Edinburgh", "All" )
+            }
+        }
+
+        searchMusicProducerBtn.setOnClickListener {
+
+            if (allCitiesStyle == 1 || allCitiesStyle == 0){
+                createRecyclerView("All", "music_production" )
+            }
+            if (londonStyle == 1){
+                createRecyclerView("London", "music_production" )
+            }
+            if (bristolStyle == 1){
+                createRecyclerView("Bristol", "music_production" )
+            }
+            if (birminghamStyle == 1){
+                createRecyclerView("Birmingham", "music_production" )
+            }
+            if (manchesterStyle == 1){
+                createRecyclerView("Manchester", "music_production" )
+            }
+            if (swanseaStyle == 1){
+                createRecyclerView("Swansea", "music_production" )
+            }
+            if (cardiffStyle == 1){
+                createRecyclerView("Cardiff", "music_production" )
+            }
+            if (dublinStyle == 1){
+                createRecyclerView("Dublin", "music_production" )
+            }
+            if (edinburghStyle == 1){
+                createRecyclerView("Edinburgh", "music_production" )
+            }
+        }
+
+        searchSingerBtn.setOnClickListener {
+
+            if (allCitiesStyle == 1 || allCitiesStyle == 0){
+                createRecyclerView("All", "singing" )
+            }
+            if (londonStyle == 1){
+                createRecyclerView("London", "singing" )
+            }
+            if (bristolStyle == 1){
+                createRecyclerView("Bristol", "singing" )
+            }
+            if (birminghamStyle == 1){
+                createRecyclerView("Birmingham", "singing" )
+            }
+            if (manchesterStyle == 1){
+                createRecyclerView("Manchester", "singing" )
+            }
+            if (swanseaStyle == 1){
+                createRecyclerView("Swansea", "singing" )
+            }
+            if (cardiffStyle == 1){
+                createRecyclerView("Cardiff", "singing" )
+            }
+            if (dublinStyle == 1){
+                createRecyclerView("Dublin", "singing" )
+            }
+            if (edinburghStyle == 1){
+                createRecyclerView("Edinburgh", "singing" )
+            }
+        }
+
+        searchSingerBtn.setOnClickListener {
+
+            if (allCitiesStyle == 1 || allCitiesStyle == 0){
+                createRecyclerView("All", "singing" )
+            }
+            if (londonStyle == 1){
+                createRecyclerView("London", "singing" )
+            }
+            if (bristolStyle == 1){
+                createRecyclerView("Bristol", "singing" )
+            }
+            if (birminghamStyle == 1){
+                createRecyclerView("Birmingham", "singing" )
+            }
+            if (manchesterStyle == 1){
+                createRecyclerView("Manchester", "singing" )
+            }
+            if (swanseaStyle == 1){
+                createRecyclerView("Swansea", "singing" )
+            }
+            if (cardiffStyle == 1){
+                createRecyclerView("Cardiff", "singing" )
+            }
+            if (dublinStyle == 1){
+                createRecyclerView("Dublin", "singing" )
+            }
+            if (edinburghStyle == 1){
+                createRecyclerView("Edinburgh", "singing" )
+            }
+        }
+
+        searchRapperBtn.setOnClickListener {
+
+            if (allCitiesStyle == 1 || allCitiesStyle == 0){
+                createRecyclerView("All", "rapping" )
+            }
+            if (londonStyle == 1){
+                createRecyclerView("London", "rapping" )
+            }
+            if (bristolStyle == 1){
+                createRecyclerView("Bristol", "rapping" )
+            }
+            if (birminghamStyle == 1){
+                createRecyclerView("Birmingham", "rapping" )
+            }
+            if (manchesterStyle == 1){
+                createRecyclerView("Manchester", "rapping" )
+            }
+            if (swanseaStyle == 1){
+                createRecyclerView("Swansea", "rapping" )
+            }
+            if (cardiffStyle == 1){
+                createRecyclerView("Cardiff", "rapping" )
+            }
+            if (dublinStyle == 1){
+                createRecyclerView("Dublin", "rapping" )
+            }
+            if (edinburghStyle == 1){
+                createRecyclerView("Edinburgh", "rapping" )
+            }
+        }
+
+        searchVideoProductionBtn.setOnClickListener {
+
+            if (allCitiesStyle == 1 || allCitiesStyle == 0){
+                createRecyclerView("All", "video_production" )
+            }
+            if (londonStyle == 1){
+                createRecyclerView("London", "video_production" )
+            }
+            if (bristolStyle == 1){
+                createRecyclerView("Bristol", "video_production" )
+            }
+            if (birminghamStyle == 1){
+                createRecyclerView("Birmingham", "video_production" )
+            }
+            if (manchesterStyle == 1){
+                createRecyclerView("Manchester", "video_production" )
+            }
+            if (swanseaStyle == 1){
+                createRecyclerView("Swansea", "video_production" )
+            }
+            if (cardiffStyle == 1){
+                createRecyclerView("Cardiff", "video_production" )
+            }
+            if (dublinStyle == 1){
+                createRecyclerView("Dublin", "video_production" )
+            }
+            if (edinburghStyle == 1){
+                createRecyclerView("Edinburgh", "video_production" )
+            }
+        }
+
+        searchGraphicDesignerBtn.setOnClickListener {
+
+            if (allCitiesStyle == 1 || allCitiesStyle == 0){
+                createRecyclerView("All", "graphic_designer" )
+            }
+            if (londonStyle == 1){
+                createRecyclerView("London", "graphic_designer" )
+            }
+            if (bristolStyle == 1){
+                createRecyclerView("Bristol", "graphic_designer" )
+            }
+            if (birminghamStyle == 1){
+                createRecyclerView("Birmingham", "graphic_designer" )
+            }
+            if (manchesterStyle == 1){
+                createRecyclerView("Manchester", "graphic_designer" )
+            }
+            if (swanseaStyle == 1){
+                createRecyclerView("Swansea", "graphic_designer" )
+            }
+            if (cardiffStyle == 1){
+                createRecyclerView("Cardiff", "graphic_designer" )
+            }
+            if (dublinStyle == 1){
+                createRecyclerView("Dublin", "graphic_designer" )
+            }
+            if (edinburghStyle == 1){
+                createRecyclerView("Edinburgh", "graphic_designer" )
+            }
+        }
+
+        searchClothingDesignBtn.setOnClickListener {
+
+            if (allCitiesStyle == 1 || allCitiesStyle == 0){
+                createRecyclerView("All", "clothing_design" )
+            }
+            if (londonStyle == 1){
+                createRecyclerView("London", "clothing_design" )
+            }
+            if (bristolStyle == 1){
+                createRecyclerView("Bristol", "clothing_design" )
+            }
+            if (birminghamStyle == 1){
+                createRecyclerView("Birmingham", "clothing_design" )
+            }
+            if (manchesterStyle == 1){
+                createRecyclerView("Manchester", "clothing_design" )
+            }
+            if (swanseaStyle == 1){
+                createRecyclerView("Swansea", "clothing_design" )
+            }
+            if (cardiffStyle == 1){
+                createRecyclerView("Cardiff", "clothing_design" )
+            }
+            if (dublinStyle == 1){
+                createRecyclerView("Dublin", "clothing_design" )
+            }
+            if (edinburghStyle == 1){
+                createRecyclerView("Edinburgh", "clothing_design" )
+            }
+        }
 
     }
 
@@ -656,7 +902,6 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             notificationManager.notify(1234, builder.build())
 
     }
-
 
     //Go to homescreen when pressed back button
     override fun onBackPressed() {
