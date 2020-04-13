@@ -13,7 +13,10 @@ import kotlinx.android.synthetic.main.activity_home_screen.*
 
 class HomeScreenActivity : AppCompatActivity() {
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +59,9 @@ class HomeScreenActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Checks number of friend requests in db and updates notification icon
+     */
     private fun updateNotificationIcon(){
         val notification = notificationHomeScreen
 
@@ -103,8 +109,10 @@ class HomeScreenActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Leaves the app when back button is pressed
+     */
     override fun onBackPressed() {
-        //Intent to go to homescreen of the phone
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_HOME)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK

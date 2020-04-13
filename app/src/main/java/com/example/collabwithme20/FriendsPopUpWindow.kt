@@ -29,6 +29,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
 
     }
 
+    //Initialise variables
     private var imageName = ""
     private var userName = ""
     private var userUID = ""
@@ -37,7 +38,10 @@ class FriendsPopUpWindow : AppCompatActivity(){
     private var description = ""
     private var context = ""
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,6 +89,7 @@ class FriendsPopUpWindow : AppCompatActivity(){
         }
         colorAnimation.start()
 
+        //Check last activity
         if(context == "FriendsActivity"){
             removeFriendPopUp.setOnClickListener {
                 Toast.makeText(this, "Friend removed", Toast.LENGTH_SHORT).show()
@@ -104,7 +109,9 @@ class FriendsPopUpWindow : AppCompatActivity(){
 
     }
 
-
+    /**
+     * When back button is pressed closes activity
+     */
     override fun onBackPressed() {
         // Fade animation for the background of Popup Window when you press the back button
         val alpha = 100 // between 0-255
@@ -128,6 +135,10 @@ class FriendsPopUpWindow : AppCompatActivity(){
         colorAnimation.start()
     }
 
+    /**
+     * Changes style in button when skill equals true
+     * @param uid
+     */
     private fun showSkills(uid: String) {
 
         val docRef = db.collection("users").document(uid)
@@ -189,6 +200,10 @@ class FriendsPopUpWindow : AppCompatActivity(){
         }
     }
 
+    /**
+     * Gets friend's description from db
+     * @param friendUid
+     */
     private fun setDescription(friendUid: String){
 
         val docRef = db.collection("users").document(friendUid)
@@ -208,6 +223,11 @@ class FriendsPopUpWindow : AppCompatActivity(){
             }
 
     }
+
+    /**
+     * Removes friend from db
+     * @param friendUid
+     */
     private fun removeFriendFromDB(friendUid: String){
 
         val currentUserFriends = db.collection("users").
@@ -220,37 +240,12 @@ class FriendsPopUpWindow : AppCompatActivity(){
         currentUserFriends.delete()
         receiverFriends.delete()
 
-        //Delete messages once they are no longer friends
-        //removeMessagesFromDB(friendUid)
-
-
-
-
     }
 
-    private fun removeMessagesFromDB(friendUid: String) {
-        val chatID: String
-        val batch = db.batch()
-
-        if(uid < friendUid) {
-            chatID = uid + friendUid
-        }else{
-            chatID = friendUid + uid
-        }
-
-        val chatRef = db.collection("chat").
-            document(chatID).collection("messages")
-
-        chatRef.get().result?.forEach {
-            batch.delete(it.reference)
-        }
-
-        batch.commit()
-
-
-    }
-
-
+    /**
+     * Deletes request from db
+     * @param friendUid
+     */
     private fun declineRequest(friendUid: String){
         val currentUserRequests = db.collection("users").
             document(uid).collection("friend_requests")

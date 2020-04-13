@@ -25,9 +25,13 @@ class ProfilePictureActivity : AppCompatActivity() {
 
     }
 
-
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
+
+    //Initialise uri
     private var selectedPhotoUri: Uri? = null
 
 
@@ -87,6 +91,12 @@ class ProfilePictureActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Gets image data
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -106,6 +116,9 @@ class ProfilePictureActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Uploads image into firebase storage
+     */
     private fun uploadImageToFirebase(){
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
@@ -126,7 +139,10 @@ class ProfilePictureActivity : AppCompatActivity() {
     }
 
 
-
+    /**
+     * Updates image url into db
+     * @param profileImageUrl
+     */
     private fun saveImageUrlToDB(profileImageUrl : String){
         val ref = db.collection("users").document(uid)
 
@@ -144,6 +160,9 @@ class ProfilePictureActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * Go to Profile activity if caller is Profile Activity
+     */
     override fun onBackPressed() {
         val caller = intent.getStringExtra("caller")
 

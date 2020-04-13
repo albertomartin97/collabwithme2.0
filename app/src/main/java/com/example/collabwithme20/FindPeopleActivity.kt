@@ -30,19 +30,14 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         private const val TAG = "FindPeopleActivity"
 
     }
-    //RecyclerView
+    //Declares recyclerView
     private lateinit var recyclerView: RecyclerView
 
-    //Firebase
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
-    private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
-    //Notification
-    lateinit var notificationChannel: NotificationChannel
-    lateinit var notificationManager: NotificationManager
-    lateinit var builder: Notification.Builder
-    private var channelID = "com.example.collabwithme20"
-    private var description = "Test notification"
+    //Get current user id
+    private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +51,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             )
         }
 
-        //Variable to assign style
+        //Variables to assign style
         var allCitiesStyle = 0
         var londonStyle = 0
         var bristolStyle = 0
@@ -78,21 +73,25 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         var soundEngineerStyle = 0
 
 
-
+        //Set initial style for button
         allCitiesBtn.setBackgroundResource(R.drawable.style27)
         allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+        //Create recyclerview when launching activity
         createRecyclerView("All", "All")
 
-        //Create recyclerview for each city category
+
+        //Create recyclerview when clicking on each city option
 
         allCitiesBtn.setOnClickListener {
+            //If button has been pressed
             if (allCitiesStyle == 1) {
-                //allCitiesBtn.setBackgroundResource(R.drawable.style1)
 
                 createRecyclerView("All", "All")
+                //Update style variable
                 allCitiesStyle = 0
             } else {
+                //Change styles
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
                 searchBristolBtn.setBackgroundResource(R.drawable.style1)
@@ -103,6 +102,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -131,7 +131,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("All", "sound_engineer")
                 }
 
-
+                //Update style variables
                 allCitiesStyle = 1
                 londonStyle = 0
                 bristolStyle = 0
@@ -143,15 +143,18 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 edinburghStyle = 0
             }
         }
-
         searchLondonBtn.setOnClickListener {
+            //If button is unpressed
             if (londonStyle == 1) {
+                //Change styles
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
+                //Update style variable
                 londonStyle = 0
             } else {
+                //Change styles
                 searchLondonBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchBristolBtn.setBackgroundResource(R.drawable.style1)
@@ -162,6 +165,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("London", "All")
                 }
@@ -190,6 +194,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("London", "sound_engineer")
                 }
 
+                //Update style variables
                 londonStyle = 1
                 allCitiesStyle = 0
                 bristolStyle = 0
@@ -201,15 +206,18 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 edinburghStyle = 0
             }
         }
-
         searchBristolBtn.setOnClickListener {
+            //If button is unpressed
             if (bristolStyle == 1) {
+                //Change styles
                 searchBristolBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
+                //Update style variable
                 bristolStyle = 0
             } else {
+                //Change styles
                 searchBristolBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -220,6 +228,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("Bristol", "All")
                 }
@@ -248,6 +257,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Bristol", "sound_engineer")
                 }
 
+                //Update style variables
                 bristolStyle = 1
                 allCitiesStyle = 0
                 londonStyle = 0
@@ -259,15 +269,18 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 edinburghStyle = 0
             }
         }
-
         searchBirminghamBtn.setOnClickListener {
+            //If button is unpressed
             if (birminghamStyle == 1) {
+                //Change styles
                 searchBirminghamBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
+                //Update style variable
                 birminghamStyle = 0
             } else {
+                //Change styles
                 searchBirminghamBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -278,6 +291,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("Birmingham", "All")
                 }
@@ -306,6 +320,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Birmingham", "sound_engineer")
                 }
 
+                //Update style variables
                 birminghamStyle = 1
                 allCitiesStyle = 0
                 londonStyle = 0
@@ -317,16 +332,18 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 edinburghStyle = 0
             }
         }
-
         searchCardiffBtn.setOnClickListener {
+            //If button is unpressed
             if (cardiffStyle == 1) {
+                //Change styles
                 searchCardiffBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
+                //Update style variable
                 cardiffStyle = 0
             } else {
-
+                //Change styles
                 searchCardiffBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -337,6 +354,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("Cardiff", "All")
                 }
@@ -365,6 +383,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Cardiff", "sound_engineer")
                 }
 
+                //Update style variables
                 cardiffStyle = 1
                 allCitiesStyle = 0
                 londonStyle = 0
@@ -376,16 +395,18 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 edinburghStyle = 0
             }
         }
-
         searchDublinBtn.setOnClickListener {
+            //If button is unpressed
             if (dublinStyle == 1) {
+                //Change styles
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
+                //Update variable style
                 dublinStyle = 0
             } else {
-
+                //Change styles
                 searchDublinBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -396,6 +417,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
 
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("Dublin", "All")
                 }
@@ -424,6 +446,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Dublin", "sound_engineer")
                 }
 
+                //Update style variables
                 dublinStyle = 1
                 allCitiesStyle = 0
                 londonStyle = 0
@@ -435,16 +458,18 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 edinburghStyle = 0
             }
         }
-
         searchEdinburghBtn.setOnClickListener {
+            //If button is unpressed
             if (edinburghStyle == 1) {
+                //Change styles
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
+                //Update style variable
                 edinburghStyle = 0
             } else {
-
+                //Change styles
                 searchEdinburghBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -455,6 +480,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
 
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("Edinburgh", "All")
                 }
@@ -483,6 +509,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "sound_engineer")
                 }
 
+                //Update style variables
                 edinburghStyle = 1
                 allCitiesStyle = 0
                 londonStyle = 0
@@ -495,16 +522,17 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
             }
         }
-
         searchManchesterBtn.setOnClickListener {
+            //If button is unpressed
             if (manchesterStyle == 1) {
+                //Change styles
                 searchManchesterBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 manchesterStyle = 0
             } else {
-
+                //Change styles
                 searchManchesterBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -515,6 +543,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
 
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("Manchester", "All")
                 }
@@ -543,6 +572,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Manchester", "sound_engineer")
                 }
 
+                //Update style variables
                 manchesterStyle = 1
                 allCitiesStyle = 0
                 londonStyle = 0
@@ -556,14 +586,16 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             }
         }
         searchSwanseaBtn.setOnClickListener {
+            //If button is unpressed
             if (swanseaStyle == 1) {
+                //Change styles
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style1)
                 allCitiesBtn.setBackgroundResource(R.drawable.style27)
 
                 createRecyclerView("All", "All")
                 swanseaStyle = 0
             } else {
-
+                //Change styles
                 searchSwanseaBtn.setBackgroundResource(R.drawable.style27)
                 allCitiesBtn.setBackgroundResource(R.drawable.style1)
                 searchLondonBtn.setBackgroundResource(R.drawable.style1)
@@ -574,7 +606,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchDublinBtn.setBackgroundResource(R.drawable.style1)
                 searchManchesterBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allSkillsStyle == 1 || allSkillsStyle == 0) {
                     createRecyclerView("Swansea", "All")
                 }
@@ -603,6 +635,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Swansea", "sound_engineer")
                 }
 
+                //Update style variables
                 swanseaStyle = 1
                 allCitiesStyle = 0
                 londonStyle = 0
@@ -616,10 +649,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
             }
         }
 
+        //Create recyclerview when clicking on each skill option
+
         allSkillsBtn.setOnClickListener {
 
             if (allSkillsStyle == 1) {
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -648,9 +684,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variable
                 musicProducerStyle = 0
             } else {
-
+                //Change styles
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
                 searchSingerBtn.setBackgroundResource(R.drawable.style1)
@@ -661,7 +698,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -690,6 +727,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variables
                 allSkillsStyle = 1
                 musicProducerStyle = 0
                 singerStyle = 0
@@ -703,11 +741,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchMusicProducerBtn.setOnClickListener {
-
+            //If button is unpressed
             if (musicProducerStyle == 1) {
+                //Change styles
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -736,9 +776,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variable
                 musicProducerStyle = 0
             } else {
-
+                //Change styles
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
                 searchSingerBtn.setBackgroundResource(R.drawable.style1)
@@ -749,7 +790,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "music_production")
                 }
@@ -778,6 +819,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "music_production")
                 }
 
+                //Update style variables
                 musicProducerStyle = 1
                 allSkillsStyle = 0
                 singerStyle = 0
@@ -791,11 +833,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchSingerBtn.setOnClickListener {
-
+            //If button is unpressed
             if (singerStyle == 1) {
+                //Change styles
                 searchSingerBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -824,9 +868,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variable
                 singerStyle = 0
             } else {
-
+                //Change styles
                 searchSingerBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
@@ -837,7 +882,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "singing")
                 }
@@ -866,6 +911,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "singing")
                 }
 
+                //Update style variables
                 singerStyle = 1
                 allSkillsStyle = 0
                 musicProducerStyle = 0
@@ -879,11 +925,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchRapperBtn.setOnClickListener {
-
+            //If button is unpressed
             if (rapperStyle == 1) {
+                //Change styles
                 searchRapperBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -912,9 +960,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variables
                 rapperStyle = 0
             } else {
-
+                //Change styles
                 searchRapperBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
@@ -925,7 +974,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variable
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "rapping")
                 }
@@ -954,6 +1003,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "rapping")
                 }
 
+                //Update style variable
                 rapperStyle = 1
                 allSkillsStyle = 0
                 musicProducerStyle = 0
@@ -967,11 +1017,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchVideoProductionBtn.setOnClickListener {
-
+            //If button is unpressed
             if (videoProductionStyle == 1) {
+                //Change styles
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -1000,9 +1052,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variable
                 videoProductionStyle = 0
             } else {
-
+                //Change styles
                 searchVideoProductionBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
@@ -1013,7 +1066,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "video_production")
                 }
@@ -1042,6 +1095,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "video_production")
                 }
 
+                //Update style variables
                 videoProductionStyle = 1
                 allSkillsStyle = 0
                 musicProducerStyle = 0
@@ -1055,11 +1109,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchGraphicDesignerBtn.setOnClickListener {
-
+            //If button is unpressed
             if (graphicDesignStyle == 1) {
+                //Change styles
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -1088,9 +1144,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variable
                 graphicDesignStyle = 0
             } else {
-
+                //Change styles
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
@@ -1101,7 +1158,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "graphic_designer")
                 }
@@ -1130,6 +1187,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "graphic_designer")
                 }
 
+                //Update style variables
                 graphicDesignStyle = 1
                 allSkillsStyle = 0
                 musicProducerStyle = 0
@@ -1143,11 +1201,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchClothingDesignBtn.setOnClickListener {
-
+            //If button is unpressed
             if (clothingDesignStyle == 1) {
+                //Change styles
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -1176,9 +1236,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variable
                 clothingDesignStyle = 0
             } else {
-
+                //Change styles
                 searchClothingDesignBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
@@ -1189,7 +1250,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "clothing_design")
                 }
@@ -1218,6 +1279,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "clothing_design")
                 }
 
+                //Update style variables
                 clothingDesignStyle = 1
                 allSkillsStyle = 0
                 musicProducerStyle = 0
@@ -1232,11 +1294,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchInstrumentalistBtn.setOnClickListener {
-
+            //If button is unpressed
             if (instrumentalistStyle == 1) {
+                //Change styles
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -1265,9 +1329,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variable
                 instrumentalistStyle = 0
             } else {
-
+                //Change styles
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
@@ -1278,7 +1343,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "instrumentalist")
                 }
@@ -1307,6 +1372,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "instrumentalist")
                 }
 
+                //Update style variables
                 instrumentalistStyle = 1
                 allSkillsStyle = 0
                 musicProducerStyle = 0
@@ -1321,11 +1387,13 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         }
 
         searchSoundEngineerBtn.setOnClickListener {
-
+            //If button is unpressed
             if (soundEngineerStyle == 1) {
+                //Change styles
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style1)
                 allSkillsBtn.setBackgroundResource(R.drawable.style27)
 
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "All")
                 }
@@ -1354,9 +1422,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "All")
                 }
 
+                //Update style variable
                 soundEngineerStyle = 0
             } else {
-
+                //Change styles
                 searchSoundEngineerBtn.setBackgroundResource(R.drawable.style27)
                 allSkillsBtn.setBackgroundResource(R.drawable.style1)
                 searchMusicProducerBtn.setBackgroundResource(R.drawable.style1)
@@ -1367,7 +1436,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 searchGraphicDesignerBtn.setBackgroundResource(R.drawable.style1)
                 searchInstrumentalistBtn.setBackgroundResource(R.drawable.style1)
 
-
+                //Check style variables
                 if (allCitiesStyle == 1 || allCitiesStyle == 0) {
                     createRecyclerView("All", "sound_engineer")
                 }
@@ -1396,6 +1465,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                     createRecyclerView("Edinburgh", "sound_engineer")
                 }
 
+                //Update style variables
                 soundEngineerStyle = 1
                 allSkillsStyle = 0
                 musicProducerStyle = 0
@@ -1413,7 +1483,11 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
-
+    /**
+     * Create recyclerView according to city and skill values
+     * @param city
+     * @param skill
+     */
     private fun createRecyclerView(city: String, skill: String){
 
         val query = db.collection("users")
@@ -1445,6 +1519,12 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
+    /**
+     * Manages when user clicks on recyclerView elements
+     * @param user
+     * @param position
+     * @param buttonName
+     */
     override fun onUserClick(user: UserModel, position: Int, buttonName: String){
 
         //Check button being clicked in recyclerView
@@ -1465,6 +1545,15 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
+    /**
+     * When user tries adding friend it checks if they are already friends and otherwise calls
+     * checkRequest
+     * @param friendUID
+     * @param friendName
+     * @param profileImage
+     * @param friendCity
+     * @param friendEmail
+     */
     private fun checkIfUsersAreFriends(friendUID: String, friendName: String, profileImage: String,
                                        friendCity: String, friendEmail: String){
 
@@ -1479,6 +1568,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                 if(name == friendName){
                     Toast.makeText(this, "You are already friends" , Toast.LENGTH_SHORT).show()
                 }else{
+                    //Calls checkRequest
                     checkRequest(friendUID, friendName, profileImage, friendCity, friendEmail)
                 }
 
@@ -1494,6 +1584,15 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
+    /**
+     * Checks if user has already received a request from that person and if it is true calls
+     * addCurrentUserToFriendsDB and otherwise calls sendRequestToFriend
+     * @param friendUID
+     * @param friendName
+     * @param profileImage
+     * @param friendCity
+     * @param friendEmail
+     */
     private fun checkRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
 
         val currentUserRequestRef = db.collection("users").document(uid)
@@ -1519,8 +1618,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
                 //If friend has sent you a request add to friends
                 if (trueOrFalse == "true"){
+                    //Save current user to the other user's friend list
                     addCurrentUserToFriendsDB(friendUID)
 
+                    //Save friend to current user's friend list
                     currentUserFriendsRef.set(friendUser).addOnSuccessListener {
                         Log.d(TAG, "Friend created for $uid")
                     }
@@ -1550,6 +1651,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
+    /**
+     * Stores friends request into that user's db
+     * @param friendUID
+     */
     private fun sendRequestToFriend(friendUID: String){
 
         val receiverRequestRef = db.collection("users").document(friendUID)
@@ -1592,8 +1697,6 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                         Log.w(TAG, "Error adding document", e)
                     }
 
-                //Set notification
-                //sendNotification(name)
 
             } else {
                 Log.d("doesn't exist", "No such document")
@@ -1608,6 +1711,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
+    /**
+     * Adds current user to the other user's friend list
+     * @param friendUID
+     */
     private fun addCurrentUserToFriendsDB(friendUID: String){
         val receiverFriendsRef  = db.collection("users").document(friendUID)
             .collection("friends").document(uid)
@@ -1648,6 +1755,7 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
                         Log.w(TAG, "Error adding document", e)
                     }
 
+                //Delete requests
                 deleteFriendRequests(friendUID)
             } else {
                 Log.d("doesn't exist", "No such document")
@@ -1660,6 +1768,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
 
     }
 
+    /**
+     * Delete friend requests once users become friends
+     * @param friendUID
+     */
     private fun deleteFriendRequests(friendUID: String){
 
         val currentUserRequestRef = db.collection("users").document(uid)
@@ -1672,44 +1784,10 @@ class FindPeopleActivity : AppCompatActivity(), SearchUsersAdapter.OnUserClickLi
         receiverRequestRef.delete()
     }
 
-    private fun sendNotification(name: String){
-        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-
-            val intent = Intent(this, LauncherActivity::class.java)
-            val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                notificationChannel = NotificationChannel(channelID, description, NotificationManager.IMPORTANCE_HIGH)
-                notificationChannel.enableLights(true)
-                notificationChannel.lightColor = Color.GREEN
-                notificationChannel.enableVibration(false)
-                notificationManager.createNotificationChannel(notificationChannel)
-
-
-                builder = Notification.Builder(this, channelID)
-                    .setAutoCancel(true)
-                    .setContentTitle("CollabWithMe")
-                    .setContentText("New friend request from $name")
-                    .setSmallIcon(R.drawable.app_logo_1_round_draw)
-                    .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.app_logo_1_round_draw))
-                    .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                    .setContentIntent(pendingIntent)
-            }else{
-
-                builder = Notification.Builder(this)
-                    .setAutoCancel(true)
-                    .setContentTitle("CollabWithMe")
-                    .setContentText("Test dis ting")
-                    .setSmallIcon(R.drawable.app_logo_1_round_draw)
-                    .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.app_logo_1_round_draw))
-                    .setContentIntent(pendingIntent)
-            }
-            notificationManager.notify(1234, builder.build())
-
-    }
-
-    //Go to homescreen when pressed back button
+    /**
+     * Go to home screen when back button is pressed
+     */
     override fun onBackPressed() {
         val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())

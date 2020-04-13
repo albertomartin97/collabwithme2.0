@@ -27,9 +27,13 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
         private const val TAG = "FriendRequestsActivity"
 
     }
+    //Declares recyclerView
     private lateinit var recyclerView: RecyclerView
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +53,9 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
 
     }
 
+    /**
+     * Creates recyclerView of friend requests
+     */
     private fun createRecyclerView(){
 
         val query = db.collection("users").document(uid)
@@ -84,6 +91,12 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
 
     }
 
+    /**
+     * Manages when user clicks on recyclerView elements
+     * @param friendRequest
+     * @param position
+     * @param buttonName
+     */
     override fun onUserClick(friendRequest: FriendRequestsModel, position: Int, buttonName: String){
 
         //Opens FriendsPopUpWindow
@@ -98,15 +111,20 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
             intent.putExtra("context", "FriendRequestsActivity")
             startActivity(intent)
 
-            //Opens MessagesActivity
         }else if(buttonName == "acceptUserBtn"){
             acceptFriend(friendRequest.uid, friendRequest.fullName, friendRequest.profile_image
             , friendRequest.city, friendRequest.email)
         }
     }
 
-
-
+    /**
+     * Gets friend's info and saves it into current user's friend list
+     * @param friendUID
+     * @param friendName
+     * @param profileImage
+     * @param friendCity
+     * @param friendEmail
+     */
     private fun acceptFriend(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
 
         val currentUserFriendsRef = db.collection("users").document(uid)
@@ -137,6 +155,10 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
     }
 
 
+    /**
+     * Save current user's info to the other person's friend list
+     * @param friendUID
+     */
     private fun addCurrentUserToFriendsDB(friendUID: String){
         val receiverFriendsRef  = db.collection("users").document(friendUID)
             .collection("friends").document(uid)
@@ -193,6 +215,10 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
 
     }
 
+    /**
+     * Deletes friend requests once they become friends
+     * @param friendUID
+     */
     private fun deleteFriendRequests(friendUID: String){
 
         val currentUserRequestRef = db.collection("users").document(uid)
@@ -205,6 +231,9 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
         receiverRequestRef.delete()
     }
 
+    /**
+     * Checks if friend requests db is empty to display a message
+     */
     private fun checkRecyclerViewIsEmpty(){
         val docRef = db.collection("users").document(uid)
             .collection("friend_requests")
@@ -221,7 +250,9 @@ class FriendRequestsActivity : AppCompatActivity() , FriendRequestsAdapter.OnUse
 
     }
 
-    //Go to homescreen when pressed back button
+    /**
+     * Go to Friends Activity when back button is pressed
+     */
     override fun onBackPressed() {
         val intent = Intent(this, FriendsActivity::class.java)
         val options = ActivityOptions.makeCustomAnimation(this, anim.slide_in_left, anim.fade_out)

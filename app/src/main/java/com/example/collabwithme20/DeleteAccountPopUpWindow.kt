@@ -21,8 +21,13 @@ class DeleteAccountPopUpWindow : AppCompatActivity() {
 
     }
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
+
+    //Get current user instance
     private val user = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +35,12 @@ class DeleteAccountPopUpWindow : AppCompatActivity() {
         overridePendingTransition(0, 0)
         setContentView(R.layout.activity_delete_account_pop_up)
 
+        //Close window
         deleteAccountCloseBtn.setOnClickListener {
             onBackPressed()
         }
 
+        //Delete account
         deleteAccountPopUp.setOnClickListener {
             deleteAccount()
             Toast.makeText(this,"Account successfully deleted", Toast.LENGTH_SHORT).show()
@@ -52,7 +59,25 @@ class DeleteAccountPopUpWindow : AppCompatActivity() {
         colorAnimation.start()
     }
 
+    /**
+     * Deletes account from Firestore db and from authentication
+     */
+    private fun deleteAccount(){
+        val documentRef = db.collection("users").document(uid)
 
+
+        //Delete account from DB
+        documentRef.delete().addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+
+
+        //Delete user from Authentication
+        user?.delete()
+    }
+
+    /**
+     * When back button is pressed closes activity
+     */
     override fun onBackPressed() {
         // Fade animation for the background of Popup Window when you press the back button
         val alpha = 100 // between 0-255
@@ -76,16 +101,5 @@ class DeleteAccountPopUpWindow : AppCompatActivity() {
 
     }
 
-    private fun deleteAccount(){
-        val documentRef = db.collection("users").document(uid)
 
-
-        //Delete account from DB
-        documentRef.delete().addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
-            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
-
-
-        //Delete user from Authentication
-        user?.delete()
-    }
 }

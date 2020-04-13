@@ -41,12 +41,16 @@ class ChatLogActivity : AppCompatActivity() {
         private const val TAG = "ChatLogActivity"
 
     }
+    //Declares recyclerView
     private lateinit var recyclerView: RecyclerView
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
-
+    //Initialise variables
     private var friendImageName = ""
     private var friendName = ""
     private var friendUID = ""
@@ -123,6 +127,10 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Creates recyclerView of the right chat room
+     * @param friendUID
+     */
     private fun createRecyclerView(friendUID: String) {
         val chatName: String
         val mLinearLayoutManager = LinearLayoutManager(this)
@@ -174,7 +182,10 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
-    //Send message
+    /**
+     * Stores message in the right chat room
+     * @param friendUID
+     */
     private fun sendMessage(friendUID: String){
         val messageContent = messageEditText.text.toString()
         val chatID: String
@@ -209,6 +220,10 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * When chat is started changes "chat" to true in db
+     * @param friendUID
+     */
     private fun addChatValueToFriends(friendUID: String){
 
         val currentUserRef = db.collection("users").
@@ -238,6 +253,9 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * When back button is pressed goes to MessagesActivity
+     */
     override fun onBackPressed() {
         val intent = Intent(this, MessagesActivity::class.java)
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())

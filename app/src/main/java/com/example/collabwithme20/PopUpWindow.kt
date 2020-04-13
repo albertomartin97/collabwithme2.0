@@ -36,13 +36,17 @@ class PopUpWindow : AppCompatActivity() {
 
     }
 
+    //Initialise variables
     private var imageName = ""
     private var userName = ""
     private var userUID = ""
     private var city = ""
     private var email = ""
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,7 +99,9 @@ class PopUpWindow : AppCompatActivity() {
 
     }
 
-
+    /**
+     * Close window when back button is pressed
+     */
     override fun onBackPressed() {
         // Fade animation for the background of Popup Window when you press the back button
         val alpha = 100 // between 0-255
@@ -119,6 +125,10 @@ class PopUpWindow : AppCompatActivity() {
         colorAnimation.start()
     }
 
+    /**
+     * Change skill's button styles when certain skill equals true
+     * @param uid
+     */
     private fun showSkills(uid: String) {
 
         val docRef = db.collection("users").document(uid)
@@ -181,6 +191,14 @@ class PopUpWindow : AppCompatActivity() {
     }
 
 
+    /**
+     * Checks on db if users are friends otherwise sends calls checkFriendRequest
+     * @param friendUID
+     * @param friendName
+     * @param profileImage
+     * @param friendCity
+     * @param friendEmail
+     */
     private fun checkIfUsersAreFriends(friendUID: String, friendName: String, profileImage: String,
                                        friendCity: String, friendEmail: String){
 
@@ -195,7 +213,7 @@ class PopUpWindow : AppCompatActivity() {
                 if(name == friendName){
                     Toast.makeText(this, "You are already friends" , Toast.LENGTH_SHORT).show()
                 }else{
-                    sendFriendRequest(friendUID, friendName, profileImage, friendCity, friendEmail)
+                    checkFriendRequest(friendUID, friendName, profileImage, friendCity, friendEmail)
                 }
 
             } else {
@@ -209,7 +227,16 @@ class PopUpWindow : AppCompatActivity() {
 
     }
 
-    private fun sendFriendRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
+    /**
+     * Check if that user has sent a request current users and if that is the case then add to
+     * friends list. Otherwise calls sendRequestToFriend
+     * @param friendUID
+     * @param friendName
+     * @param profileImage
+     * @param friendCity
+     * @param friendEmail
+     */
+    private fun checkFriendRequest(friendUID: String, friendName: String, profileImage: String, friendCity: String, friendEmail: String){
 
         val currentUserRequestRef = db.collection("users").document(uid)
             .collection("friend_requests").document(friendUID)
@@ -244,7 +271,7 @@ class PopUpWindow : AppCompatActivity() {
                         }
                     Toast.makeText(this, "Friend added", Toast.LENGTH_SHORT).show()
                 }else{
-
+                    //If current user does not have a request from that person send him a request
                     sendRequestToFriend(friendUID)
 
                     Toast.makeText(this, "Friend request sent", Toast.LENGTH_SHORT).show()
@@ -264,6 +291,10 @@ class PopUpWindow : AppCompatActivity() {
 
     }
 
+    /**
+     * Stores friends request into that user's db
+     * @param friendUID
+     */
     private fun sendRequestToFriend(friendUID: String){
 
         var firstName: String
@@ -317,6 +348,10 @@ class PopUpWindow : AppCompatActivity() {
 
     }
 
+    /**
+     * Adds current user to the other user's friend list
+     * @param friendUID
+     */
     private fun addCurrentUserToFriendsDB(friendUID: String){
         val receiverFriendsRef  = db.collection("users").document(friendUID)
             .collection("friends").document(uid)
@@ -370,6 +405,10 @@ class PopUpWindow : AppCompatActivity() {
 
     }
 
+    /**
+     * Delete friend requests once users become friends
+     * @param friendUID
+     */
     private fun deleteFriendRequests(friendUID: String){
 
         val currentUserRequestRef = db.collection("users").document(uid)

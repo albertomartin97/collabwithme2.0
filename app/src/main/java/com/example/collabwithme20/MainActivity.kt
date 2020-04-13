@@ -21,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         val TAG = "MainActivity"
     }
 
+    /**
+     * Resumes the video once back in the activity
+     */
     public override fun onResume() {
         super.onResume()
         videoView.start()
@@ -53,6 +56,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Checks user is signed in
+     */
     private fun checkSignedInUser(){
 
         val user = FirebaseAuth.getInstance().currentUser
@@ -94,7 +100,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
+    /**
+     * Closes app when back button is pressed
+     */
     override fun onBackPressed() {
             finish()
     }

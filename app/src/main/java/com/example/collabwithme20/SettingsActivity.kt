@@ -16,8 +16,6 @@ import kotlinx.android.synthetic.main.activity_settings.backBtn
 
 class SettingsActivity : AppCompatActivity() {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -44,7 +42,9 @@ class SettingsActivity : AppCompatActivity() {
 
     }
 
-    //Go to homescreen when pressed back button
+    /**
+     * Go to home screen when back button is pressed
+     */
     override fun onBackPressed() {
         val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())

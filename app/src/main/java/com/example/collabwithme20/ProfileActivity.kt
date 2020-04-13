@@ -22,10 +22,11 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
-    private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
+    //Get current user id
+    private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,6 +131,9 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Gets current user's data from db
+     */
     private fun getUserData(){
 
         var firstName: String
@@ -174,7 +178,10 @@ class ProfileActivity : AppCompatActivity() {
     }
 
 
-    //Assigns colour to the selected skills
+    /**
+     * Changes style to button if true or false
+     * @param skill
+     */
     private fun changeSkillsColour(skill: String) {
 
         lateinit var button: Button
@@ -241,6 +248,9 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Gets image from storage and loads it
+     */
     private fun setProfilePicture(){
         var imageLink : String?
 
@@ -275,6 +285,9 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Updates description into db
+     */
     private fun saveDescriptionIntoDB(){
         val descriptionContent = descriptionEditText.text.toString()
 
@@ -293,6 +306,9 @@ class ProfileActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Updates user name into db
+     */
     private fun updateNameIntoDB(){
         val name = firstNameTextView.text.toString()
 
@@ -318,38 +334,10 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-
-    //Go to homescreen when pressed back button
-    override fun onBackPressed() {
-        val name = firstNameTextView.text.toString()
-
-        val count = name.split(" ").size
-
-        //Check if input is name and surname
-        when {
-            count >= 2 -> {
-                updateNameIntoDB()
-
-                val intent = Intent(this, HomeScreenActivity::class.java)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-
-            }
-            name.length <= 2 -> {
-
-                val intent = Intent(this, HomeScreenActivity::class.java)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            }
-            else -> {
-                Toast.makeText(this, "Please insert name and surname", Toast.LENGTH_SHORT).show()
-
-            }
-        }
-
-
-
-    }
-
-
+    /**
+     * Updates skill into db and changes style
+     * @param skill
+     */
     private fun updateSkills(skill : String){
         lateinit var button: Button
 
@@ -458,6 +446,42 @@ class ProfileActivity : AppCompatActivity() {
         }
 
     }
+
+
+    /**
+     * Go to home screen when back button is pressed and name is typed correctly
+     */
+    override fun onBackPressed() {
+        val name = firstNameTextView.text.toString()
+
+        val count = name.split(" ").size
+
+        //Check if input is name and surname
+        when {
+            count >= 2 -> {
+                updateNameIntoDB()
+
+                val intent = Intent(this, HomeScreenActivity::class.java)
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+
+            }
+            name.length <= 2 -> {
+
+                val intent = Intent(this, HomeScreenActivity::class.java)
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            else -> {
+                Toast.makeText(this, "Please insert name and surname", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+
+
+
+    }
+
+
+
 
 
 

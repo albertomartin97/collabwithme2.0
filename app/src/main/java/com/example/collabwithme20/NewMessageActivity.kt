@@ -22,9 +22,14 @@ class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListen
         private const val TAG = "NewMessageActivity"
 
     }
+
+    //Declares recyclerView
     private lateinit var recyclerView: RecyclerView
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +44,12 @@ class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListen
 
         createRecyclerView()
 
-
-
     }
 
+    /**
+     * Creates recyclerView with friends where chat equals false (which means that they have not
+     * talked before
+     */
     private fun createRecyclerView(){
 
         val query = db.collection("users").document(uid)
@@ -76,6 +83,12 @@ class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListen
 
     }
 
+    /**
+     * Manages when user clicks on recyclerView elements
+     * @param friend
+     * @param position
+     * @param buttonName
+     */
     override fun onUserClick(friend: FriendsModel, position: Int, buttonName: String){
 
         //Opens chat log
@@ -95,7 +108,9 @@ class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListen
     }
 
 
-    //Go to homescreen when pressed back button
+    /**
+     * Go to messages activity when back button is pressed
+     */
     override fun onBackPressed() {
         val intent = Intent(this, MessagesActivity::class.java)
         val options = ActivityOptions.makeCustomAnimation(this, android.R.anim.slide_in_left, android.R.anim.fade_out)

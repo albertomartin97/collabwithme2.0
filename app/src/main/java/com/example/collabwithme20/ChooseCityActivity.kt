@@ -187,6 +187,10 @@ class ChooseCityActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Updates city selection in db
+     * @param citySelection
+     */
     private fun changeCity(citySelection: String) {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
@@ -204,7 +208,4 @@ class ChooseCityActivity : AppCompatActivity() {
             }
     }
 
-    override fun onBackPressed() {
-        // do something
-    }
 }

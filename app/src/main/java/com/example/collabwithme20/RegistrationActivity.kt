@@ -16,6 +16,7 @@ class RegistrationActivity : AppCompatActivity() {
         private val TAG = "RegistrationActivity"
     }
 
+    //Initialize Firebase
     val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +30,10 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Reads user's input and creates an account in firebase authentication as well as saving the
+     * data into db
+     */
     private fun performRegistration() {
 
         val email = emailInput.text.toString()

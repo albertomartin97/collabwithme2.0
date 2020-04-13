@@ -25,9 +25,14 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
         private const val TAG = "FriendsActivity"
 
     }
+
+    //Declares recyclerView
     private lateinit var recyclerView: RecyclerView
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +52,7 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
             startActivity(intent)
         }
 
+        //Click effect on img button
         friendRequestsBtn.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN ->
@@ -77,6 +83,9 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
     }
 
+    /**
+     * Creates recyclerView displaying friends in db
+     */
     private fun createRecyclerView(){
 
         val query = db.collection("users").document(uid)
@@ -110,6 +119,12 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
     }
 
+    /**
+     * Manages when user clicks on recyclerView elements
+     * @param friend
+     * @param position
+     * @param buttonName
+     */
     override fun onUserClick(friend: FriendsModel, position: Int, buttonName: String){
 
         //Opens FriendsPopUpWindow
@@ -132,6 +147,9 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
         }
     }
 
+    /**
+     * Checks friends list is empty to display message
+     */
     private fun checkRecyclerViewIsEmpty(){
         val docRef = db.collection("users").document(uid)
             .collection("friends")
@@ -151,6 +169,9 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
     }
 
+    /**
+     * Checks friend requests in db to update button
+     */
     private fun updateNotificationIcon(){
 
         val docRef = db.collection("users").document(uid)
@@ -223,7 +244,9 @@ class FriendsActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener 
 
     }
 
-    //Go to homescreen when pressed back button
+    /**
+     * Go to home screen when back button is pressed
+     */
     override fun onBackPressed() {
         val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())

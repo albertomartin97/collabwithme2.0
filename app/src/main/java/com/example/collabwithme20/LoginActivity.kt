@@ -27,6 +27,9 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Gets email and password input from user to perform login using firebase authentication
+     */
     private fun performLogin(){
         val email = emailInput.text.toString()
         val password = passwordInput.text.toString()

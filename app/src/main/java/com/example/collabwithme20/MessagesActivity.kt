@@ -31,9 +31,14 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
         private const val TAG = "MessagesActivity"
 
     }
+
+    //Declares recyclerView
     private lateinit var recyclerView: RecyclerView
 
+    //Initialize Firebase
     private val db = FirebaseFirestore.getInstance()
+
+    //Get current user id
     private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +56,7 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
             startActivity(intent)
         }
 
+        //Clickable img button effect
         newMessageBtn.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN ->
@@ -71,6 +77,10 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
 
     }
 
+    /**
+     * Creates recyclerview with every user in current user's friend list where chat equals true
+     * (which means they have previously engaged in a conversation
+     */
     private fun createRecyclerView(){
 
         val query = db.collection("users").document(uid)
@@ -103,6 +113,12 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
 
     }
 
+    /**
+     * Manages when user clicks on recyclerView elements
+     * @param friend
+     * @param position
+     * @param buttonName
+     */
     override fun onUserClick(friend: FriendsModel, position: Int, buttonName: String){
 
         //Opens chat log
@@ -121,6 +137,9 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
         }
     }
 
+    /**
+     * Checks if there are any friends with a previous chat to display a message
+     */
     private fun checkRecyclerViewIsEmpty(){
         val docRef = db.collection("users").document(uid)
             .collection("friends").whereEqualTo("chat", "true")
@@ -144,7 +163,9 @@ class MessagesActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener
     }
 
 
-    //Go to homescreen when pressed back button
+    /**
+     * Go to home screen when back button is pressed
+     */
     override fun onBackPressed() {
         val intent = Intent(this, HomeScreenActivity::class.java)
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
