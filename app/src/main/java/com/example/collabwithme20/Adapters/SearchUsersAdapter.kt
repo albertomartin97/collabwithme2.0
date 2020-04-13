@@ -15,7 +15,17 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.search_user_row.view.*
 
-
+/**
+ * Find people adapter
+ * @property uid
+ * @property clickListener
+ * @property city
+ * @property skill
+ * @constructor
+ *
+ * @param array
+ * @param options
+ */
 class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
                          options: FirestoreRecyclerOptions<UserModel>,
                          var clickListener: OnUserClickListener, var city: String, var skill: String
@@ -23,12 +33,14 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
     FirestoreRecyclerAdapter<UserModel, SearchUsersAdapter.ViewHolder>(options){
 
 
-
+    //Assigns variable
     private var temporaryList = array
 
 
-
-
+    /**
+     * Binds items to container view
+     * @property containerView
+     */
     class ViewHolder(private val containerView: View) : RecyclerView.ViewHolder(containerView){
         fun bindItems(user : UserModel, action: OnUserClickListener){
 
@@ -54,6 +66,12 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
 
     }
 
+    /**
+     * Creates view holder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val inflatedView = layoutInflater.inflate(
@@ -66,7 +84,12 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
     }
 
 
-
+    /**
+     * Binds view holder
+     * @param p0
+     * @param p1
+     * @param p2
+     */
     override fun onBindViewHolder(p0: ViewHolder, p1: Int, p2: UserModel) {
 
         p0.apply {
@@ -89,6 +112,7 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
             //If value passed is "All" show every person from db
             else if(city == "All") {
 
+                //Check what skill is selected and omit the rest
                 if(skill == "All"){
                     p0.bindItems(temporaryList[p1], clickListener)
                 }
@@ -169,6 +193,7 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
             //Show user if the value passed is equal to user's city
             else if(p2.city == city){
 
+                //Check what skill is selected and omit the rest
                 if(skill == "All"){
                     p0.bindItems(temporaryList[p1], clickListener)
                 }
@@ -252,8 +277,14 @@ class SearchUsersAdapter(var uid: String, array: FirestoreArray<UserModel>,
         }
     }
 
+    /**
+     * Gets item count
+     */
     override fun getItemCount() = temporaryList.size
 
+    /**
+     * Manages user click
+     */
     interface OnUserClickListener{
         fun onUserClick(user: UserModel, position: Int, buttonName: String)
     }

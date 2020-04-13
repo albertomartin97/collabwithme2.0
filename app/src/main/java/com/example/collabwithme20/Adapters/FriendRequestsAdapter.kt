@@ -16,7 +16,15 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.friend_requests_row.view.*
 
 
-
+/**
+ * Friend requests adapter
+ * @property uid
+ * @property clickListener
+ * @constructor
+ *
+ * @param array
+ * @param options
+ */
 class FriendRequestsAdapter(var uid: String, array: FirestoreArray<FriendRequestsModel>,
                             options: FirestoreRecyclerOptions<FriendRequestsModel>,
                             var clickListener: OnUserClickListener
@@ -24,10 +32,14 @@ class FriendRequestsAdapter(var uid: String, array: FirestoreArray<FriendRequest
     FirestoreRecyclerAdapter<FriendRequestsModel, FriendRequestsAdapter.FriendRequestsViewHolder>(options){
 
 
-
+    //Assigns variable
     private var temporaryList = array
 
 
+    /**
+     * Binds items to container view
+     * @property containerView
+     */
     class FriendRequestsViewHolder(private val containerView: View) : RecyclerView.ViewHolder(containerView){
         fun bindItems(friendRequest: FriendRequestsModel, action: OnUserClickListener){
 
@@ -57,6 +69,12 @@ class FriendRequestsAdapter(var uid: String, array: FirestoreArray<FriendRequest
 
     }
 
+    /**
+     * Creates view holder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendRequestsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val inflatedView = layoutInflater.inflate(R.layout.friend_requests_row, parent, false)
@@ -67,7 +85,12 @@ class FriendRequestsAdapter(var uid: String, array: FirestoreArray<FriendRequest
     }
 
 
-
+    /**
+     * Binds view holder
+     * @param p0
+     * @param p1
+     * @param p2
+     */
     override fun onBindViewHolder(p0: FriendRequestsViewHolder, p1: Int, p2: FriendRequestsModel) {
 
         p0.apply {
@@ -77,8 +100,14 @@ class FriendRequestsAdapter(var uid: String, array: FirestoreArray<FriendRequest
         }
     }
 
+    /**
+     * Gets item count
+     */
     override fun getItemCount() = temporaryList.size
 
+    /**
+     * Manages user click
+     */
     interface OnUserClickListener{
         fun onUserClick(friendRequest: FriendRequestsModel, position: Int, buttonName: String)
     }

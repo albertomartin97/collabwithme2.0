@@ -14,8 +14,15 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.friends_row.view.*
 
 
-
-
+/**
+ * Friends adapter
+ * @property uid
+ * @property clickListener
+ * @constructor
+ *
+ * @param array
+ * @param options
+ */
 class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
                          options: FirestoreRecyclerOptions<FriendsModel>,
                      var clickListener: OnUserClickListener
@@ -23,15 +30,19 @@ class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
     FirestoreRecyclerAdapter<FriendsModel, FriendsAdapter.FriendsViewHolder>(options){
 
 
-
+    //Assigns variable
     private var temporaryList = array
 
-
+    /**
+     * Binds items to container view
+     * @property containerView
+     */
     class FriendsViewHolder(private val containerView: View) : RecyclerView.ViewHolder(containerView){
         fun bindItems(friend: FriendsModel, action: OnUserClickListener){
 
             containerView.friendNameTextView.text = friend.fullName
 
+            //Put default picture is there is no image
             if(friend.profile_image == "") {
                 Glide.with(containerView.profileImageFriend).load(R.drawable.default_profile_pic)
                     .transform(CircleCrop()).into(containerView.profileImageFriend)
@@ -46,13 +57,16 @@ class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
                 action.onUserClick(friend, adapterPosition, "showUserProfile")
             }
 
-            containerView.chatBtn.setOnClickListener {
-                action.onUserClick(friend, adapterPosition, "chatBtn")
-            }
         }
 
     }
 
+    /**
+     * Creates view holder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val inflatedView = layoutInflater.inflate(R.layout.friends_row, parent, false)
@@ -63,7 +77,12 @@ class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
     }
 
 
-
+    /**
+     * Binds view holder
+     * @param p0
+     * @param p1
+     * @param p2
+     */
     override fun onBindViewHolder(p0: FriendsViewHolder, p1: Int, p2: FriendsModel) {
 
         p0.apply {
@@ -73,8 +92,14 @@ class FriendsAdapter(var uid: String, array: FirestoreArray<FriendsModel>,
         }
     }
 
+    /**
+     * Gets item count
+     */
     override fun getItemCount() = temporaryList.size
 
+    /**
+     * Manages user click
+     */
     interface OnUserClickListener{
         fun onUserClick(friend: FriendsModel, position: Int, buttonName: String)
     }
