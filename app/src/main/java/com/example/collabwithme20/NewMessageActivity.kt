@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.collabwithme20.Adapters.FriendsAdapter
@@ -15,7 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_new_message.backBtn
+import kotlinx.android.synthetic.main.activity_new_message.*
 
 class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListener {
     companion object {
@@ -42,6 +43,7 @@ class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListen
             startActivity(intent, options.toBundle())
         }
 
+        checkRecyclerViewIsEmpty()
         createRecyclerView()
 
     }
@@ -107,7 +109,23 @@ class NewMessageActivity : AppCompatActivity(), FriendsAdapter.OnUserClickListen
         }
     }
 
+    /**
+     * Checks friends list is empty to display message
+     */
+    private fun checkRecyclerViewIsEmpty(){
+        val docRef = db.collection("users").document(uid)
+            .collection("friends")
 
+        docRef.get().addOnSuccessListener { document ->
+            if (document.size() > 0)  {
+                recyclerView.visibility = View.VISIBLE
+            } else {
+                recyclerView.visibility = View.INVISIBLE
+                empty_friends_for_chat.setText(R.string.empty_friends_for_chat)
+            }
+        }
+
+    }
     /**
      * Go to messages activity when back button is pressed
      */

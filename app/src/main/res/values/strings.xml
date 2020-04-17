@@ -79,6 +79,7 @@
     <string name="send">Send</string>
     <string name="empty_messages">Start a new chat</string>
     <string name="empty_friend_requests">No friend requests</string>
+    <string name="empty_friends_for_chat">First add new friends</string>
 
 
 </resources>

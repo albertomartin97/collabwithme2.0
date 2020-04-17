@@ -41,6 +41,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/left_arrow" />
 
+
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/new_message_recyclerView"
             android:layout_width="412dp"
@@ -55,4 +57,17 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
+
+    <TextView
+            android:id="@+id/empty_friends_for_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/alfa_slab_one"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityTextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

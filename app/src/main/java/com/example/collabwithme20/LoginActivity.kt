@@ -44,17 +44,19 @@ class LoginActivity : AppCompatActivity() {
         Log.d("MainActivity", "Paswword: $password")
 
         //Check email and password are correct
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
             if(!it.isSuccessful){
-                Toast.makeText(this, "You have entered an invalid username or password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "You have entered an invalid username or password",
+                    Toast.LENGTH_SHORT).show()
                 return@addOnCompleteListener}
             else  {
-                val intentGoToHomeScreenActivity = Intent(this, HomeScreenActivity::class.java)
-                Toast.makeText(this, "Logged in successfully", Toast.LENGTH_SHORT).show()
+                val intentGoToHomeScreenActivity = Intent(this,
+                    HomeScreenActivity::class.java)
+                Toast.makeText(this, "Logged in successfully",
+                    Toast.LENGTH_SHORT).show()
                 startActivity(intentGoToHomeScreenActivity)
             }
-
-
         }
 
 
