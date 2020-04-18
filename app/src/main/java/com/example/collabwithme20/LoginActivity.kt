@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
             if(!it.isSuccessful){
-                Toast.makeText(this, "You have entered an invalid username or password",
+                Toast.makeText(this, "You have entered an invalid email or password",
                     Toast.LENGTH_SHORT).show()
                 return@addOnCompleteListener}
             else  {

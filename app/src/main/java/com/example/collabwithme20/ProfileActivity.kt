@@ -32,10 +32,31 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        //Go to home screen and save name
         backBtn.setOnClickListener {
-            val intentGoToPreviousActivity = Intent(this, HomeScreenActivity::class.java)
-            startActivity(intentGoToPreviousActivity,
-                ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            val name = firstNameTextView.text.toString()
+
+            val count = name.split(" ").size
+
+            //Check if input is name and surname
+            when {
+                count >= 2 -> {
+                    updateNameIntoDB()
+
+                    val intent = Intent(this, HomeScreenActivity::class.java)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+
+                }
+                name.length <= 2 -> {
+
+                    val intent = Intent(this, HomeScreenActivity::class.java)
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                }
+                else -> {
+                    Toast.makeText(this, "Please insert name and surname", Toast.LENGTH_SHORT).show()
+
+                }
+            }
         }
 
         getUserData()   //Get user data from DB
